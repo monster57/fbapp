@@ -34,16 +34,31 @@ user.register = function(req,res){
 		var newUser = {
 			name: name,
 			email:email,
-			password:password,
+			password:User.createHash(password),
 			profileimage: profileImage
 		};
-		User.createUser(newUser).then(function(user){
-			req.flash('success', 'you are now registered and can log in')
-			res.location('/');
-			res.redirect('/')	
+		User.findOne({where:{email:newUser.email}})
+		.then(function(user){
+			// if(user){
+			// 	req.flash('failure','user is already present');
+			// 	return res.redirect('/users/register')
+			// }
+			User.create(newUser)
+		}).bind({})
+		.then(function(user){
+			if(!user) throw Error('user has not created');		
 		});
+		req.flash('success', 'you are now registered')
+		res.location('/');
+		return res.redirect('/')
 	}
 };
+
+user.login = function(req, res) {
+  	req.flash('success' , 'you are now logged in');
+    res.redirect('/');
+};
+
 user.logout = function(req, res){
 	req.logout();
 	req.flash('success' , 'you are now logged out');
@@ -53,6 +68,5 @@ user.logout = function(req, res){
 user.goToHomePage = function(req, res) {
     res.redirect('/');
 };
-
 
 module.exports = user;
