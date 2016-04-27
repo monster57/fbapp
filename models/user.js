@@ -20,7 +20,12 @@ module.exports = function(sequelize, DataTypes) {
       field:'profileimage'
     }
   },{
-    tableName: 'users'
+    tableName: 'users',
+    classMethods:{
+      createUser:function(userData){
+        return this.Create(userData);
+      }
+    }
   });
 
   return User;

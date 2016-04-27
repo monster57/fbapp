@@ -16,11 +16,13 @@ html
           a.navbar-brand(class=(title == "Members"?'active':''),href='/') node auth
         #navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
+            if !isUser
               li(class=(title == "Register"?'active':''))
                 a(href='/users/register') Register
               li(class=(title == "Login"?'active':''))
                 a(href='/users/login') Login
           ul.nav.navbar-nav.navbar-right
+            if isUser
               li
                 a(href='/users/logout/') logout
     .container

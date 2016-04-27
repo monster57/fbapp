@@ -14,5 +14,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/register', userController.getRegisterPage);
 router.get('/login', userController.getLoginPage);
+router.post('/register', upload.single('profileimage'), userController.register);
+
 
 module.exports = router;
