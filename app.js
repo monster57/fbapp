@@ -27,6 +27,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 //passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 //validator
 app.use(expressValidator({
@@ -45,12 +47,11 @@ app.use(expressValidator({
     };
   }
 }));
+app.use(flash());
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', routes);
 
 
-app.use('/users', users);
 
 //Handle sessions
 app.use(session({
@@ -58,11 +59,8 @@ app.use(session({
   saveUnintialized:true,
   resave: true,
 }));
-app.use(passport.initialize());
 
-app.use(passport.session());
 
-app.use(flash());
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
@@ -72,6 +70,9 @@ app.get('*', function(req, res, next){
   res.locals.isUser = req.user ? true : null;
   next();
 });
+
+app.use('/', routes);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
