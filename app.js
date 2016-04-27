@@ -4,6 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var passport = require('passport');
+var expressValidator = require('express-validator');
+var LocalStrategy = require('passport-local').Strategy;
+var flash = require('connect-flash');
+var bcrypt = require('bcryptjs');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -25,12 +31,57 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
+
+
+//Handle sessions
+app.use(session({
+  secret:'secret',
+  saveUnintialized:true,
+  resave: true,
+}));
+
+//passport 
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+//validator
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
+
+app.get('*', function(req, res, next){
+  res.locals.isUser = req.user ? true : null;
+  next();
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
+
+
 
 // error handlers
 
