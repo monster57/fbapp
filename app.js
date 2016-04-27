@@ -26,30 +26,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', routes);
-app.use('/users', users);
-
-
-//Handle sessions
-app.use(session({
-  secret:'secret',
-  saveUnintialized:true,
-  resave: true,
-}));
-
-//passport 
-
-app.use(passport.initialize());
-app.use(passport.session());
+//passport
 
 //validator
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
-      var namespace = param.split('.')
-      , root    = namespace.shift()
-      , formParam = root;
+    var namespace = param.split('.')
+        , root    = namespace.shift()
+        , formParam = root;
 
     while(namespace.length) {
       formParam += '[' + namespace.shift() + ']';
@@ -61,6 +45,22 @@ app.use(expressValidator({
     };
   }
 }));
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', routes);
+
+
+app.use('/users', users);
+
+//Handle sessions
+app.use(session({
+  secret:'secret',
+  saveUnintialized:true,
+  resave: true,
+}));
+app.use(passport.initialize());
+
+app.use(passport.session());
 
 app.use(flash());
 app.use(function (req, res, next) {
