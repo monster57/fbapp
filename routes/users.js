@@ -4,7 +4,6 @@ var multer = require('multer');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var upload = multer({dest: './uploads'});
-var FacebookStrategy = require('passport-facebook').Strategy;
 
 var userController = require('../controller/user_controller');
 /* GET users listing. */
