@@ -4,18 +4,18 @@ var bcrypt = require('bcryptjs');
 
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
-    name:{
-      type: DataTypes.STRING,
-      field:'name'
-    },
-    email:{
-      type: DataTypes.STRING,
-      field:'email',
+    facebook_id:{
+      type: DataTypes.INTEGER,
+      field:'facebook_id',
       unique: true
     },
-    password:{
+    displayName:{
+      type: DataTypes.STRING,
+      field:'displayname'
+    },
+    gender:{
       type:DataTypes.STRING,
-      field:'password'
+      field:'gender'
     },
     role:{
       type:DataTypes.STRING,
@@ -33,8 +33,18 @@ module.exports = function(sequelize, DataTypes) {
         var salt = bcrypt.genSaltSync(10);
         var hash = bcrypt.hashSync(password, salt);
         return hash;
-      }
-    },
+      },
+      validPassword: function(password, passwd, done, user){
+          bcrypt.compare(password, passwd, function(err, isMatch){
+                  if (err) console.log(err)
+                  if (isMatch) {
+                          return done(null, user)
+                  } else {
+                          return done(null, false)
+                  }
+          })
+        }
+      },
     instanceMethods: {
       authenticateUser: function(plainPassword) {
         return this.password === User.createHash(plainPassword);

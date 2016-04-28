@@ -3,7 +3,9 @@ var router = express.Router();
 var multer = require('multer');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 var upload = multer({dest: './uploads'});
+var configAuth = require('../config/auth.js');
 var models = require('../models');
 var User = models.User;
 
@@ -22,27 +24,123 @@ passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id) {
-  return User.getUserById(id).then(function(user){
-  	return user
-  });
-});
-
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({where:{ email: username }}, function (err, user) {
-    	console.log(user,"-----------------")
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.authenticateUser(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
+passport.deserializeUser(function(user, done){
+    User.find({where: {id: user.id}}).then(function(user){
+            done(null, user);
+    }).error(function(err){
+            done(err, null)
     });
-  }
+});
+passport.use(new LocalStrategy(
+        function(username, password, done){
+                User.find({where: {email: username}}).then(function(user){
+                        passwd = user ? user.password : ''
+                        isMatch = User.validPassword(password, passwd, done, user)
+                        if(isMatch){
+                        	return user
+                        }else{
+                        	throw new Error('password is wrong');
+                        }
+
+                }).catch(function(err){
+                	console.log(err);
+                });
+        }
 ));
+
+// passport.use(new FacebookTokenStrategy({
+//     clientID: "967818673337031",
+//     clientSecret: "3b68a364f311dc153bfacf0fa4b84dbb",
+//     profileFields: ['id', 'displayName', 'photos','first_name','last_name','link','gender','locale','friends','email'],
+//     enableProof: false,
+//   }, function(accessToken, refreshToken, profile, done) {
+    
+//     if (!profile.emails) return done("Something wrong happened");
+
+//     var email = profile.emails[0].value;
+//     console.log(profile, "----------------------")
+//    }
+//  ));
+passport.use(new FacebookStrategy({
+
+        // pull in our app id and secret from our auth.js file
+        clientID        : configAuth.facebookAuth.clientID,
+        clientSecret    : configAuth.facebookAuth.clientSecret,
+        callbackURL     : configAuth.facebookAuth.callbackURL,
+        profileFields	: configAuth.facebookAuth.profileFields
+
+    },
+
+    // facebook will send back the token and profile
+    function(token, refreshToken, profile, done) {
+
+        // asynchronous
+        process.nextTick(function() {
+        	console.log(profile,"----------------------")
+        	User.findOne({where:{facebook_id:profile.id}})
+        	.then(function(user){
+
+        		if(user){
+        			return user;
+        		}else{
+        			var newUser = {
+        				facebook_id:profile.id,
+        				displayName: profile.displayName,
+        				gender: profile.gender,
+        				profileimage: profile.photos[0].value
+        			}
+
+        			User.create(newUser).then(function(user){
+        				return user;
+        			});
+        		}
+        	});
+
+            // find the user in the database based on their facebook id
+            // User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
+
+            //     // if there is an error, stop everything and return that
+            //     // ie an error connecting to the database
+            //     if (err)
+            //         return done(err);
+
+            //     // if the user is found, then log them in
+            //     if (user) {
+            //         return done(null, user); // user found, return that user
+            //     } else {
+            //         // if there is no user found with that facebook id, create them
+            //         var newUser            = new User();
+
+            //         // set all of the facebook information in our user model
+            //         newUser.facebook.id    = profile.id; // set the users facebook id                   
+            //         newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
+            //         newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
+            //         newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+
+            //         // save our user to the database
+            //         newUser.save(function(err) {
+            //             if (err)
+            //                 throw err;
+
+            //             // if successful, return the new user
+            //             return done(null, newUser);
+            //         });
+            //     }
+
+            // });
+    });
+
+}));
+
+router.get('/auth/facebook', passport.authenticate('facebook'));
+
+
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { 
+       successRedirect : '/', 
+       failureRedirect: '/user/login' 
+  }),userController.goToHomePage
+);
 
 router.post('/login',
   passport.authenticate('local', {failureRedirect: '/users/login' , failureFlash:'invalid email or password'}),
