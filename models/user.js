@@ -5,7 +5,7 @@ var bcrypt = require('bcryptjs');
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
     facebook_id:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       field:'facebook_id',
       unique: true
     },
