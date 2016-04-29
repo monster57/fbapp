@@ -1,20 +1,34 @@
 extends ../layout
 
 block content
-    .container
+  .container#rootDiv
+    .form
+      .form-group
         .row
-            .card
-                .card-image.waves-effect.waves-light
-                    img.activator(src="#{ coverPictureUrl }")
-                    .card-title
-                        .input-field
-                            .file-field.input-field.right
-                                .btn
-                                    | Change image
-                                    input(type='file', onchange="changeCoverImage()")
+          .card
+            .card-image.waves-effect.waves-light
+              img#coverImage.activator(src="#{ coverPictureUrl }")
+              .card-title
+                .input-field
+                  .file-field.input-field.right
+                    .btn
+                      | Change image
+                      input(id="coverImagePicker", type='file', onchange="changeCoverImage()", name="coverPicture")
+      .row
+        .form-group
+          .input-field
+            input(name="title", placeholder="Enter Ad Title")
+      .row
+        h4
+          b(style="color:#26a69a") Choose a background image
+        .col.s4
+          img.responsive-img(style="height:100%;width:100%", src="https://placehold.it/500x500?text=select image")
 
-
-        .row
-            | this is body
-        .row
-            | this is buttons
+        .col.s4
+          img.responsive-img(style="height:100%;width:100%", src="https://placehold.it/500x500?text=select image")
+        .col.s4
+          img.responsive-img(style="height:100%;width:100%", src="https://placehold.it/500x500?text=select image")
+      .row
+        button.btn.waves-effect.waves-light(type='submit', name='action')
+          | Submit
+          i.material-icons.right send

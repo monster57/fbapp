@@ -1,6 +1,6 @@
 
 function changeCoverImage () {
-    var imagePath = $('input[type=file]').val();
+    var imagePath = $('#coverImagePicker').val();
     imagePath = imagePath.split('\\').pop();
     $("#coverImage").attr("src", "/images/"+imagePath);
 }
