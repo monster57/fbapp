@@ -1,5 +1,5 @@
 var User = require('../models/user');
-
+var Project = require('../models/project');
 var home = {};
 
 // get list of all users
@@ -33,4 +33,12 @@ console.log('id:-- ',req.body.length, req.body[0].facebook_id);
 	});
 };
 
+home.getAllProjects = function(req, res){
+
+}
+
+
+home.saveProject = function(req, res){
+
+}
 module.exports = home;

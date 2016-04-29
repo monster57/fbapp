@@ -16,8 +16,6 @@ router.get('/', AunthenticationCheck, function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/register', UserController.getRegisterPage);
-router.get('/login', UserController.getLoginPage);
 
 function AunthenticationCheck(req, res, next){
   console.log('roleeeee:---- ',req.user.role);
