@@ -12,12 +12,21 @@ var UserController = require('../controller/user_controller');
 var User = require('../models/user');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', AunthenticationCheck, function(req, res, next) {
   res.send('respond with a resource');
 });
 
 router.get('/register', UserController.getRegisterPage);
 router.get('/login', UserController.getLoginPage);
+
+function AunthenticationCheck(req, res, next){
+  console.log('roleeeee:---- ',req.user.role);
+  if(req.isAuthenticated() && req.user.role === 'user'){
+    return next();
+  }
+  res.redirect('/users/login');
+}
+
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
