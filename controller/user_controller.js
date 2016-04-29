@@ -70,4 +70,13 @@ user.goToHomePage = function(req, res) {
     res.redirect('/');
 };
 
+user.checkPrivilages = function(req, res){
+	if(req.user.role == 'admin'){
+		res.redirect('/');
+	}
+	else{
+		res.redirect('/users');
+	}
+}
+
 module.exports = user;

@@ -66,8 +66,7 @@ passport.use(new FacebookStrategy({
 
 router.get('/auth/facebook', passport.authenticate('facebook'));
 router.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect: '/',
-                                      failureRedirect: '/users/login' }));
+  [passport.authenticate('facebook', { failureRedirect: '/users/login' }), UserController.checkPrivilages]);
 
 router.get('/logout', function(req, res){
   req.logout();
