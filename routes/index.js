@@ -14,6 +14,7 @@ router.get('/dashboard', function( req, res ) {
 });
 
 router.get('/members', ensureAuthenticated, homeController.getAllUsers);
+router.post('/members/privilages', homeController.changeAccess);
 
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated() && req.user.role === 'admin'){

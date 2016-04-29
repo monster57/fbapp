@@ -20,9 +20,17 @@ home.getAllUsers = function(req,res){
 // change user role
 home.changeAccess = function(req, res){
 
-	User.update({_id:req.id},{
-		role: req.role
-	})
+console.log('id:-- ',req.body.length, req.body[0].facebook_id);
+// var id_arr = [];
+// for(var i=0; i< req.body.length; i++){
+// 	console.log('l:- ', req.body[i].facebook_id);
+// 	id_arr.push(req.body[i].facebook_id)
+// }
+// console.log("JS:--- ",JSON.stringify(id_arr.join()));
+	User.update({facebook_id: { $in: ["509530525860555", "10209697590941998"]}},{$set:{role:req.body[0].role}}, false, true).exec()
+	.then(function(user){
+		console.log(user,'---------------------')
+	});
 };
 
 module.exports = home;
