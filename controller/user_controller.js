@@ -55,6 +55,7 @@ user.register = function(req,res){
 };
 
 user.login = function(req, res) {
+	req.session.user = req.user;
   	req.flash('success' , 'you are now logged in');
     res.redirect('/');
 };
@@ -66,6 +67,7 @@ user.logout = function(req, res){
 };
 
 user.goToHomePage = function(req, res) {
+	req.flash('success' , 'you are now logged in');
     res.redirect('/');
 };
 

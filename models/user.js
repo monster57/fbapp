@@ -1,56 +1,55 @@
-"use strict";
-
+var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
-module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("User", {
-    facebook_id:{
-      type: DataTypes.STRING,
-      field:'facebook_id',
-      unique: true
-    },
-    displayName:{
-      type: DataTypes.STRING,
-      field:'displayname'
-    },
-    gender:{
-      type:DataTypes.STRING,
-      field:'gender'
-    },
-    role:{
-      type:DataTypes.STRING,
-      field:'role',
-      defaultValue:'user'
-    },
-    profileimage:{
-      type:DataTypes.STRING,
-      field:'profileimage'
-    }
-  },{
-    tableName: 'users',
-    classMethods:{
-      createHash: function(password){
-        var salt = bcrypt.genSaltSync(10);
-        var hash = bcrypt.hashSync(password, salt);
-        return hash;
-      },
-      validPassword: function(password, passwd, done, user){
-          bcrypt.compare(password, passwd, function(err, isMatch){
-                  if (err) console.log(err)
-                  if (isMatch) {
-                          return done(null, user)
-                  } else {
-                          return done(null, false)
-                  }
-          })
-        }
-      },
-    instanceMethods: {
-      authenticateUser: function(plainPassword) {
-        return this.password === User.createHash(plainPassword);
-      }
-    }
-  });
+mongoose.connect('mongodb://localhost/nodeauth');
 
-  return User;
-};
+var db = mongoose.connection;
+
+// User Schema
+var UserSchema = mongoose.Schema({
+  facebook_id: {
+    type: String,
+    unique:true,
+    index: true
+  },
+  displayName: {
+    type: String
+  },
+  gender: {
+    type: String,
+    
+  },
+  role: {
+    type: String,
+    default: 'user'
+  },
+  profileimage:{
+    type: String
+  }
+});
+
+var User = module.exports = mongoose.model('User', UserSchema);
+
+module.exports.getUserById = function(id, callback){
+  User.findById(id, callback);
+}
+
+module.exports.getUserByEmail = function(username, callback){
+  var query = {email: username};
+  User.findOne(query, callback);
+}
+
+module.exports.comparePassword = function(candidatePassword, hash, callback){
+  bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
+      callback(null, isMatch);
+  });
+}
+
+module.exports.createUser = function(newUser, callback){
+  bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(newUser.password, salt, function(err, hash) {
+        newUser.password = hash;
+        newUser.save(callback);
+      });
+  });
+}
