@@ -39,6 +39,11 @@ module.exports.getUserByEmail = function(username, callback){
   User.findOne(query, callback);
 }
 
+// module.exports.getUsers = function(role, callback){
+//   var query = {role: role};
+//   User.find(query, callback);
+// }
+
 module.exports.comparePassword = function(candidatePassword, hash, callback){
   bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
       callback(null, isMatch);
