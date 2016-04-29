@@ -1,10 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://localhost/nodeauth');
-
 var db = mongoose.connection;
-
 // User Schema
 var ProjectSchema = mongoose.Schema({
   user_id: {
