@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  div
+    table
+      thead
+        tr: th Users List
+      tbody
+        for user in data
+          tr
+            td(style='width: '+(100/5)+'%').
+            td= user.displayName
+            td(style='width: '+(100/2)+'%').
+              select
+                option(value="#{i}") Some value for #{i}
