@@ -1,21 +1,22 @@
 doctype html
 html
   head
-    title nodeAuth
+    title #{title}
     link(href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css' rel='stylesheet')
+    link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css")
     link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
     link(href='/stylesheets/style.css', rel='stylesheet')
   body
     nav
       .nav-wrapper
-        a.brand-logo.left(class=(title == "Members"?'active':''),href='/') &nbsp; Campaign-fire
+        a.brand-logo.left(class=(title == "Welcome"?'active':''),href='/') &nbsp; Campaign-fire
         ul#nav-mobile.right.hide-on-med-and-down
           li
-            if !isUser
+            if !user
               li.waves-effect.waves-light(class=(title == "Login"?'active':''))
-                a(href='/users/login') Login
+                a(href='/users/auth/facebook') Login
           li
-            if isUser
+            if user
               li
                 a(href='/users/logout/') logout
     .container
@@ -25,7 +26,7 @@ html
   footer.page-footer
     .footer-copyright
       .container
-        | © 2014 Copyright Text
+        | © 2016
 
   script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
   script(src="/lib/materialize.min.js")

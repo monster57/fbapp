@@ -21,11 +21,9 @@ ul.error li{
 }
 
 #rootDiv{
-	width: 50%;
+	width: 30% ;
 }
-.card-reveal{
-	height: 50% !important;
-}
+
 html {
 	position: relative;
 	min-height: 100%;

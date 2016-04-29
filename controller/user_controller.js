@@ -1,5 +1,4 @@
-var models = require('../models');
-var User = models.User;
+var User = require('../models/user');
 
 var user = {};
 
@@ -55,6 +54,7 @@ user.register = function(req,res){
 };
 
 user.login = function(req, res) {
+	req.session.user = req.user;
   	req.flash('success' , 'you are now logged in');
     res.redirect('/');
 };
@@ -66,7 +66,17 @@ user.logout = function(req, res){
 };
 
 user.goToHomePage = function(req, res) {
+	req.flash('success' , 'you are now logged in');
     res.redirect('/');
 };
+
+user.checkPrivilages = function(req, res){
+	if(req.user.role == 'admin'){
+		res.redirect('/');
+	}
+	else{
+		res.redirect('/users');
+	}
+}
 
 module.exports = user;
