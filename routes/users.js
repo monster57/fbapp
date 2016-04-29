@@ -5,6 +5,7 @@ var upload = multer({dest: './uploads'});
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var config = require('../config/auth');
 
 
 var User = require('../models/user');
@@ -30,7 +31,6 @@ router.post('/login',
 });
 
 passport.serializeUser(function(user, done) {
-  console.log(user ,'.......................')
   done(null, user.id);
 });
 
@@ -43,10 +43,10 @@ passport.deserializeUser(function(id, done) {
 
 
 passport.use(new FacebookStrategy({
-    clientID: '1341428759207050',
-    clientSecret: 'ee698f5b0732b8d0289ea52d36c70bdc',
-    callbackURL: "http://192.168.1.177:3000/users/auth/facebook/callback",
-    'profileFields' : ['id', 'name','picture.type(large)', 'emails', 'displayName', 'about', 'gender']
+    clientID: config.facebookAuth.clientID,
+    clientSecret: config.facebookAuth.clientSecret,
+    callbackURL: config.facebookAuth.callbackURL,
+    profileFields : config.facebookAuth.profileFields
   },
     function(accessToken, refreshToken, profile, done) {
         //check user table for anyone with a facebook ID of profile.id
