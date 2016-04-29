@@ -2,25 +2,35 @@ extends layout
 
 block content
   .container#rootDiv
-    h2.page-header Register
+    h2.header Register
     ul.errors
     if errors
       each error, i in errors
         div.alert.alert-danger #{error.msg}
     form(method="post", action="/users/register", enctype="multipart/form-data")
       .form-group
-        label Name
-        input.form-control(name="name" , type="text", placeholder="Enter Name" )
+        .input-field
+          label Name
+          input.form-control(name="name" , type="text")
       .form-group
-        label Email
-        input.form-control(name="email" , type="email", placeholder="Enter email" )
+        .input-field
+          label Email
+          input.form-control(name="email" , type="email")
       .form-group
-        label Password
-        input.form-control(name="password" , type="password", placeholder="Enter password" )
+        .input-field
+          label Password
+          label Password
+          input.form-control(name="password" , type="password")
       .form-group
-        label Confirm Password
-        input.form-control(name="password2" , type="password", placeholder="Confirm password" )
+        .input-field
+          label Confirm Password
+          input.form-control(name="password2" , type="password")
       .form-group
-        label Profile Image
-        input.form-control(name="profileimage" , type="file" )
-      input.btn.btn-primary(type="submit", name="submit", value="Register")
+        .input-field
+          .file-field.input-field
+            .btn
+              span File
+              input(type='file')
+            .file-path-wrapper
+              input.file-path.validate(type='text')
+      input.btn.btn-primary.waves-effect.waves-light(type="submit", name="submit", value="Register")
