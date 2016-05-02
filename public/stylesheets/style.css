@@ -5,8 +5,8 @@ ul.success li{
 	border-radius: 4px;
 	color: #3c763d;
 	background-color: #dff0d8;
-	border-color: #d6e9c6; 
-	list-style: none;	
+	border-color: #d6e9c6;
+	list-style: none;
 }
 
 ul.error li{
@@ -16,12 +16,8 @@ ul.error li{
 	border-radius: 4px;
 	color: #a94442;
 	background-color: #dff0d8;
-	border-color: #d6e9c6; 	
+	border-color: #d6e9c6;
 	list-style: none;
-}
-
-#rootDiv{
-	width: 60% ;
 }
 
 html {
@@ -40,4 +36,19 @@ body {
 	/*!* Set the fixed height of the footer here *!*/
 	/*height: 60px;*/
 	/*background-color: #ededed;*/
+}
+#myForm > div > div > button {
+	border: none;
+	border-radius: 2px;
+	display: inline-block;
+	height: 36px;
+	line-height: 36px;
+	outline: 0;
+	padding: 0 2rem;
+	text-transform: uppercase;
+}
+
+.smallCard {
+	max-height: 25%;
+	max-width:25%;
 }

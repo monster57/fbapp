@@ -36,25 +36,24 @@ console.log('id:-- ',req.body.length, req.body[0].facebook_id);
 
 home.getAllProjects = function(req, res){
 	Project.find({user_id:req.user._id})
-	.populate('user_id')
 	.exec()
 	.then(function(projects){
-		res.render('/', {projects:projects});
+		res.render('index', {projects:projects});
 	})
-}
+};
 
 home.saveProject = function(req, res){
-	console.log(req.user);
 	var projectData = {};
 	projectData.title = req.body.title;
 	projectData.user_id = req.user._id;
 	projectData.background_image = {};
 	req.files.forEach(function(image){
-		if(image.fieldname == 'coverimage')
+		console.log( image );
+		if(image.fieldname == 'cover_image')
 			projectData[image.fieldname] = image.filename;	
 		else
 			projectData.background_image[image.fieldname] = image.filename;
-	})
+	});
 	var newProject = new Project(projectData);
 	newProject.save(function(err){
 		if (err) console.log(err);

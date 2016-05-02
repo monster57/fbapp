@@ -9,7 +9,7 @@ var ProjectSchema = mongoose.Schema({
     ref:'User'
   },
   title: {
-    type: String,
+    type: String
   },
   cover_image:String,
   background_image:{

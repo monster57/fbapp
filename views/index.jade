@@ -2,5 +2,17 @@ extends layout
 
 block content
   .container
-    h1= title
-    p Welcome
+    h3 My Projects
+    if projects.length
+      .col.s12.m8.l3
+        for project in projects
+          .card.small.smallCard
+            a(href='/project/#{project._id}')
+              .card-image.waves-effect.waves-block.waves-light
+                img.activator(src='#{project.cover_image}')
+              .card-content
+                span.card-title.activator.grey-text.text-darken-4
+                  | #{project.title}
+                  i.material-icons.right more_vert
+    else
+      h4 You have no projects, add one!

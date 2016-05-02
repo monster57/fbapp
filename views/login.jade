@@ -1,21 +1,14 @@
 extends layout
 
 block content
-  .container#rootdiv
+  .container
+    h2.center-align
+      b Campaign Fire
+    h6.center-align Make quality facebook ads with ease, login using your facebook app to get started!
 
-    h3
-      | Campaign Fire
-    h6 Make quality facebook ads with ease, login using your facebook app to get started!
-
-    .col.s12.m8.offset-m2.l6.offset-l3
-
-      .row.valign-wrapper
-        .col.s2
-          a(href="/users/auth/facebook")
-            img.responsive-img(src='/images/facebook.png', alt='')
-        .col.s10
-          span.black-text
-            a(href="/users/auth/facebook")
-              | Login via Facebook
-
-
+    .center-align
+      a(href="/users/auth/facebook")
+        img.responsive-img(src='/images/facebook.png', alt='')
+      .center-align
+        a(href="/users/auth/facebook")
+          | Login via Facebook

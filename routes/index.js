@@ -8,7 +8,6 @@ var Project = require('../models/project');
 
 /* GET home page. */
 router.get('/', ensureAuthenticated, homeController.getAllProjects);
-});
 
 // TODO: Change this to a more dynamic route name later
 router.get('/dashboard', function( req, res ) {
@@ -18,7 +17,7 @@ router.get('/dashboard', function( req, res ) {
 router.get('/members', ensureAuthenticated, homeController.getAllUsers);
 router.post('/members/privilages', homeController.changeAccess);
 
-// router.get('/projects', ensureAuthenticated, homeController.getAllProjects);
+router.get('/projects', ensureAuthenticated, homeController.getAllProjects);
 
 router.post('/project/save' ,upload.any(), homeController.saveProject);
 

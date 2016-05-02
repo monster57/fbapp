@@ -1,42 +1,12 @@
 extends ../layout
-
 block content
-
- form(method='post', action='/project/save',enctype='multipart/form-data')
-  .form-group
-   label title
-   input.form-control(name='title', type='text', placeholder='Enter Name')
-  .form-group
-   label Cover Image
-   input.form-control(name='coverimage', type='file')
-   .form-group
-   label Background Image
-   input.form-control(name='background_image_one', type='file')
-   .form-group
-   label Background Image
-   input.form-control(name='background_image_two', type='file')
-  .form-group
-   label Background Image
-   input.form-control(name='background_image_three', type='file')
-  input.btn.btn-primary(type='submit', )
-
-
-//
-  extends ../layout
-  block content
-    .container#rootDiv
-      .form(method='post', action='/project/save',enctype='multipart/form-data')
-        .form-group
-          .row
-            .card
-              .card-image.waves-effect.waves-light
-                img#coverImage.activator(src="#{ coverPictureUrl }")
-                .card-title
-                  .input-field
-                    .file-field.input-field.right
-                      .btn
-                        | Change image
-                        input(id="coverImagePicker", type='file', onchange="changeCoverImage()", name="coverPicture")
+  .container#rootDiv
+    form(method='post', action='/project/save',enctype='multipart/form-data')
+      .form-group
+        .row
+          h4
+            b(style="color:#26a69a") Choose a Cover picture
+            input.filepicker.form-control(id="coverImagePicker", type='file', name="cover_image", data-label='Upload', multiple='')
         .row
           .form-group
             .input-field
@@ -45,16 +15,13 @@ block content
           h4
             b(style="color:#26a69a") Choose a background image
           .col.s4
-            input.form-control(name='image_one', type='file')
-            // img.responsive-img(style="height:100%;width:100%", src="https://placehold.it/500x500?text=select image")
+            input.filepicker.form-control(name='background_image_one', data-label='Upload', type='file', multiple='')
 
           .col.s4
-            input.form-control(name='image_two', type='file')
-            // img.responsive-img(style="height:100%;width:100%", src="https://placehold.it/500x500?text=select image")
+            input.filepicker.form-control(name='background_image_two',data-label='Upload', type='file', multiple='')
           .col.s4
-            input.form-control(name='image_three', type='file')
-            // img.responsive-img(style="height:100%;width:100%", src="https://placehold.it/500x500?text=select image")
+            input.filepicker.form-control(name='background_image_three',data-label='Upload', type='file', multiple='')
         .row
-          button.btn.waves-effect.waves-light(type='submit', name='action', value='imageUpload')
-            | Submit
-            i.material-icons.right send
+          button.btn.waves-effect.waves-light(type='submit', name='action')
+            | Save
+            i.material-icons.right save
