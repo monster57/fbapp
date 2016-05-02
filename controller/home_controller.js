@@ -21,7 +21,9 @@ home.getAllUsers = function(req,res){
 home.changeAccess = function(req, res){
 	req.body.forEach( function(user){
 		User.update({facebook_id: user.facebook_id}, {$set: { role: user.role} }).exec();
-	})
+	});
+	res.redirect('/members');
+
 };
 
 home.getAllProjects = function(req, res){
