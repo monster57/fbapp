@@ -1,10 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var homeController = require('../controller/home_controller');
-var multer = require('multer');
-var upload = multer({dest: './uploads'});
 var cover = null;
-var Project = require('../models/project');
+var homeController = require('../controller/home_controller');
 
 /* GET home page. */
 router.get('/', ensureAuthenticated, homeController.getAllProjects);
