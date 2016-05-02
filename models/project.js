@@ -11,12 +11,13 @@ var ProjectSchema = mongoose.Schema({
   title: {
     type: String,
   },
-  background_images:{
-    image_one: String,
-    image_two: String,
-    image_three: String
-  },
   cover_image:String,
+  background_image:{
+    background_image_one: String,
+    background_image_two: String,
+    background_image_three: String
+
+  }
 });
 
 var Project = module.exports = mongoose.model('Project', ProjectSchema);
