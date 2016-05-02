@@ -52,4 +52,13 @@ home.saveProject = function(req, res){
         return res.redirect('/')
 	});
 }
+
+home.showProject = function(req, res){
+	var projectId = req.params.id;
+	Project.findOne({_id:projectId}).exec()
+	.then(function(project){
+		res.send({project:project})
+	})
+}
+
 module.exports = home;

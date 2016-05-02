@@ -5,6 +5,11 @@ var homeController = require('../controller/home_controller');
 
 /* GET home page. */
 router.get('/', ensureAuthenticated, homeController.getAllProjects);
+// router.get('/members', ensureAuthenticated, homeController.getAllUsers);
+
+// router.post('/members/privilages', ensureAuthenticated, homeController.changeAccess);
+router.post('/project/save', ensureAuthenticated, upload.any(), homeController.saveProject);
+router.get('/project/:id' , homeController.showProject)
 
 // TODO: Change this to a more dynamic route name later
 router.get('/dashboard', function( req, res ) {
