@@ -39,7 +39,7 @@ home.getAllProjects = function(req, res){
 	.populate('user_id')
 	.exec()
 	.then(function(projects){
-		res.send({projects:projects});
+		res.render('/', {projects:projects});
 	})
 }
 
