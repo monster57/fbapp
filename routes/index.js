@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var cover = null;
+var multer = require('multer');
+var upload = multer({dest: './uploads'});
+
 var homeController = require('../controller/home_controller');
 
 /* GET home page. */
@@ -20,8 +23,6 @@ router.get('/members', ensureAuthenticated, homeController.getAllUsers);
 router.post('/members/privilages', homeController.changeAccess);
 
 router.get('/projects', ensureAuthenticated, homeController.getAllProjects);
-
-router.post('/project/save' ,upload.any(), homeController.saveProject);
 
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated() && req.user.role === 'admin'){
