@@ -1,17 +1,22 @@
 extends layout
+script.
+  var changePermissions = function(){
+  	console.log('fun called');
+  }
 
 block content
-  h1= title
-  p Welcome to #{title}
-  div
+  .container
     table
       thead
-        tr: th Users List
+        tr
+          th Users List
+          th Permission
       tbody
-        for user in data
+        for userdata in data
           tr
-            td(style='width: '+(100/5)+'%').
-            td= user.displayName
-            td(style='width: '+(100/2)+'%').
-              select
-                option(value="#{i}") Some value for #{i}
+            td #{userdata.displayName}
+            td
+              select(style='display:block' id='selectOption'+data.indexOf(userdata))
+                option(id='option0' value='#{userdata.facebook_id}') User
+                option(id='option1' value='#{userdata.facebook_id}') Admin
+        button(onclick='changePermissions(#{data.length})') Save

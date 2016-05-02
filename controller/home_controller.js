@@ -7,19 +7,17 @@ home.getAllUsers = function(req,res){
 
  	User.find({role:'user'}).exec()
  	.then(function(users){
- 		if(users){
- 			console.log('Users Found with role as user.',users);
  			res.render('members', { title: 'member', data: users });
- 		}
- 		else{
- 			console.log('No user found with role user!!!')
- 		}
  	});
 };
 
 // change user role
 home.changeAccess = function(req, res){
-	req.body.forEach( function(user){
+	console.log('Coming here:-- ', req.body.data);
+	// var input = JSON.parse(req.body.data);
+	var input = req.body.data;
+	// console.log('INput:--- ',input);
+	input.forEach( function(user){
 		User.update({facebook_id: user.facebook_id}, {$set: { role: user.role} }).exec();
 	});
 	res.redirect('/members');
