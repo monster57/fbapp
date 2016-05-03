@@ -34,7 +34,7 @@ user.checkPrivilages = function(req, res){
 		res.redirect('/');
 	}
 	else{
-		res.redirect('/users');
+		res.redirect('/project/'+req.cookies.projectId);
 	}
 }
 
