@@ -2,17 +2,19 @@ extends layout
 
 block content
   .container
-    h3 My Projects
-    if projects.length
-      .col.s12.m8.l3
+    .row
+      if projects
+        h3
+          b My Projects
+          hr
         for project in projects
-          .card.small.smallCard
-            a(href='/project/#{project._id}')
-              .card-image.waves-effect.waves-block.waves-light
-                img.activator(src='#{project.cover_image}')
-              .card-content
-                span.card-title.activator.grey-text.text-darken-4
-                  | #{project.title}
-                  i.material-icons.right more_vert
-    else
-      h4 You have no projects, add one!
+          .col.s12.m6.l3
+            .card.small
+              a(href='/project/#{project._id}')
+                .card-image.waves-effect.waves-block.waves-light
+                  img.activator(src='#{project.cover_image}')
+                .card-content
+                  span.card-title.activator.grey-text.text-darken-4
+                    | #{project.title}
+      else
+        h4 You have no projects, add one!
