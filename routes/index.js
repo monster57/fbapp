@@ -11,7 +11,7 @@ router.get('/', ensureAuthenticated, homeController.getAllProjects);
 
 router.get('/projects', ensureAuthenticated, homeController.getAllProjects);
 router.post('/project/save', ensureAuthenticated, upload.any(), homeController.saveProject);
-router.get('/project/:id' , homeController.showProject)
+router.get('/project/:id' , homeController.showProject);
 
 // TODO: Change this to a more dynamic route name later
 router.get('/dashboard', function( req, res ) {
@@ -19,7 +19,7 @@ router.get('/dashboard', function( req, res ) {
 });
 
 router.get('/members', ensureAuthenticated, homeController.getAllUsers);
-router.post('/members/privilages', homeController.changeAccess);
+router.post('/members/privilages', AunthenticationCheck, homeController.changeAccess);
 
 
 function ensureAuthenticated(req, res, next){
@@ -29,4 +29,10 @@ function ensureAuthenticated(req, res, next){
 	res.redirect('/users/login');
 }
 
+function AunthenticationCheck(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect('/users/login');
+}
 module.exports = router;
