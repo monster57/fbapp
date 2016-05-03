@@ -5,7 +5,8 @@ var home = {};
 // get list of all users
 home.getAllUsers = function(req,res){
 
- 	User.find({role:'user'}).exec()
+	var userRole = 'user';
+ 	User.find({role: userRole}).exec()
  	.then(function(users){
  			res.render('members', { title: 'member', data: users });
  	});
@@ -13,10 +14,7 @@ home.getAllUsers = function(req,res){
 
 // change user role
 home.changeAccess = function(req, res){
-	console.log('Coming here:-- ', req.body.data);
-	// var input = JSON.parse(req.body.data);
 	var input = req.body.data;
-	// console.log('INput:--- ',input);
 	input.forEach( function(user){
 		User.update({facebook_id: user.facebook_id}, {$set: { role: user.role} }).exec();
 	});

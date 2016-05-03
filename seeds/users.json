@@ -1,0 +1,21 @@
+[{
+	"facebook_id" : "509530525860555",
+	"displayName" : "Surajit Barman",
+	"gender" : "male",
+	"profileimage" : "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xlp1/v/t1.0-1/p200x200/10538405_487034731443468_8606979541972115270_n.jpg?oh=4e97a9fada96519c76621404c18baeac&oe=579BA83E&__gda__=1470965851_858f31894663f0489f49f4d12929fac9",
+	"role" : "user"
+},
+{
+	"facebook_id" : "10209697590941998",
+	"displayName" : "Ranjeet Kumar",
+	"gender" : "male",
+	"profileimage" : "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/v/t1.0-1/s200x200/484837_10200457205578139_362155904_n.jpg?oh=b48771b72bcda1b64ea155ce571ab9d5&oe=57AD6C30&__gda__=1469863002_f4bb63c4af4b35535b68622a7ea6d0d7",
+	"role" : "user"
+},
+{
+	"facebook_id" : "1169796913065087",
+	"displayName" : "Hemant Nagarkoti",
+	"gender" : "male",
+	"profileimage" : "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/p200x200/11695810_994204767290970_4176174530487620783_n.jpg?oh=177df1d3b17bb72164b7d39c114efe13&oe=57E76D5A&__gda__=1470896615_609141e5ddac2da50e09fd6aae4de1aa",
+	"role" : "admin"
+}]

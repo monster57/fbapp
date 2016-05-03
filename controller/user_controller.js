@@ -10,8 +10,6 @@ user.getRegisterPage = function(req, res, next) {
   res.render('register' , {title:'Register'});
 };
 
-
-
 user.login = function(req, res) {
 	req.session.user = req.user;
   	req.flash('success' , 'you are now logged in');

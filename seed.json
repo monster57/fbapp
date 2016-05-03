@@ -1,0 +1,5 @@
+{
+	"testing": "mongodb://localhost/nodeauth",
+	"development": "mongodb://localhost/nodeauth",
+	"production": "mongodb://localhost/nodeauth"
+}
