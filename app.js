@@ -24,12 +24,14 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.use('/uploads', express.static('uploads'));
 
+app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(bodyParser.json());
 
 // Handle Sessions
@@ -38,9 +40,9 @@ app.use(session({
   saveUninitialized: true,
   resave: true
 }));
-
 // Passport
 app.use(passport.initialize());
+
 app.use(passport.session());
 
 // Validator
@@ -60,10 +62,9 @@ app.use(expressValidator({
     };
   }
 }));
-
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'uploads')));
+
 
 app.use(flash());
 app.use(function (req, res, next) {

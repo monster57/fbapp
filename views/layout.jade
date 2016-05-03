@@ -20,18 +20,21 @@ html
           li
             if user
               li
-                a(href='/dashboard') Add Project
+                a(href='/add-project') Add Project
               li
                 a(href='/users/logout/') logout
+
     .container
     != messages()
       block content
+  if user
+    block floatingAddButton
 
   footer.page-footer
     .footer-copyright
       .container
         | © 2016
-
+  br
   script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
   script(src="https://code.jquery.com/ui/1.12.0-rc.2/jquery-ui.min.js")
   script(src="/lib/jquery.filepicker.min.js")

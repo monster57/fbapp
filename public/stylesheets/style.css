@@ -27,7 +27,7 @@ html {
 body {
 	/* Margin bottom by footer height */
 	margin-bottom: 60px;
-	min-width: 500px;
+	min-width: 400px;
 }
 .page-footer {
 	position: absolute;
@@ -37,18 +37,23 @@ body {
 	/*height: 60px;*/
 	/*background-color: #ededed;*/
 }
-#myForm > div > div > button {
-	border: none;
-	border-radius: 2px;
-	display: inline-block;
-	height: 36px;
-	line-height: 36px;
-	outline: 0;
-	padding: 0 2rem;
-	text-transform: uppercase;
-}
 
 .smallCard {
 	max-height: 25%;
 	max-width:25%;
+}
+
+.floatingButton{
+	position: absolute;
+	bottom: 10%;
+	right: 10%;
+}
+
+.jumbotron {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin-bottom: 30px;
+	color: inherit;
+	background-color: #eee;
+	border-radius: 5px;
 }

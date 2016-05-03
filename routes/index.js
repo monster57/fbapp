@@ -14,8 +14,8 @@ router.post('/project/save', ensureAuthenticated, upload.any(), homeController.s
 router.get('/project/:id' , homeController.showProject);
 
 // TODO: Change this to a more dynamic route name later
-router.get('/dashboard', function( req, res ) {
-  res.render('admin/index', {coverPictureUrl: cover || '/images/covers.jpg'});
+router.get('/add-project', function( req, res ) {
+  res.render('admin/index', {coverPictureUrl: cover});
 });
 
 router.get('/members', ensureAuthenticated, homeController.getAllUsers);

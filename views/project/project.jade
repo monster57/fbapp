@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .container
+    .card
+      .row
+        .col.s12
+          h4.center #{ project.title }
+      .row
+        .col.s12
+          img.center.responsive-img(src="/uploads/#{project.cover_image}")
+      .row
+        .col.s4
+          img.responsive-img(src="/uploads/#{project.background_image.background_image_one}")
+        .col.s4
+          img.responsive-img(src="/uploads/#{project.background_image.background_image_two}")
+        .col.s4
+          img.responsive-img(src="/uploads/#{project.background_image.background_image_three}")

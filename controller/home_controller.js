@@ -49,14 +49,14 @@ home.saveProject = function(req, res){
 		if (err) console.log(err);
         return res.redirect('/')
 	});
-}
+};
 
 home.showProject = function(req, res){
 	var projectId = req.params.id;
 	Project.findOne({_id:projectId}).exec()
 	.then(function(project){
-		res.send({project:project})
+		res.render('project/project',{project:project});
 	})
-}
+};
 
 module.exports = home;

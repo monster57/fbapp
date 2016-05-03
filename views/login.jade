@@ -1,14 +1,15 @@
 extends layout
 
 block content
-  .container
-    h2.center-align
-      b Campaign Fire
+  br
+  .container.jumbotron
+    h2.center-align Campaign Fire
     h6.center-align Make quality facebook ads with ease, login using your facebook app to get started!
 
     .center-align
-      a(href="/users/auth/facebook")
-        img.responsive-img(src='/images/facebook.png', alt='')
-      .center-align
+      .collapse
         a(href="/users/auth/facebook")
-          | Login via Facebook
+          img(src='/images/facebook.png', alt='')
+        .center-align
+          a(href="/users/auth/facebook")
+            | Login via Facebook
