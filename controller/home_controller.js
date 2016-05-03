@@ -59,7 +59,7 @@ home.saveProject = function(req, res){
 	newProject.save(function(err){
 		if (err) console.log(err);
 		req.flash('success' , 'Project is created');
-        return res.redirect('/')
+        return res.redirect('/project')
 	});
 }
 
@@ -68,6 +68,18 @@ home.showProject = function(req, res){
 	Project.findOne({_id:projectId}).exec()
 	.then(function(project){
 		res.send({project:project})
+	})
+}
+
+home.deleteProject = function(req, res){
+	var projectId = req.params.id;
+	Project.find({_id:projectId})
+	.remove().exec()
+	.then(function(){
+		res.redirect('/project');
+	},function(err){
+		req.flash('failure' , 'something went wrong');
+		res.redirect('/project');
 	})
 }
 

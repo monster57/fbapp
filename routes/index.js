@@ -9,9 +9,10 @@ var homeController = require('../controller/home_controller');
 /* GET home page. */
 router.get('/', ensureAuthenticated, homeController.getAllProjects);
 
-router.get('/projects', ensureAuthenticated, homeController.getAllProjects);
+router.get('/project', ensureAuthenticated, homeController.getAllProjects);
 router.post('/project/save', ensureAuthenticated, upload.any(), homeController.saveProject);
 router.get('/project/:id' ,AunthenticationCheck, homeController.showProject);
+router.get('/project/:id/delete', ensureAuthenticated, homeController.deleteProject);
 
 // TODO: Change this to a more dynamic route name later
 router.get('/dashboard', function( req, res ) {

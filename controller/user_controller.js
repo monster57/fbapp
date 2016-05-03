@@ -15,7 +15,7 @@ user.getRegisterPage = function(req, res, next) {
 user.login = function(req, res) {
 	req.session.user = req.user;
   	req.flash('success' , 'you are now logged in');
-    res.redirect('/');
+    res.redirect('/project');
 };
 
 user.logout = function(req, res){
@@ -26,12 +26,12 @@ user.logout = function(req, res){
 
 user.goToHomePage = function(req, res) {
 	req.flash('success' , 'you are now logged in');
-    res.redirect('/');
+    res.redirect('/project');
 };
 
 user.checkPrivilages = function(req, res){
 	if(req.user.role == 'admin'){
-		res.redirect('/');
+		res.redirect('/project');
 	}
 	else{
 		res.redirect('/project/'+req.cookies.projectId);
