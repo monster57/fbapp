@@ -58,7 +58,7 @@ home.saveProject = function(req, res){
 	var newProject = new Project(projectData);
 	newProject.save(function(err){
 		if (err) console.log(err);
-		req.flash('success' , 'Project is created');
+		req.flash('success' , "<div class='container'>Project successfully created!</div>");
         return res.redirect('/project')
 	});
 };

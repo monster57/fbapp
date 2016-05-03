@@ -78,7 +78,7 @@ router.get('/auth/facebook/callback',
 
 router.get('/logout', function(req, res){
   req.logout();
-  req.flash('success', 'You are now logged out');
+  req.flash('success', "<div class='container'>You are now logged out</div>");
   res.redirect('/users/login');
 });
 
