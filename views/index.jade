@@ -3,16 +3,16 @@ extends layout
 block content
   .container
     .row
+      h3
+        b My Projects
+        hr
       if projects
-        h3
-          b My Projects
-          hr
         for project in projects
           .col.s12.m6.l3
             .card.small
               a(href='/project/#{project._id}')
                 .card-image.waves-effect.waves-block.waves-light
-                  img.activator(src='#{project.cover_image}')
+                  img.activator(src="#{project.cover_image ? project.cover_image : 'https://placeholdit.imgix.net/~text?txtsize=33&txt=No%20cover%20image&w=250&h=250'}")
                 .card-content
                   span.card-title.activator.grey-text.text-darken-4
                     | #{project.title}
