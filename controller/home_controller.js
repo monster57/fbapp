@@ -32,11 +32,22 @@ home.getAllProjects = function(req, res){
 	})
 };
 
+
+
 home.saveProject = function(req, res){
 	var projectData = {};
 	projectData.title = req.body.title;
 	projectData.user_id = req.user._id;
 	projectData.background_image = {};
+	// req.checkBody('title','title field is required').notEmpty();
+	// req.checkBody('cover_image','please provide the cover image').notEmpty();
+	// req.checkBody('background_image_one','please provide the first BackgroundImage').notEmpty();
+	// req.checkBody('background_image_two','please provide the second BackgroundImage').notEmpty();
+	// req.checkBody('background_image_three','please provide the third BackgroundImage').notEmpty();
+	// if(!req.files){
+	// 	req.flash('failure' , 'please provide all the images');
+	// 	res.redirect('/dashboard')
+	// }
 	req.files.forEach(function(image){
 		console.log( image );
 		if(image.fieldname == 'cover_image')
@@ -47,6 +58,7 @@ home.saveProject = function(req, res){
 	var newProject = new Project(projectData);
 	newProject.save(function(err){
 		if (err) console.log(err);
+		req.flash('success' , 'Project is created');
         return res.redirect('/')
 	});
 }
