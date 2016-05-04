@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var config = require('../config');
 
-mongoose.createConnection(config().url);
+mongoose.connect(config().url);
 var db = mongoose.connection;
 
 // User Schema
