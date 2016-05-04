@@ -1,8 +1,16 @@
 var mongoose = require('mongoose');
+var Promise = require('bluebird');
+mongoose.promise = Promise;
 var bcrypt = require('bcryptjs');
 var config = require('../config');
 
-mongoose.connect(config().url);
+console.log('config url:----------------------- ', config().url);
+if(config().url == 'mongodb://localhost/nodeauthtest'){
+  mongoose.createConnection(config().url);
+}else{
+  mongoose.connect(config().url);
+}
+
 var db = mongoose.connection;
 
 // User Schema

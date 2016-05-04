@@ -9,7 +9,7 @@ module.exports = function(){
             return {url: 'mongodb://localhost/nodeauth'};
 
         case 'testing':
-            return {url: 'mongodb://localhost/nodeauth'};
+            return {url: 'mongodb://localhost/nodeauthtest'};
 
         default:
             return {url: 'mongodb://localhost/nodeauth'};

@@ -1,7 +1,7 @@
 var seeder = require('mongoose-seed');
 var fs = require('fs');
 // Connect to MongoDB via Mongoose 
-seeder.connect('mongodb://localhost/nodeauth', function() {
+seeder.connect('mongodb://localhost/nodeauthtest', function() {
 	
 	// Load Mongoose models 
 	seeder.loadModels([
