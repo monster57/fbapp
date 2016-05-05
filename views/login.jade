@@ -8,8 +8,10 @@ block content
 
     .center-align
       .collapse
-        a(href="/users/auth/facebook")
-          img(src='/images/facebook.png', alt='')
-        .center-align
-          a(href="/users/auth/facebook")
-            | Login via Facebook
+          #login-by.login-with
+            .facebook-login
+              p.text-fb
+                a(href='/users/auth/facebook')
+                  strong.img-fb
+                   img(src='../images/fb.png')
+                  span.connect-fb Continue with Facebook    

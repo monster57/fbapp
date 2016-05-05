@@ -57,3 +57,73 @@ body {
 	background-color: #eee;
 	border-radius: 5px;
 }
+#login-by
+{
+  float: none;width: 25%;display: block;margin: 0px auto;
+}
+.facebook-login 
+{
+    width: 100%;
+}
+.text-fb 
+{
+    background: linear-gradient(#3B579D, #3B579D);border-radius: 3px;padding: 0px 0px;height: 41px;
+}
+.img-fb 
+{
+    width: 50px;float: left;background: #3B579D;padding: 2px 2px;border: 1px solid #354E8E;border-top-left-radius: 3px;border-bottom-left-radius: 3px;
+}
+.connect-fb 
+{
+    float: left;padding: 10px 10px;color: #fff;text-shadow: 0 -1px rgba(0,0,0,0.25);font-weight: 500;
+}
+@media screen and (max-width:1920px) and (min-width:1200px){
+#login-by
+{
+    width: 28%;
+}
+.connect-fb
+{
+    width: 78%;text-align: center;
+}  
+}
+@media screen and (max-width:1199px) and (min-width:992px){
+#login-by
+{
+    width: 33%;
+}  
+.connect-fb
+{
+    width: 77%;text-align: center;
+}  
+}
+@media screen and (max-width:991px) and (min-width:768px){
+#login-by
+{
+    width: 34%;
+}  
+.connect-fb
+{
+    width: 77%;text-align: center;
+}
+}
+@media screen and (max-width:767px) and (min-width:481px){
+#login-by
+{
+    width: 52%;
+}
+.connect-fb
+{
+    width: 77%;text-align: center;
+}  
+}
+@media screen and (max-width:480px) and (min-width:1px){
+#login-by
+{
+    width: 62%;
+}
+.connect-fb
+{
+    width: 77%;text-align: center;
+}  
+}
