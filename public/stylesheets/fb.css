@@ -1,0 +1,60 @@
+body
+{
+    margin: 0px;
+}
+.loginByfb 
+{
+    float: left;width: 100%;height: 100%;background: url(../images/background.jpg);
+}
+.loginBackground 
+{
+    float: left;width: 100%;height: 100%;background: rgba(0,0,0,.6);
+}
+.centertext 
+{
+    float: none;display: block;margin: 50px auto;width: 500px;min-height: 400px;max-height: 400px;background: url(../images/sbackground.jpg);border-radius: 5px;position: relative;z-index: 0;top: 10%;
+}
+.centerbackground 
+{
+    float: left;width: 100%;background: rgba(0,0,0,.3);border-radius: 5px;height: 400px;
+}
+.campaignContentWrapper 
+{
+    float: left;width: 100%;height: auto;
+}
+.campaignContentWrapper 
+{
+    float: left;width: 100%;height: auto;
+}
+.campaignfire
+{    
+    text-align: center;color: #000;font-size: 40px;font-weight: bold;letter-spacing: -1px;text-shadow: 0 2px 6px rgba(0,0,0,0.58);font-family: "Roboto", sans-serif;margin-bottom: 0px;
+}
+.textCF
+{
+    text-align: center;font-size: 16px;padding: 0px 20px;font-weight: bold;line-height: 25px;/* text-shadow: 0 2px 6px rgba(0,0,0,0.58); */color: #172F6B;font-family: "Roboto", sans-serif;
+}
+.login-with 
+{
+    display: block;margin: 0px auto;float: none;width: 250px;padding: 15px 0px;
+}
+.facebook-login 
+{
+    float: left;width: 100%;background: #3B579D;border-radius: 3px;
+}
+.text-fb 
+{
+    margin: 0px;float: left;width: 100%;
+}
+.link-fb
+{
+    float: left;width: 100%;
+}
+.img-fb 
+{
+    float: left;width: auto;border: 1px solid #354D88;padding: 3px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;
+}
+.connect-fb 
+{
+    float: left;width: auto;padding: 10px;text-align: center;color: #fff;font-weight: 600;font-family: "Roboto", sans-serif;
+}    

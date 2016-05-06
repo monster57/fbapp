@@ -1,17 +1,35 @@
-extends layout
+link(href='/stylesheets/fb.css', rel='stylesheet')
+.loginByfb
+    .loginBackground
+      .centertext
+        .centerbackground
+           .campaignContentWrapper
+              .ContentWrapper
+                h2.campaignfire Campaign Fire
+                p.textCF
+                  | Make quality facebook ads with ease, login using your facebook app to get started!
+                #login-by.login-with
+                  .facebook-login
+                    p.text-fb
+                      a.link-fb(href='/users/auth/facebook')
+                        strong.img-fb
+                          img(src='../images/fb.png')
+                        span.connect-fb Continue with Facebook
+//
+    extends layout
 
-block content
-  br
-  .container.jumbotron
-    h2.center-align Campaign Fire
-    h6.center-align Make quality facebook ads with ease, login using your facebook app to get started!
+    block content
+    br
+    .container.jumbotron
+        h2.center-align Campaign Fire
+        h6.center-align Make quality facebook ads with ease, login using your facebook app to get started!
 
-    .center-align
-      .collapse
-          #login-by.login-with
-            .facebook-login
-              p.text-fb
-                a(href='/users/auth/facebook')
-                  strong.img-fb
-                   img(src='../images/fb.png')
-                  span.connect-fb Continue with Facebook    
+        .center-align
+        .collapse
+            #login-by.login-with
+                .facebook-login
+                p.text-fb
+                    a(href='/users/auth/facebook')
+                    strong.img-fb
+                    img(src='../images/fb.png')
+                    span.connect-fb Continue with Facebook    
