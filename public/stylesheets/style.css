@@ -21,13 +21,13 @@ ul.error li{
 }
 
 html {
-	position: relative;
-	min-height: 100%;
+	/*position: relative;
+	min-height: 100%;*/
 }
 body {
 	/* Margin bottom by footer height */
-	margin-bottom: 60px;
-	min-width: 400px;
+	/*margin-bottom: 60px;
+	min-width: 400px;*/background: #E9E9E9;
 }
 .page-footer {
 	position: absolute;

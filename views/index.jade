@@ -1,29 +1,30 @@
 extends layout
 
 block content
-  .container
-    .row
-      h3.center
-        | My Projects
-        hr
-      if projects
-        for project, i in projects
-          .col.s12.m6.l3
-            .card.small.hoverable
-              a(href='/project/#{project._id}')
-                .card-image.waves-effect.waves-block.waves-light
-                  img.responsive-img(src="/uploads/#{project.cover_image ? project.cover_image : 'https://placeholdit.imgix.net/~text?txtsize=33&txt=No%20cover%20image&w=250&h=250'}")
-                .card-content
-                  span.card-title.activator.grey-text.text-darken-4.truncate #{project.title}
-              a.dropdown-button.right(href='#', data-activates='dropdown#{i}')
-                i.material-icons more_vert
-              ul.dropdown-content(id="dropdown#{i}")
-                li
-                  a(href='/edit/#{project._id}') Edit
-                li
-                  a(href='/delete/#{project._id}') Delete
-      else
-        h4 You have no projects, add one!
+  .blockwrapper
+    .container
+      .row
+        h3.center
+          | My Projects
+          hr
+        if projects
+          for project, i in projects
+            .col.s12.m6.l3
+              .card.small.hoverable
+                a(href='/project/#{project._id}')
+                  .card-image.waves-effect.waves-block.waves-light
+                    img.responsive-img(src="/uploads/#{project.cover_image ? project.cover_image : 'https://placeholdit.imgix.net/~text?txtsize=33&txt=No%20cover%20image&w=250&h=250'}")
+                  .card-content
+                    span.card-title.activator.grey-text.text-darken-4.truncate #{project.title}
+                a.dropdown-button.right(href='#', data-activates='dropdown#{i}')
+                  i.material-icons more_vert
+                ul.dropdown-content(id="dropdown#{i}")
+                  li
+                    a(href='/edit/#{project._id}') Edit
+                  li
+                    a(href='/delete/#{project._id}') Delete
+        else
+          h4 You have no projects, add one!
 
 block floatingAddButton
   a.btn-floating.btn-large.waves-effect.waves-light.red.right.floatingButton(href="/add-project")

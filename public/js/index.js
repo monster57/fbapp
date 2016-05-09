@@ -54,3 +54,8 @@ function changePermissions(len){
  //    });
 }
 
+$(document).ready(function(){
+  $(".down").click(function(){
+     $(".dropdownmenu").toggle();
+  });
+});

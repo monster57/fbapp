@@ -8,36 +8,47 @@ html
     link(href="stylesheets/filepicker.default.css")
     link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
     link(href='/stylesheets/style.css', rel='stylesheet')
+    link(href='/stylesheets/fb.css', rel='stylesheet')
+    link(rel='stylesheet', href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css')   
   body
-    nav
-      .nav-wrapper
-        a.brand-logo.left(class=(title == "Welcome"?'active':''),href='/') &nbsp; Campaign-fire
-        ul#nav-mobile.right.hide-on-med-and-down
-          li
-            if !user
-              li.waves-effect.waves-light(class=(title == "Login"?'active':''))
-                a(href='/users/auth/facebook') Login
-          li
-            if user
-              li
-                a(href='/add-project') Add Project
-              li
-                a(href='/users/logout/') logout
-
-    .container
-    != messages()
-      block content
-  if user
-    block floatingAddButton
-
-  footer.page-footer
-    .footer-copyright
-      .container
-        | © 2016
-  br
+    .wrapperProject
+      .projectheader
+        .container
+          .headerproject
+            .projectheaderL
+              .headertitle
+                h1.titlecampagin Campaign Fire
+            if user      
+              .projectheaderR
+                .rightheader
+                 .userphototitle
+                   button.profilewrapper
+                     .profileImage
+                       .profileImagewrapper
+                         img.Imageprofile(src='#{user.profileimage}')
+                     span.profileName(href='#') #{user.displayName}
+                 .dropdown
+                    button.down 
+                     i.fa.fa-sort-desc.sortdesc
+                     .dropdownmenu(style='display:none;')
+                       span.arrowM
+                         img(src='../images/arrow.png')
+                       .dropdownmenuP
+                          ul.dropdownmenuwrapper
+                            li
+                              a.anchor(href='#') About us
+                            li
+                              a.anchor(href='/users/logout') Logout
+       !=messages()
+         block content
+      if user 
+        block floatingAddButton
+        
   script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
   script(src="https://code.jquery.com/ui/1.12.0-rc.2/jquery-ui.min.js")
   script(src="/lib/jquery.filepicker.min.js")
   script(src="/lib/materialize.min.js")
   script(src="/lib/facebook_SDK.js")
   script(src="/js/index.js")
+  
+ 

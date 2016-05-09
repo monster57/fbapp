@@ -2,18 +2,7 @@ body
 {
     margin: 0px;
 }
-.loginByfb 
-{
-    float: left;width: 100%;height: 100%;background: url(../images/background.jpg);
-}
-.loginBackground 
-{
-    float: left;width: 100%;height: 100%;background: rgba(0,0,0,.6);
-}
-.centertext 
-{
-    float: none;display: block;margin: 50px auto;width: 500px;min-height: 400px;max-height: 400px;background: url(../images/sbackground.jpg);border-radius: 5px;position: relative;z-index: 0;top: 10%;
-}
+/* LOGIN.JADE PAGE CSS BEGIN */
 .centerbackground 
 {
     float: left;width: 100%;background: rgba(0,0,0,.3);border-radius: 5px;height: 400px;
@@ -58,3 +47,179 @@ body
 {
     float: left;width: auto;padding: 10px;text-align: center;color: #fff;font-weight: 600;font-family: "Roboto", sans-serif;
 }    
+@media screen and (max-width:1920px) and (min-width:1200px){
+.centertext 
+{
+    float: none;display: block;margin: 50px auto;width: 500px;min-height: 400px;max-height: 400px;background: url(../images/sbackground.jpg);border-radius: 5px;position: relative;z-index: 0;top: 10%;
+}
+.loginByfb 
+{
+    float: left;width: 100%;height: 100%;background: url(../images/background.jpg);
+}
+.loginBackground 
+{
+    float: left;width: 100%;height: 100%;background: rgba(0,0,0,.6);
+}
+}
+@media screen and (max-width:1199px) and (min-width:992px){
+.centertext 
+{
+    float: none;display: block;margin: 50px auto;width: 500px;min-height: 400px;max-height: 400px;background: url(../images/sbackground.jpg);border-radius: 5px;position: relative;z-index: 0;top: 10%;
+}
+.loginByfb 
+{
+    float: left;width: 100%;height: 100%;background: url(../images/background.jpg);
+}
+.loginBackground 
+{
+    float: left;width: 100%;height: 100%;background: rgba(0,0,0,.6);
+}
+}
+@media screen and (max-width:991px) and (min-width:768px){
+.centertext 
+{
+    float: none;display: block;margin: 50px auto;width: 500px;min-height: 400px;max-height: 400px;background: url(../images/sbackground.jpg);border-radius: 5px;position: relative;z-index: 0;top: 10%;
+}
+.loginByfb 
+{
+    float: left;width: 100%;height: 100%;background: url(../images/background.jpg);
+}
+.loginBackground 
+{
+    float: left;width: 100%;height: 100%;background: rgba(0,0,0,.6);
+}
+}
+@media screen and (max-width:767px) and (min-width:481px){
+.centertext 
+{
+    float: none;display: block;margin:50px auto;width:90%;background: url(../images/sbackground.jpg);border-radius: 5px;position: relative;z-index: 0;height:400px;
+}
+.loginByfb 
+{
+    float: left;width: 100%;height: auto;background: url(../images/background.jpg);
+}
+.loginBackground 
+{
+    float: left;width: 100%;height: auto;background: rgba(0,0,0,.6);
+}
+}
+@media screen and (max-width:480px) and (min-width:1px){
+.centertext 
+{
+    float: none;display: block;margin:50px auto;width:90%;background: url(../images/sbackground.jpg);border-radius: 5px;position: relative;z-index: 0;height:400px;
+}
+.loginByfb 
+{
+    float: left;width: 100%;height: 100%;background: url(../images/background.jpg);
+}
+.loginBackground 
+{
+    float: left;width: 100%;height: 100%;background: rgba(0,0,0,.6);
+}
+}
+/* LOGIN.JADE PAGE CSS END */
+/* LAYOUT.JADE PAGE CSS BEGIN */
+.wrapperProject 
+{
+    float: left;width: 100%;background: #E9E9E9;
+}
+.projectheader 
+{
+    float: left;background-color: #fff;-webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);height: 54px;position: fixed;-webkit-transition: opacity 1s ease;transition: opacity 1s ease;width: 100%;z-index: 0;
+}
+.headerproject 
+{
+    float: left;width: 100%;padding-top: 10px;
+}
+.projectheaderL 
+{
+    float: left;width: 50%;
+}
+.projectheaderR 
+{
+    float: left;width: 50%;
+}
+.headertitle 
+{
+    float: left;width: 100%;
+}
+.titlecampagin 
+{
+    float: left;width: 100%;font-size: 30px;margin: 0px;
+}
+.abouttitle
+{
+    float: left;width: 100%;font-size: 30px;margin: 0px;
+}
+.blockwrapper 
+{
+    float: left;width: 100%;padding-top: 55px;
+}
+.rightheader 
+{
+    float: right;width: auto;
+}
+.userphototitle 
+{
+    float: left;width: auto;
+}
+.dropdown 
+{
+    float: left;width: auto;
+}
+.profilewrapper 
+{
+    -webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;background-color: #fafafa;background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f5f5f5));background: -webkit-linear-gradient(#fff, #f5f5f5);background: linear-gradient(#fff, #f5f5f5);-webkit-font-smoothing: subpixel-antialiased;-moz-osx-font-smoothing: auto;background-color: #f5f5f5;border: 1px solid #d4d4d4;border-radius: 3px 0 0 3px;-webkit-box-sizing: border-box;box-sizing: border-box;color: #818181;cursor: pointer;outline: none;padding: 4px 6px;position: relative;text-align: left;float: left;width: auto;border-right: transparent;z-index: 0;
+}
+.profileImage 
+{
+    float: left;width: auto;padding-right: 10px;
+}
+.profileName {
+    padding-right: 10px;
+}
+.profileImagewrapper 
+{
+    float: left;width: auto;height: auto;
+}
+.Imageprofile
+{
+    float: left;width: 22px;height: 22px;border-radius: 50%;    
+}
+.sortdesc 
+{
+    position: relative;z-index: 0;bottom: 2px;
+}
+.down 
+{
+    background: #FDFDFD;border: 1px solid #ccc;padding: 4px 10px;border-top-right-radius: 3px;border-bottom-right-radius: 3px;float: left;width: auto;
+}
+.profilewrapper:focus
+{
+    background-color: #FDFDFD;
+}
+.down:focus 
+{
+    background-color: #FDFDFD;
+}
+.dropdownmenu 
+{
+    position: absolute;float: left;width: auto;
+}
+.dropdownmenuP 
+{
+    float: left;position: relative;width: 100%;right: 79px;padding: 5px 15px;border-color: #d4d4d4;top: 0px;border-radius: 3px;-webkit-box-shadow: 0 1px 5px 0 rgba(0,0,0,0.25);box-shadow: 0 1px 5px 0 rgba(0,0,0,0.25);-webkit-transform: translateZ(0);background: #fff;z-index: 0;
+}
+.arrowM 
+{
+    position: relative;float: left;width: auto;z-index: 0;right: 8px;top: 7px;
+}
+.dropdownmenuwrapper
+{
+    margin: 0px;float: left;width: 100%;color: #000;
+}
+.anchor 
+{
+    float: left;width: 100%;color: #000;
+}
+/* LAYOUT.JADE PAGE CSS END */
