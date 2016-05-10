@@ -1,27 +1,35 @@
 extends ../layout
 block content
-  .container#rootDiv
-    form(method='post', action='/project/save',enctype='multipart/form-data')
-      .form-group
-        .row
-          h4
-            b(style="color:#26a69a") Choose a Cover picture
-            input.filepicker.form-control(id="coverImagePicker", type='file', name="cover_image", data-label='Upload', multiple='')
-        .row
+  .projectformbackground
+    .addprojectpart
+     .container
+      .addprojectbackgroundpart
+       .titleprojectedit
+        .titlesubmit
           .form-group
             .input-field
-              input(name="title", placeholder="Enter Ad Title")
-        .row
-          h4
-            b(style="color:#26a69a") Choose a background image
-          .col.s4
-            input.filepicker.form-control(name='background_image_one', data-label='Upload', type='file', multiple='')
-
-          .col.s4
-            input.filepicker.form-control(name='background_image_two',data-label='Upload', type='file', multiple='')
-          .col.s4
-            input.filepicker.form-control(name='background_image_three',data-label='Upload', type='file', multiple='')
-        .row
-          button.btn.waves-effect.waves-light(type='submit', name='action')
-            | Save
-            i.material-icons.right save
+              input.entertitle(name='title', placeholder='Enter Ad Title')
+        .Taddbackground
+          .TbackgroundImage
+            img#Mainbackground.Tbackground(src='../images/Tbackground.jpg')
+            button#Uploadimage.uploadimage Upload
+        .Baddbackground
+         .row
+          .BMbackground
+            .col.s4
+             .BLaddbackground
+               .BLbackground
+                img.BLbackgoundimage(src='../images/Bbackground.jpg')
+                button.BLupload Upload
+            .col.s4
+             .BMaddbackground
+               .BMbackground
+                img.BMbackgoundimage(src='../images/Bbackground.jpg')
+                button.BMupload Upload
+            .col.s4
+             .BRaddbackground
+               .BRbackground
+                img.BRbackgoundimage(src='../images/Bbackground.jpg')
+                button.BRupload Upload
+            button.save SAVE
+              i.material-icons.right save
