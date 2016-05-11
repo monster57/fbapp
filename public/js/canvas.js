@@ -56,3 +56,25 @@ $("#textbox-button").click(function(){
 	makeParagraph(ctx, textContent, 250,100, 250, 300)
 });
 
+$("#save-button").click(function(){
+	var c = document.getElementById("myCanvas");
+	var src = c.toDataURL("image/png");
+	var w=window.open('about:blank','image from canvas');
+	w.document.write("<img src='"+src+"' alt='from canvas'/>");
+});
+
+function readImage() {
+    if ( this.files && this.files[0] ) {
+        var FR= new FileReader();
+        FR.onload = function(e) {
+           var img = new Image();
+           img.onload = function() {
+             ctx.drawImage(img, 0, 0, 150, 50);
+           };
+           img.src = e.target.result;
+        };       
+        FR.readAsDataURL( this.files[0] );
+    }
+}
+
+document.getElementById("file-input").addEventListener("change", readImage, false);
