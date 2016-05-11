@@ -10,16 +10,16 @@ block content
               .cardproject.hoverable
                 a(href='/project/#{project._id}')
                   .cardimage
-                    img.responsive-img(src="/uploads/#{project.cover_image ? project.cover_image : 'https://placeholdit.imgix.net/~text?txtsize=33&txt=No%20cover%20image&w=250&h=250'}")
+                    img.responsive-img.responsiveimages-card(src="/uploads/#{project.cover_image ? project.cover_image : 'https://placeholdit.imgix.net/~text?txtsize=33&txt=No%20cover%20image&w=250&h=250'}")
                   .cardcontent
                     span.card-title.activator.grey-text.text-darken-4.truncate.cardtitleT #{project.title}
                     a.dropdown-button.right(href='#', data-activates='dropdown#{i}')
                       i.material-icons more_vert
-                    ul.dropdown-content(id="dropdown#{i}")
-                      li
-                        a(href='/edit/#{project._id}') Edit
-                      li
-                        a(href='/project/#{project._id}/delete') Delete
+                    ul.dropdown-content.dropdowncontent(id="dropdown#{i}")
+                      li.dropdowncontent-L
+                        a.dropdowncontent-A(href='/edit/#{project._id}') Edit
+                      li.dropdowncontent-L
+                        a.dropdowncontent-A(href='/project/#{project._id}/delete') Delete
         else
           h4 You have no projects, add one!
 

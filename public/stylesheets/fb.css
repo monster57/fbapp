@@ -262,6 +262,10 @@ body
 {
     float: left;width: 79%;line-height: 26px;
 }
+.responsiveimages-card
+{
+    height: 150px !important;
+}
 /* LAYOUT.JADE PAGE CSS END */
 /* ADDPROJECT.JADE PAGE CSS BEGIN */
 .projectformbackground 
@@ -375,5 +379,31 @@ body
 .entertitle:focus
 {
     border-bottom: 1px solid #ccc !important;box-shadow: 0 1px 0 0 #ccc !important;
+}
+.filepicker-ui button 
+{
+    position: relative;bottom: 47px;z-index: 0;right: 20px;float: right;width: auto;padding: 5px 10px;font-size: 16px;color: #000;text-shadow: 0 1px 0 rgba(0,0,0,0.3);border-color: #000;border: 1px solid #737272;
+}
+.filepicker-ui button:focus
+{
+    background-color: transparent;
+}
+.filepicker-ui input
+{
+    display: none;
+}
+#messages 
+{
+    display: none;
+}
+.dropdowncontent-A 
+{
+    padding: 3px 10px !important;
+    color: #000 !important;
+    font-size: 14px !important;
+}
+li.dropdowncontent-L 
+{
+    min-height: 30px !important;
 }
 /* ADDPROJECT.JADE PAGE CSS END */

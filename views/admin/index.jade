@@ -2,34 +2,36 @@ extends ../layout
 block content
   .projectformbackground
     .addprojectpart
-     .container
-      .addprojectbackgroundpart
-       .titleprojectedit
-        .titlesubmit
-          .form-group
-            .input-field
-              input.entertitle(name='title', placeholder='Enter Ad Title')
-        .Taddbackground
-          .TbackgroundImage
-            img#Mainbackground.Tbackground(src='../images/Tbackground.jpg')
-            button#Uploadimage.uploadimage Upload
-        .Baddbackground
-         .row
-          .BMbackground
-            .col.s4
-             .BLaddbackground
-               .BLbackground
-                img.BLbackgoundimage(src='../images/Bbackground.jpg')
-                button.BLupload Upload
-            .col.s4
-             .BMaddbackground
-               .BMbackground
-                img.BMbackgoundimage(src='../images/Bbackground.jpg')
-                button.BMupload Upload
-            .col.s4
-             .BRaddbackground
-               .BRbackground
-                img.BRbackgoundimage(src='../images/Bbackground.jpg')
-                button.BRupload Upload
-            button.save SAVE
-              i.material-icons.right save
+      .container
+        .addprojectbackgroundpart
+          form(method='post', action='/project/save', enctype='multipart/form-data')
+            .titleprojectedit
+              .titlesubmit
+                .form-group
+                  .input-field
+                    input.entertitle(name='title', placeholder='Enter Ad Title')
+              .Taddbackground
+                .TbackgroundImage
+                  img#Mainbackground.Tbackground(src='../images/Tbackground.jpg')
+                  input#Uploadimage.uploadimage.filepicker(type='file', name='cover_image', data-label='Upload', multiple='')
+              .Baddbackground
+                .row
+                  .BMbackground
+                    .col.s4
+                      .BLaddbackground
+                        .BLbackground
+                          img.BLbackgoundimage(src='../images/Bbackground.jpg')
+                          input.BLupload.filepicker.form-control(name='background_image_one', data-label='Upload', type='file', multiple='')
+                    .col.s4
+                      .BMaddbackground
+                        .BMbackground
+                          img.BMbackgoundimage(src='../images/Bbackground.jpg')
+                          input.BMupload.filepicker.form-control(name='background_image_two', data-label='Upload', type='file', multiple='')
+                    .col.s4
+                      .BRaddbackground
+                        .BRbackground
+                          img.BRbackgoundimage(src='../images/Bbackground.jpg')
+                          input.BRupload.filepicker.form-control(name='background_image_three', data-label='Upload', type='file', multiple='', value='Upload')
+                    button.save(type='submit', name='action')
+                      | SAVE
+                      i.material-icons.right save
