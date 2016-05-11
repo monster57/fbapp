@@ -36,16 +36,16 @@ function makeParagraph(ctx, text, x,y,maxWidth, lineHeight){
 	var formattedText = "";
 	wordArray.forEach(function(word , index,array){
 		formattedText += word+" " 
-		if(formattedText.length>20){
+		if(formattedText.length > 20 || array[array.length - 1] == word){
 			ctx.fillText(formattedText, x, y, maxWidth, lineHeight);
 			formattedText = "";
-			y = y+30;
+			y += 30;
 		}
 	})
-}
+};
 
 $("#textbox-button").click(function(){
-	 var c = document.getElementById("myCanvas");
+	var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
 	var textContent = document.getElementById("the-textbox").value;
 	var img = document.getElementById("hideimage");
@@ -53,5 +53,6 @@ $("#textbox-button").click(function(){
     setImage(imageId);
 	ctx.font='800 italic 24px Arial';
     ctx.fillStyle = 'black';
-	makeParagraph(ctx, textContent, 250,100, 250, 100)
+	makeParagraph(ctx, textContent, 250,100, 250, 300)
 });
+
