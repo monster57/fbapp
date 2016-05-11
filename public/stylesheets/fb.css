@@ -240,11 +240,7 @@ body
 }
 .cardproject 
 {
-    float: left;width: 100%;height: auto;    transition: box-shadow .25s;
-    box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    position: relative;
-    z-index: 0;
-    line-height: 10px;
+    float: left;width: 100%;height: auto;transition: box-shadow .25s;box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);position: relative;z-index: 0;line-height: 10px;margin-bottom: 30px;
 }
 .cardlink 
 {
@@ -265,6 +261,14 @@ body
 .responsiveimages-card
 {
     height: 150px !important;
+}
+.text-fire 
+{
+    color: #000;
+}
+.material-icons
+{
+    color: #000;
 }
 /* LAYOUT.JADE PAGE CSS END */
 /* ADDPROJECT.JADE PAGE CSS BEGIN */
@@ -454,7 +458,7 @@ li.dropdowncontent-L
 }
 .screamresponsive
 {
-    float: left;width: 100%;height: auto;
+    float: left;width: 100%;height: 100px;
 }
 .canvasdesgin 
 {
@@ -475,5 +479,9 @@ li.dropdowncontent-L
 .canvas-text 
 {
     float: left;width: 100%;height: auto;font-size: 20px;font-family: sans-serif;
+}
+.hideImage
+{
+    display: none;
 }
 /* PROJECT/ID.JADE PAGE CSS END */
