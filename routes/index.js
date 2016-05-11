@@ -10,6 +10,9 @@ var homeController = require('../controller/home_controller');
 router.get('/', ensureAuthenticated, homeController.getAllProjects);
 
 router.get('/project', ensureAuthenticated, homeController.getAllProjects);
+router.get('/about' , ensureAuthenticated , function(req,res){
+  res.render('about');
+})
 router.post('/project/save', ensureAuthenticated, upload.any(), homeController.saveProject);
 router.get('/project/:id' ,AunthenticationCheck, homeController.showProject);
 router.get('/project/:id/delete', ensureAuthenticated, homeController.deleteProject);
