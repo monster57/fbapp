@@ -11,7 +11,7 @@ window.onload = function() {
 
 function setImage(id) {
     var img = document.getElementById(id);
-    ctx.drawImage(img, 0, 0,200,200);
+    ctx.drawImage(img, 0, 0,200,150);
 }
 
 
@@ -51,7 +51,7 @@ $("#textbox-button").click(function(){
 	var img = document.getElementById("hideimage");
     ctx.drawImage(img, 0, 0,500,400);
     setImage(imageId);
-	ctx.font='800 italic 30px Arial';
-    ctx.fillStyle = 'red';
+	ctx.font='800 italic 24px Arial';
+    ctx.fillStyle = 'black';
 	makeParagraph(ctx, textContent, 250,100, 250, 100)
 });

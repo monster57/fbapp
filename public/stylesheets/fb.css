@@ -414,7 +414,7 @@ li.dropdowncontent-L
 /* PROJECT/ID.JADE PAGE CSS BEGIN */
 .canvaswrapper 
 {
-    float: left;width: 100%;height: auto;
+    float: left;width: 100%;height: auto; margin-bottom: 20px;
 }
 .canvaswrapperbody 
 {
@@ -483,5 +483,43 @@ li.dropdowncontent-L
 .hideImage
 {
     display: none;
+}
+.textareapart 
+{
+    float: left;width: 100%;height: auto;border-color: #ccc;margin-bottom: 10px;padding: 5px 5px;
+}
+#textbox-button 
+{
+    padding: 7px 10px;border: 1px solid #ccc;font-size: 16px;cursor: pointer;
+}
+.image-upload > input
+{
+    display: none;
+}
+
+.image-upload img
+{
+    width: 80px;
+    cursor: pointer;
+}
+.uploadbutton-Fbbutton 
+{
+    float: left;width: 100%;height: auto;
+}
+.image-upload 
+{
+    float: left;width: auto;margin: 0px 20px;
+}
+.upload-text 
+{
+    float: left;width: 100%;height: auto;font-size: 20px;font-family: sans-serif;margin-top: 0px;
+}
+.note-text 
+{
+    float: left;width: 100%;height: auto;font-size: 16px;font-family: sans-serif;margin-top: 30px;line-height: 24px;
+}
+#save-button 
+{
+    padding: 7px 10px;border: 1px solid #ccc;font-size: 16px;cursor: pointer;
 }
 /* PROJECT/ID.JADE PAGE CSS END */

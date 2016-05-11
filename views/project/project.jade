@@ -25,10 +25,19 @@ block content
               .mycanvasdesgin
                 canvas#myCanvas(width='500', height='400', style='border:1px solid #d3d3d3;') Your browser does not support the HTML5 canvas tag.
                 .file-text-Buttons
-                  input#the-textbox(type='text')
-                  input#textbox-button(type='button', value='hello')
-                  input#fileUpload(type='file')
-            p
+                  textarea#the-textbox.textareapart(rows='5', cols='50',type='text', placeholder='Add your text...')
+                  input#textbox-button(type='button', value='Submit Text')
+                .uploadbutton-Fbbutton
+                  p.upload-text Upload a Pic
+                  .image-upload
+                    label(for='file-input')
+                      img(src='../images/profile.png')
+                    input#file-input(type='file')
+                  .image-upload
+                   label(for='file-input')
+                    img(src='../images/foldericon.png')
+                   input#file-input(type='file')
+            p.note-text
               strong Note:
               |  The canvas tag is not supported in Internet Explorer 8 and earlier versions.
            input#save-button(type='button', value='Ok I Am Done')
