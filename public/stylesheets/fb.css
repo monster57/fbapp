@@ -407,3 +407,73 @@ li.dropdowncontent-L
     min-height: 30px !important;
 }
 /* ADDPROJECT.JADE PAGE CSS END */
+/* PROJECT/ID.JADE PAGE CSS BEGIN */
+.canvaswrapper 
+{
+    float: left;width: 100%;height: auto;
+}
+.canvaswrapperbody 
+{
+    float: left;width: 100%;height: auto;
+}
+.container-wrapper 
+{
+    margin: 0px auto;display: block;width: 500px;
+}
+.ImageCanvas 
+{
+    float: left;width: 100%;height: auto;
+}
+.Imageuse 
+{
+    float: left;width: 100%;height: auto;
+}
+.screamImageLMR 
+{
+    float: left;width: 100%;height: auto;
+}
+.ImageBackgroundcanvas 
+{
+    float: left;width: 100%;height: auto;
+}
+.screamImage 
+{
+    float: left;width: 30%;height: 100px;border: 1px solid #ccc;margin: 0px 7px;
+}
+.screamL 
+{
+    float: left;width: 100%;height: auto;
+}
+.screamM 
+{
+    float: left;width: 100%;height: auto;
+}
+.screamR 
+{
+    float: left;width: 100%;height: auto;
+}
+.screamresponsive
+{
+    float: left;width: 100%;height: auto;
+}
+.canvasdesgin 
+{
+    float: left;width: 100%;height: auto;
+}
+.mycanvasdesgin 
+{
+    float: left;width: 100%;height: auto;
+}
+.file-text-Buttons 
+{
+    float: left;width: 100%;height: auto;margin: 30px 0px;
+}
+.imagetouse 
+{
+    font-size: 20px;font-family: sans-serif;float: left;width: 100%;
+}
+.canvas-text 
+{
+    float: left;width: 100%;height: auto;font-size: 20px;font-family: sans-serif;
+}
+/* PROJECT/ID.JADE PAGE CSS END */

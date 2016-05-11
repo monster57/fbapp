@@ -1,18 +1,32 @@
 // extends ../layout
-
+link(href='/stylesheets/fb.css', rel='stylesheet')
 block content
-  .container
-    .card
-      .row
-        .col.s12
-          h4.center #{ project.title }
-      .row
-        .col.s12
-          img.center.responsive-img(src="/uploads/#{project.cover_image}")
-      .row
-        .col.s4
-          img.responsive-img(src="/uploads/#{project.background_image.background_image_one}")
-        .col.s4
-          img.responsive-img(src="/uploads/#{project.background_image.background_image_two}")
-        .col.s4
-          img.responsive-img(src="/uploads/#{project.background_image.background_image_three}")
+    .canvaswrapper
+      .canvaswrapperbody
+        .container-wrapper
+          .ImageCanvas
+            .Imageuse
+              p.imagetouse Image to use:
+              .screamImageLMR
+                .ImageBackgroundcanvas
+                  .screamImage
+                    .screamL
+                      img#scream.screamresponsive(src='scream.jpg', alt='The Scream')
+                  .screamImage
+                    .screamM
+                      img#scream2.screamresponsive(src='scream2.jpg', alt='The Scream')
+                  .screamImage
+                    .screamR
+                      img#scream3.screamresponsive(src='scream3.jpg', alt='The Scream')
+            .canvasdesgin
+              p.canvas-text Canvas:
+              .mycanvasdesgin
+                canvas#myCanvas(width='500', height='400', style='border:1px solid #d3d3d3;') Your browser does not support the HTML5 canvas tag.
+                .file-text-Buttons
+                  input#the-textbox(type='text')
+                  input#textbox-button(type='button', value='hello')
+                  input#fileUpload(type='file')
+            p
+              strong Note:
+              |  The canvas tag is not supported in Internet Explorer 8 and earlier versions.
+           input#save-button(type='button', value='Ok I Am Done')
