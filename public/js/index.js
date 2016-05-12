@@ -59,3 +59,32 @@ $(document).ready(function(){
      $(".dropdownmenu").toggle();
   });
 });
+
+function readPath(input, id) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#'+id).attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#coverImageUpload").change(function(){
+    readPath(this , 'coverImage');
+});
+
+$("#backgroundImageOneUpload").change(function(){
+    readPath(this , 'backgroundImageOne');
+});
+
+$("#backgroundImageTwoUpload").change(function(){
+    readPath(this , 'backgroundImageTwo');
+});
+
+$("#backgroundImageThreeUpload").change(function(){
+    readPath(this , 'backgroundImageThree');
+});

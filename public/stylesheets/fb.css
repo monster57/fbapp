@@ -523,3 +523,6 @@ li.dropdowncontent-L
     padding: 7px 10px;border: 1px solid #ccc;font-size: 16px;cursor: pointer;
 }
 /* PROJECT/ID.JADE PAGE CSS END */
+.filepicker-preview{
+    display: none;
+}

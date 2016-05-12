@@ -78,3 +78,4 @@ function readImage() {
 }
 
 document.getElementById("file-input").addEventListener("change", readImage, false);
+
