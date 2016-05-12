@@ -390,7 +390,7 @@ body
 }
 .filepicker-ui button:focus
 {
-    background-color: transparent;
+    background-color: #DDD;
 }
 .filepicker-ui input
 {
@@ -409,6 +409,10 @@ body
 li.dropdowncontent-L 
 {
     min-height: 30px !important;
+}
+.save:focus
+{
+    background-color: #2193F3;
 }
 /* ADDPROJECT.JADE PAGE CSS END */
 /* PROJECT/ID.JADE PAGE CSS BEGIN */

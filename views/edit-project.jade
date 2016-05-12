@@ -1,0 +1,37 @@
+extends ../layout
+block content
+  .projectformbackground
+    .addprojectpart
+      .container
+        .addprojectbackgroundpart
+          form(method='post', action='/project/save', enctype='multipart/form-data')
+            .titleprojectedit
+              .titlesubmit
+                .form-group
+                  .input-field
+                    input.entertitle(name='title', placeholder='Enter Ad Title')
+              .Taddbackground
+                .TbackgroundImage
+                  img#coverImage.Tbackground(src='../images/Tbackground.jpg')
+                  input#coverImageUpload.uploadimage.filepicker(type='file', name='cover_image', data-label='Edit Photo', multiple='')
+              .Baddbackground
+                .row
+                  .BMbackground
+                    .col.s4
+                      .BLaddbackground
+                        .BLbackground
+                          img#backgroundImageOne.BLbackgoundimage(src='../images/Bbackground.jpg')
+                          input#backgroundImageOneUpload.BLupload.filepicker.form-control(name='background_image_one', data-label='Edit Photo', type='file', multiple='')
+                    .col.s4
+                      .BMaddbackground
+                        .BMbackground
+                          img#backgroundImageTwo.BMbackgoundimage(src='../images/Bbackground.jpg')
+                          input#backgroundImageTwoUpload.BMupload.filepicker.form-control(name='background_image_two', data-label='Edit Photo', type='file', multiple='')
+                    .col.s4
+                      .BRaddbackground
+                        .BRbackground
+                          img#backgroundImageThree.BRbackgoundimage(src='../images/Bbackground.jpg')
+                          input#backgroundImageThreeUpload.BRupload.filepicker.form-control(name='background_image_three', data-label='Edit Photo', type='file', multiple='')
+                    button.save(type='submit', name='action')
+                      | SAVE
+                      i.material-icons.right save
