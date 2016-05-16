@@ -10,7 +10,7 @@ block content
               .cardproject.hoverable
                 a(href='/project/#{project._id}')
                   .cardimage
-                    img.responsive-img.responsiveimages-card(src="/uploads/#{project.cover_image ? project.cover_image : 'https://placeholdit.imgix.net/~text?txtsize=33&txt=No%20cover%20image&w=250&h=250'}")
+                    img.responsiveimages-card(src="/uploads/#{project.cover_image ? project.cover_image : 'https://placeholdit.imgix.net/~text?txtsize=33&txt=No%20cover%20image&w=250&h=250'}")
                   .cardcontent
                     span.card-title.activator.grey-text.text-darken-4.truncate.cardtitleT #{project.title}
                     a.dropdown-button.right(href='#', data-activates='dropdown#{i}')
