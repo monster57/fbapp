@@ -1,5 +1,6 @@
 // extends ../layout
 link(href='/stylesheets/fb.css', rel='stylesheet')
+link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
 block content
     .canvaswrapper
       .canvaswrapperbody
@@ -29,7 +30,7 @@ block content
                   input#textbox-button(type='button', value='Submit Text')
                 .uploadbutton-Fbbutton
                   p.upload-text Upload a Pic
-                  button.image-button
+                  button.image-button(data-toggle='modal', data-target='#myModal')
                    img(src='../images/profile.png')
                   .image-upload
                    label(for='file-input')
@@ -39,7 +40,18 @@ block content
               strong Note:
               |  The canvas tag is not supported in Internet Explorer 8 and earlier versions.
            input#save-button(type='button', value="Ok I'M Done!")
-
+ #myModal.modal.fade(role='dialog')
+  .modal-dialog
+   .modal-content
+    .modal-header
+      button.close(type='button', data-dismiss='modal') ×
+      h4.modal-title FaceBook Photos
+    .modal-body
+     p Select any once of it
+    .modal-footer
+      button.btn.btn-default(type='button', data-dismiss='modal') Close
 script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
 script(src="/lib/facebook_SDK.js")
 script(src="/js/canvas.js")
+script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js')
+script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
