@@ -565,6 +565,10 @@ li.dropdowncontent-L
 {
     float: left;width: auto;border: transparent;background: transparent;cursor: pointer;
 }
+.image-button:focus
+{
+    outline: transparent;    
+}
 /* PROJECT/ID.JADE PAGE POPUP CSS BEGIN */
 .modalDialog 
 {
