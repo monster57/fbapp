@@ -29,10 +29,8 @@ block content
                   input#textbox-button(type='button', value='Submit Text')
                 .uploadbutton-Fbbutton
                   p.upload-text Upload a Pic
-                  .image-upload
-                    label(for='file-input')
-                      img(src='../images/profile.png')
-                    input#facebook-input(type='file')
+                  button.image-button
+                   img(src='../images/profile.png')
                   .image-upload
                    label(for='file-input')
                     img(src='../images/foldericon.png')
@@ -40,7 +38,7 @@ block content
             p.note-text
               strong Note:
               |  The canvas tag is not supported in Internet Explorer 8 and earlier versions.
-           input#save-button(type='button', value='Ok I Am Done')
+           input#save-button(type='button', value="Ok I'M Done!")
 
 script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
 script(src="/js/canvas.js")
