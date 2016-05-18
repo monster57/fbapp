@@ -30,7 +30,7 @@ block content
                   input#textbox-button(type='button', value='Submit Text')
                 .uploadbutton-Fbbutton
                   p.upload-text Upload a Pic
-                  button.image-button(data-toggle='modal', data-target='#myModal')
+                  button#facebook-input.image-button(data-toggle='modal', data-target='#myModal')
                    img(src='../images/profile.png')
                   .image-upload
                    label(for='file-input')
@@ -46,7 +46,7 @@ block content
     .modal-header
       button.close(type='button', data-dismiss='modal') ×
       h4.modal-title FaceBook Photos
-    .modal-body
+    #facebook-image-holder.modal-body
      p Select any once of it
     .modal-footer
       button.btn.btn-default(type='button', data-dismiss='modal') Close
