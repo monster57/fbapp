@@ -181,14 +181,51 @@ function getPhotos(callback) {
     });
 }
 
+// $('#facebook-input').click(function(){
+//   getPhotos( function( photos ) {
+//     photos.forEach(function(photo){
+//       $('#facebook-image-holder').append('<img src="'+photo.url+'" height=100 width=100/>')  
+//     })
+    
+//   });
+// });
+
 $('#facebook-input').click(function(){
   getPhotos( function( photos ) {
-    console.log(photos , "-----------------")
     photos.forEach(function(photo){
-      $('#facebook-image-holder').append('<img src="'+photo.url+'" height=100 width=100/>')  
-    })
-    
-    // console.log( photos );
+      var element = document.createElement('img');
+      element.src = photo.url;
+      element.height = 100;
+      element.width = 100;
+      $(element).click( function(){
+        $("#selected").removeAttr('id');
+        $(this).attr('id',"selected");
+      });
+      $('#facebook-image-holder').append(element)  
+    });
   });
 });
+
+
+// $('#save-button').click(function(){
+//   alert('this is it');
+//   FB.getLoginStatus(function(loginResponse) {
+//     FB.api(
+//         "/me/accounts?access_token="+loginResponse.authResponse.accessToken,
+//         function (response) {
+//           console.log(response , '---------------')
+//           if (response && !response.error) {
+//             /* handle the result */
+//           }
+//         }
+//     );
+//   })    
+// })
+
+
+// $("#facebook-image-holder > img").click(function(){
+//     $("#selected").removeAttr('id');
+//     $(this).attr('id',"selected");
+// })
+
 

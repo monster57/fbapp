@@ -600,3 +600,7 @@ li.dropdowncontent-L
 {
     display: none;
 }
+
+#selected {
+    border: 3px solid red;
+}
