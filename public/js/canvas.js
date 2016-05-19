@@ -43,46 +43,6 @@ function readImage() {
     }
 };
 
-$( "#backgroundleft" ).click(function() {
-  setCover('backgroundleft');
-  ctx.drawImage(uploadImage, 0, 0, 150, 50);
-  imageId = 'backgroundleft';
-});
-
-$( "#backgroundmiddle" ).click(function() {
-  setCover('backgroundmiddle');
-  ctx.drawImage(uploadImage, 0, 0, 150, 50);
-  imageId = 'backgroundmiddle';
-});
-
-$( "#backgroundright" ).click(function() {
-  setCover('backgroundright');
-  ctx.drawImage(uploadImage, 0, 0, 150, 50);
-  imageId = 'backgroundright';
-});
-
-$("#textbox-button").click(function(){
-	var c = document.getElementById("myCanvas");
-  var ctx = c.getContext("2d");
-	var textContent = document.getElementById("the-textbox").value;
-	var img = document.getElementById("hideimage");
-  ctx.drawImage(img, 0, 0,500,400);
-  setCover(imageId);
-	ctx.font='800 italic 24px Arial';
-  ctx.fillStyle = 'black';
-	makeParagraph(ctx, textContent, 250,100, 250, 300);
-});
-
-// $("#save-button").click(function(){
-// 	var c = document.getElementById("myCanvas");
-// 	var src = c.toDataURL("image/png");
-// 	var w=window.open('about:blank','image from canvas');
-// 	w.document.write("<img src='"+src+"' alt='from canvas'/>");
-// });
-
-document.getElementById("file-input").addEventListener("change", readImage, false);
-
-
 function makeFacebookPhotoURL( id, accessToken ) {
   return 'https://graph.facebook.com/' + id + '/picture?access_token=' + accessToken;
 }
@@ -181,38 +141,77 @@ function getPhotos(callback) {
     });
 }
 
-// $('#facebook-input').click(function(){
-//   getPhotos( function( photos ) {
-//     photos.forEach(function(photo){
-//       $('#facebook-image-holder').append('<img src="'+photo.url+'" height=100 width=100/>')  
-//     })
-    
-//   });
+
+
+
+
+// $("#save-button").click(function(){
+// 	var c = document.getElementById("myCanvas");
+// 	var src = c.toDataURL("image/png");
+// 	var w=window.open('about:blank','image from canvas');
+// 	w.document.write("<img src='"+src+"' alt='from canvas'/>");
 // });
 
-$('#facebook-input').click(function(){
-  getPhotos( function( photos ) {
-    photos.forEach(function(photo){
-      var element = document.createElement('img');
-      element.src = photo.url;
-      element.height = 100;
-      element.width = 100;
-      $(element).click( function(){
-        $("#selected").removeAttr('id');
-        $(this).attr('id',"selected");
-      });
 
-      $('#facebook-image-holder').append(element);
+
+
+$( document ).ready(function() {
+    $( "#backgroundleft" ).click(function() {
+      setCover('backgroundleft');
+      ctx.drawImage(uploadImage, 0, 0, 150, 50);
+      imageId = 'backgroundleft';
     });
-  });
+
+    $( "#backgroundmiddle" ).click(function() {
+      setCover('backgroundmiddle');
+      ctx.drawImage(uploadImage, 0, 0, 150, 50);
+      imageId = 'backgroundmiddle';
+    });
+
+    $( "#backgroundright" ).click(function() {
+      setCover('backgroundright');
+      ctx.drawImage(uploadImage, 0, 0, 150, 50);
+      imageId = 'backgroundright';
+    });
+
+    $("#textbox-button").click(function(){
+      var c = document.getElementById("myCanvas");
+      var ctx = c.getContext("2d");
+      var textContent = document.getElementById("the-textbox").value;
+      var img = document.getElementById("hideimage");
+      ctx.drawImage(img, 0, 0,500,400);
+      setCover(imageId);
+      ctx.font='800 italic 24px Arial';
+      ctx.fillStyle = 'black';
+      makeParagraph(ctx, textContent, 250,100, 250, 300);
+    });
+
+    document.getElementById("file-input").addEventListener("change", readImage, false);
+
+    $('#facebook-input').click(function(){
+      $("#oksubmit").hide();
+      getPhotos( function( photos ) {
+        photos.forEach(function(photo){
+          var element = document.createElement('img');
+          element.src = photo.url;
+          element.height = 100;
+          element.width = 100;
+          $(element).click( function(){
+            $("#selected").removeAttr('id');
+            $(this).attr('id',"selected");
+            $("#oksubmit").show();
+          });
+
+          $('#facebook-image-holder').append(element);
+        });
+      });
+    });
+
+    $("#oksubmit").click(function(){
+      var c = document.getElementById("myCanvas");
+      var ctx = c.getContext("2d");
+      var image = document.getElementById("selected");
+      ctx.drawImage(image, 0, 0, 150, 50)
+    });
+
 });
-
-$("#oksubmit").click(function(){
-  alert("hello this is fine");
-  var c = document.getElementById("myCanvas");
-  var ctx = c.getContext("2d");
-  var image = document.getElementById("selected");
-  ctx.drawImage(image, 0, 0, 150, 50)
-});
-
-
