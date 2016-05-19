@@ -201,31 +201,18 @@ $('#facebook-input').click(function(){
         $("#selected").removeAttr('id');
         $(this).attr('id',"selected");
       });
-      $('#facebook-image-holder').append(element)  
+
+      $('#facebook-image-holder').append(element);
     });
   });
 });
 
-
-// $('#save-button').click(function(){
-//   alert('this is it');
-//   FB.getLoginStatus(function(loginResponse) {
-//     FB.api(
-//         "/me/accounts?access_token="+loginResponse.authResponse.accessToken,
-//         function (response) {
-//           console.log(response , '---------------')
-//           if (response && !response.error) {
-//             /* handle the result */
-//           }
-//         }
-//     );
-//   })    
-// })
-
-
-// $("#facebook-image-holder > img").click(function(){
-//     $("#selected").removeAttr('id');
-//     $(this).attr('id',"selected");
-// })
+$("#oksubmit").click(function(){
+  alert("hello this is fine");
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  var image = document.getElementById("selected");
+  ctx.drawImage(image, 0, 0, 150, 50)
+});
 
 
