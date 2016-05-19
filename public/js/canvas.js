@@ -212,6 +212,7 @@ $( document ).ready(function() {
       var ctx = c.getContext("2d");
       var image = document.getElementById("selected");
       ctx.drawImage(image, 0, 0, 150, 50)
+      $("#selected").removeAttr('id');
     });
 
 });
