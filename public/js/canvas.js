@@ -1,7 +1,7 @@
 var imageId = 'backgroundleft';
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
-var uploadImage = "";
+var userImage = "";
 
 window.onload = function() {
     var img = document.getElementById("hideimage");
@@ -33,7 +33,7 @@ function readImage() {
         var FR= new FileReader();
         FR.onload = function(e) {
            var img = new Image();
-           uploadImage = img;
+           userImage = img;
            img.onload = function() {
              ctx.drawImage(img, 0, 0, 150, 50);
            };
@@ -145,12 +145,7 @@ function getPhotos(callback) {
 
 
 
-// $("#save-button").click(function(){
-// 	var c = document.getElementById("myCanvas");
-// 	var src = c.toDataURL("image/png");
-// 	var w=window.open('about:blank','image from canvas');
-// 	w.document.write("<img src='"+src+"' alt='from canvas'/>");
-// });
+
 
 
 
@@ -158,19 +153,19 @@ function getPhotos(callback) {
 $( document ).ready(function() {
     $( "#backgroundleft" ).click(function() {
       setCover('backgroundleft');
-      ctx.drawImage(uploadImage, 0, 0, 150, 50);
+      ctx.drawImage(userImage, 0, 0, 150, 50);
       imageId = 'backgroundleft';
     });
 
     $( "#backgroundmiddle" ).click(function() {
       setCover('backgroundmiddle');
-      ctx.drawImage(uploadImage, 0, 0, 150, 50);
+      ctx.drawImage(userImage, 0, 0, 150, 50);
       imageId = 'backgroundmiddle';
     });
 
     $( "#backgroundright" ).click(function() {
       setCover('backgroundright');
-      ctx.drawImage(uploadImage, 0, 0, 150, 50);
+      ctx.drawImage(userImage, 0, 0, 150, 50);
       imageId = 'backgroundright';
     });
 
@@ -211,8 +206,15 @@ $( document ).ready(function() {
       var c = document.getElementById("myCanvas");
       var ctx = c.getContext("2d");
       var image = document.getElementById("selected");
+      userImage = image;
       ctx.drawImage(image, 0, 0, 150, 50)
       $("#selected").removeAttr('id');
     });
 
+    $("#save-button").click(function(){
+     var c = document.getElementById("myCanvas");
+     var src = c.toDataURL("image/png");
+     var w=window.open('about:blank','image from canvas');
+     w.document.write("<img src='"+src+"' alt='from canvas'/>");
+    });
 });
