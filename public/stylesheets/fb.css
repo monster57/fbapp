@@ -591,16 +591,29 @@ li.dropdowncontent-L
 }
 #oksubmit 
 {
-    width: auto;background: #fff;border: 1px solid #ccc;margin-right: 14px;display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border-radius: 4px;
+    width: auto;background: #fff;border: 1px solid #ccc;margin-right: 5px;margin-top: 15px;display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border-radius: 4px;
 }
-/* PROJECT/ID.JADE PAGE POPUP CSS END */
-/* PROJECT/ID.JADE PAGE CSS END */
-
+#facebook-image-holder img 
+{
+    margin: 5px 5px;
+}
 .filepicker-preview
 {
     display: none;
 }
 
-#selected {
+#selected 
+{
     border: 3px solid red;
 }
+.modal-body
+{
+    overflow-y: auto;height: 515px;width: 100%;float: left;
+}
+.modal-footer .btn+.btn
+{
+    margin-top: 15px;
+}
+/* PROJECT/ID.JADE PAGE POPUP CSS END */
+/* PROJECT/ID.JADE PAGE CSS END */
+
