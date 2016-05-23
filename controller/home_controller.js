@@ -72,6 +72,10 @@ home.showProject = function(req, res){
 
 home.deleteProject = function(req, res){
 	var projectId = req.params.id;
+	var defaultImages = ['cover_image.png', 
+						'background_one.png', 
+						'background_two.png',
+						'background_three.png'];
 	Project.findOne({_id:projectId}).exec()
 	.then(function(project){
 		var allImages = [project.cover_image,
@@ -80,10 +84,8 @@ home.deleteProject = function(req, res){
 						 project.background_image.background_image_three
 						];
 		allImages.forEach(function(image){
-			console.log(image , '======================')
 			fs.exists("./uploads/"+image,function(exists){
-				console.log(exists , '---------------')
-			  	if(exists) fs.unlinkSync("./uploads/"+image);
+			  	if(exists && defaultImages.indexOf(image) < 0) fs.unlinkSync("./uploads/"+image);
 			});
 		});
 		Project.find({_id:projectId})
