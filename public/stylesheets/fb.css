@@ -436,7 +436,7 @@ body
 }
 #messages 
 {
-    display: none;
+    /*display: none;*/color: #835258;background: #F0DAE4;padding: 0px 20px;border: 1px solid #e7d0d8;border-radius: 4px;
 }
 .dropdowncontent-A 
 {

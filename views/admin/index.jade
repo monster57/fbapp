@@ -3,6 +3,7 @@ block content
   .projectformbackground
     .addprojectpart
       .container
+        !=messages()
         .addprojectbackgroundpart
           form(method='post', action='/project/save', enctype='multipart/form-data')
             .titleprojectedit
