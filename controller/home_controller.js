@@ -42,7 +42,7 @@ home.saveProject = function(req, res){
 						'background_one.png', 
 						'background_two.png',
 						'background_three.png'];
-	if(!req.title){
+	if(!req.body.title){
 		req.flash('failure' , 'please provide a title')
 		req.files.forEach(function(image){
 			fs.exists( image.path,function(exists){
