@@ -38,7 +38,11 @@ home.saveProject = function(req, res){
 	projectData.title = req.body.title;
 	projectData.user_id = req.user._id;
 	projectData.background_image = {};
-	// req.checkBody('title','title field is required').notEmpty();
+	var defaultImages = ['cover_image.png', 
+						'background_one.png', 
+						'background_two.png',
+						'background_three.png'];
+	req.checkBody('title','title field is required').notEmpty();
 	// req.checkBody('cover_image','please provide the cover image').notEmpty();
 	// req.checkBody('background_image_one','please provide the first BackgroundImage').notEmpty();
 	// req.checkBody('background_image_two','please provide the second BackgroundImage').notEmpty();
@@ -47,6 +51,15 @@ home.saveProject = function(req, res){
 	// 	req.flash('failure' , 'please provide all the images');
 	// 	res.redirect('/dashboard')
 	// }
+	if(!req.title){
+		req.flash('failure' , 'please provide a title')
+		req.files.forEach(function(image){
+			fs.exists( image.path,function(exists){
+			  	if(exists && defaultImages.indexOf(image.filename) < 0) fs.unlinkSync(image.path);
+			});
+		})
+		return res.redirect('/add-project');
+	}
 	req.files.forEach(function(image){
 		console.log( image );
 		if(image.fieldname == 'cover_image')
