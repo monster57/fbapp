@@ -1,5 +1,6 @@
 var User = require('../models/user');
 var Project = require('../models/project');
+var fs = require('fs');
 var home = {};
 
 // get list of all users
@@ -71,14 +72,30 @@ home.showProject = function(req, res){
 
 home.deleteProject = function(req, res){
 	var projectId = req.params.id;
-	Project.find({_id:projectId})
-	.remove().exec()
-	.then(function(){
-		res.redirect('/project');
-	},function(err){
-		req.flash('failure' , 'something went wrong');
-		res.redirect('/project');
-	})
-}
+	Project.findOne({_id:projectId}).exec()
+	.then(function(project){
+		var allImages = [project.cover_image,
+						 project.background_image.background_image_one,
+						 project.background_image.background_image_two,
+						 project.background_image.background_image_three
+						];
+		allImages.forEach(function(image){
+			console.log(image , '======================')
+			fs.exists("./uploads/"+image,function(exists){
+				console.log(exists , '---------------')
+			  	if(exists) fs.unlinkSync("./uploads/"+image);
+			});
+		});
+		Project.find({_id:projectId})
+		.remove().exec()
+		.then(function(){
+			res.redirect('/project');
+		},function(err){
+			req.flash('failure' , 'something went wrong');
+			res.redirect('/project');
+		})
+
+	});
+};
 
 module.exports = home;
