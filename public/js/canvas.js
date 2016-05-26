@@ -1,18 +1,90 @@
+
+var isDragging = false;
+var isClicked = false;
+var isBackgroundClicked = false;
+var mousePosition = {};
 var imageId = 'backgroundleft';
 var c = document.getElementById("myCanvas");
+var coverImage = document.getElementById("hideimage");
 var ctx = c.getContext("2d");
 var userImage = "";
+var canvasText = "";
+var mouseClickPosition = {};
+var backgroundImageDetails = canvasBackgroundImageDetails();
+var canvasDetails = canvasDetails(c);
+var userImageDetails = canvasUserImageDetails(backgroundImageDetails);
 
 window.onload = function() {
-    var img = document.getElementById("hideimage");
-    ctx.drawImage(img, 0, 0,500,400);
-    setCover('backgroundleft');
+  ctx.drawImage(coverImage, canvasDetails.initialX, canvasDetails.initialY,
+    canvasDetails.x,canvasDetails.y);
+  setCover('backgroundleft');
 }
 
+function drawUserImage( userImage, userImageDetails ){
+  ctx.drawImage( userImage, userImageDetails.x, userImageDetails.y, userImageDetails.maxX, userImageDetails.maxY );
+}
+
+function canvasDetails( canvas ){
+  return { x: canvas.width , y:canvas.height, initialX:0, initialY:0 }
+}
+
+function canvasBackgroundImageDetails(){
+  return {x:0, y:0, maxX:200, maxY:150 };
+}
+
+function canvasUserImageDetails(backgroundImageDetails){
+  console.log("this is changing")
+  return {x:backgroundImageDetails.x, y:backgroundImageDetails.y, maxX:150, maxY:100 }; 
+}
+
+function getHeight(event, imageDetails, canvasDetails, mousePosition){
+      
+  var currentHeight = imageDetails.y +(event.clientY - mousePosition.y);
+  mousePosition.y = event.clientY;
+  if(currentHeight < canvasDetails.initialY) currentHeight = canvasDetails.initialY;
+  if(currentHeight > (canvasDetails.y - imageDetails.maxY)) 
+    currentHeight = canvasDetails.y - imageDetails.maxY;
+
+  return currentHeight;
+}
+
+function getWIdth(event, imageDetails, canvasDetails, mousePosition){
+  var currentWidth = imageDetails.x +(event.clientX - mousePosition.x);
+  mousePosition.x = event.clientX;
+  if(currentWidth < canvasDetails.initialX) currentWidth = canvasDetails.initialX;
+  if(currentWidth >= (canvasDetails.x - imageDetails.maxX)) 
+    currentWidth = canvasDetails.x - imageDetails.maxX;
+
+  return currentWidth;
+}
+
+function isBackgroundImageClicked(ImageDetails , mousePosition){
+  return ImageDetails.x <= mousePosition.x && 
+    mousePosition.x <= ( ImageDetails.maxX + ImageDetails.x ) &&
+  ImageDetails.y <= mousePosition.y  &&
+  mousePosition.y <= ( ImageDetails.maxY + ImageDetails.y );
+}
+
+function changeBackgroundImage(event){
+  if(!isClicked){
+    mouseClickPosition.x = event.clientX;
+    mouseClickPosition.y= event.clientY;
+    isClicked = true;
+  }
+  backgroundImageDetails.y = getHeight(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
+  backgroundImageDetails.x = getWIdth(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
+  ctx.drawImage(coverImage, canvasDetails.initialX, canvasDetails.initialY, canvasDetails.x,canvasDetails.y);
+  if(canvasText !== "") makeParagraph(ctx, canvasText, 250,100, 250, 300);
+  setCover(imageId);  
+  userImageDetails = canvasUserImageDetails(backgroundImageDetails)
+  if(userImage !== "") drawUserImage(userImage, userImageDetails )
+
+}
 
 function setCover(id) {
-    var img = document.getElementById(id);
-    ctx.drawImage(img, 0, 0,200,150);
+  var img = document.getElementById(id);
+  ctx.drawImage(img, backgroundImageDetails.x, backgroundImageDetails.y,
+    backgroundImageDetails.maxX, backgroundImageDetails.maxY);
 }
 
 function makeParagraph(ctx, text, x,y,maxWidth, lineHeight){
@@ -35,7 +107,7 @@ function readImage() {
            var img = new Image();
            userImage = img;
            img.onload = function() {
-             ctx.drawImage(img, 0, 0, 150, 50);
+             if(userImage !== "")  drawUserImage(img, userImageDetails);
            };
            img.src = e.target.result;
         };       
@@ -47,25 +119,12 @@ function makeFacebookPhotoURL( id, accessToken ) {
   return 'https://graph.facebook.com/' + id + '/picture?access_token=' + accessToken;
 }
 
-function login( callback ) {
-  FB.login(function(response) {
-    if (response.authResponse) {
-      //console.log('Welcome!  Fetching your information.... ');
-      if (callback) {
-        callback(response);
-      }
-    } else {
-      console.log('User cancelled login or did not fully authorize.');
-    }
-  },{scope: 'user_photos'} );
-}
 
 function getAlbums( callback ) {
   FB.api(
       '/me/albums',
       {fields: 'id,cover_photo'},
       function(albumResponse) {
-        //console.log( ' got albums ' );
         if (callback) {
           callback(albumResponse);
         }
@@ -79,7 +138,6 @@ function getPhotosForAlbumId( albumId, callback ) {
       '/'+albumId+'/photos',
       {fields: 'id'},
       function(albumPhotosResponse) {
-        //console.log( ' got photos for album ' + albumId );
         if (callback) {
           callback( albumId, albumPhotosResponse );
         }
@@ -153,19 +211,19 @@ function getPhotos(callback) {
 $( document ).ready(function() {
     $( "#backgroundleft" ).click(function() {
       setCover('backgroundleft');
-      ctx.drawImage(userImage, 0, 0, 150, 50);
+      if(userImage !== "") drawUserImage(userImage, userImageDetails)
       imageId = 'backgroundleft';
     });
 
     $( "#backgroundmiddle" ).click(function() {
       setCover('backgroundmiddle');
-      ctx.drawImage(userImage, 0, 0, 150, 50);
+      if(userImage !== "") drawUserImage(userImage, userImageDetails)
       imageId = 'backgroundmiddle';
     });
 
     $( "#backgroundright" ).click(function() {
       setCover('backgroundright');
-      ctx.drawImage(userImage, 0, 0, 150, 50);
+      if(userImage !== "") drawUserImage(userImage, userImageDetails)
       imageId = 'backgroundright';
     });
 
@@ -173,11 +231,13 @@ $( document ).ready(function() {
       var c = document.getElementById("myCanvas");
       var ctx = c.getContext("2d");
       var textContent = document.getElementById("the-textbox").value;
+      canvasText = textContent;
       var img = document.getElementById("hideimage");
       ctx.drawImage(img, 0, 0,500,400);
       setCover(imageId);
       ctx.font='800 italic 24px Arial';
       ctx.fillStyle = 'black';
+      if(userImage !== "") drawUserImage(userImage, userImageDetails)
       makeParagraph(ctx, textContent, 250,100, 250, 300);
     });
 
@@ -207,7 +267,7 @@ $( document ).ready(function() {
       var ctx = c.getContext("2d");
       var image = document.getElementById("selected");
       userImage = image;
-      ctx.drawImage(image, 0, 0, 150, 50)
+      if(userImage !== "") drawUserImage(image , userImageDetails);
       $("#selected").removeAttr('id');
     });
 
@@ -217,4 +277,31 @@ $( document ).ready(function() {
      var w=window.open('about:blank','image from canvas');
      w.document.write("<img src='"+src+"' alt='from canvas'/>");
     });
+
+    $("#myCanvas").mousedown(function(event){
+        isDragging = true;
+        var canvas = document.getElementById('myCanvas');
+        var rect = canvas.getBoundingClientRect();  // get element's abs. position
+        mousePosition.x = event.clientX - rect.left;              // get mouse x and adjust for el.
+        mousePosition.y = event.clientY - rect.top;               // get mouse y and adjust for el.
+        if(isBackgroundImageClicked(backgroundImageDetails , mousePosition)) isBackgroundClicked = true;
+    });
+
+    $(window).mouseup(function(){
+        isDragging = false;
+        isClicked = false;
+        isBackgroundClicked = false;
+
+    });
+
+    $(window).mousemove(function(event) {
+          
+          if( isDragging == true )
+          { 
+            if(isBackgroundClicked ){
+              changeBackgroundImage(event)
+            }
+          }
+      });
+
 });
