@@ -44,7 +44,7 @@ function canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates){
   return  userImage;
 }
 
-function getBackgroundHeigt(event, imageDetails, canvasDetails, mousePosition){
+function getBackgroundHeight(event, imageDetails, canvasDetails, mousePosition){
       
   var currentHeight = imageDetails.y +(event.clientY - mousePosition.y);
   mousePosition.y = event.clientY;
@@ -79,7 +79,7 @@ function changeBackgroundImage(event){
     mouseClickPosition.y= event.clientY;
     isClicked = true;
   }
-  backgroundImageDetails.y = getBackgroundHeigt(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
+  backgroundImageDetails.y = getBackgroundHeight(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
   backgroundImageDetails.x = getBackgroundWidth(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
   ctx.drawImage(coverImage, canvasDetails.initialX, canvasDetails.initialY, canvasDetails.x,canvasDetails.y);
   if(canvasText !== "") makeParagraph(ctx, canvasText, 250,100, 250, 300);
@@ -88,23 +88,24 @@ function changeBackgroundImage(event){
   if(userImage !== "") drawUserImage(userImage, userImageDetails )
 
 }
-function getUserImageHeight(event, userImageDetails, backgroundImageDetails, mousePosition){
+function getUserImageHeight(event, userImageDetails, userImageCoOrdinates, backgroundImageDetails, mousePosition){
       
-  var currentHeight = userImageDetails.y +(event.clientY - mousePosition.y);
+  var currentHeight = userImageCoOrdinates.y +(event.clientY - mousePosition.y);
   mousePosition.y = event.clientY;
-  if(currentHeight < backgroundImageDetails.y) currentHeight = backgroundImageDetails.y;
-  if(currentHeight > (backgroundImageDetails.y - userImageDetails.maxY)) 
-    currentHeight = backgroundImageDetails.y - userImageDetails.maxY;
+  if(currentHeight < 0) currentHeight = 0;
+  if(currentHeight > ( backgroundImageDetails.maxY - userImageDetails.maxY)) 
+    currentHeight =  backgroundImageDetails.maxY - userImageDetails.maxY;
 
   return currentHeight;
 }
 
-function getUserImageWidth(event, userImageDetails, backgroundImageDetails, mousePosition){
-  var currentWidth = userImageDetails.x +(event.clientX - mousePosition.x);
+function getUserImageWidth(event, userImageDetails, userImageCoOrdinates, backgroundImageDetails, mousePosition){
+  var currentWidth = userImageCoOrdinates.x +(event.clientX - mousePosition.x);
   mousePosition.x = event.clientX;
-  if(currentWidth < backgroundImageDetails.initialX) currentWidth = backgroundImageDetails.initialX;
-  if(currentWidth >= (backgroundImageDetails.x - userImageDetails.maxX)) 
-    currentWidth = backgroundImageDetails.x - userImageDetails.maxX;
+  if(currentWidth < 0) currentWidth = 0;
+  console.log(currentWidth + "     "  +backgroundImage+ "     " + userImageDetails.maxX +"  ---------------------------")
+  if(currentWidth > (backgroundImageDetails.maxX - userImageDetails.maxX)) 
+    currentWidth = backgroundImageDetails.maxX - userImageDetails.maxX;
 
   return currentWidth;
 }
@@ -115,10 +116,15 @@ function changeUserImage(event){
     mouseClickPosition.y= event.clientY;
     isClicked = true;
   }
-  // userImageDetails.y = getUserImageHeight(event , userImageDetails, backgroundImageDetails, mouseClickPosition );
-  // userImageDetails.x = getUserImageWidth(event , userImageDetails, backgroundImageDetails, mouseClickPosition );
-  // console.log(userImageDetails.y+"------------"+userImageDetails.x+"  this is user image ")
+  userImageCoOrdinates.y = getUserImageHeight(event , userImageDetails, userImageCoOrdinates, backgroundImageDetails, mouseClickPosition );
+  userImageCoOrdinates.x = getUserImageWidth(event , userImageDetails, userImageCoOrdinates, backgroundImageDetails, mouseClickPosition );
+  console.log(userImageDetails.y+"------------"+userImageDetails.x+"  this is user image ")
   // console.log(backgroundImageDetails.x+"----------------------"+backgroundImageDetails.y+ "this is background image")
+  ctx.drawImage(coverImage, canvasDetails.initialX, canvasDetails.initialY, canvasDetails.x,canvasDetails.y);
+  if(canvasText !== "") makeParagraph(ctx, canvasText, 250,100, 250, 300);
+  setCover(backgroundImage);  
+  userImageDetails = canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates)
+  if(userImage !== "") drawUserImage(userImage, userImageDetails )
 }
 
 function setCover(id) {
