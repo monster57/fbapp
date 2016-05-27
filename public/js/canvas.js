@@ -2,8 +2,9 @@
 var isDragging = false;
 var isClicked = false;
 var isBackgroundClicked = false;
+var isUserPhotoClicked = false;
 var mousePosition = {};
-var imageId = 'backgroundleft';
+var backgroundImage = 'backgroundleft';
 var c = document.getElementById("myCanvas");
 var coverImage = document.getElementById("hideimage");
 var ctx = c.getContext("2d");
@@ -12,7 +13,8 @@ var canvasText = "";
 var mouseClickPosition = {};
 var backgroundImageDetails = canvasBackgroundImageDetails();
 var canvasDetails = canvasDetails(c);
-var userImageDetails = canvasUserImageDetails(backgroundImageDetails);
+var userImageCoOrdinates = { x:0, y:0 };
+var userImageDetails = canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates);
 
 window.onload = function() {
   ctx.drawImage(coverImage, canvasDetails.initialX, canvasDetails.initialY,
@@ -32,12 +34,17 @@ function canvasBackgroundImageDetails(){
   return {x:0, y:0, maxX:200, maxY:150 };
 }
 
-function canvasUserImageDetails(backgroundImageDetails){
-  console.log("this is changing")
-  return {x:backgroundImageDetails.x, y:backgroundImageDetails.y, maxX:150, maxY:100 }; 
+function canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates){
+  var userImage = {};
+  userImage.x = backgroundImageDetails.x+userImageCoOrdinates.x;
+  userImage.y = backgroundImageDetails.y+userImageCoOrdinates.y;
+  userImage.maxX = 150;
+  userImage.maxY = 100;
+
+  return  userImage;
 }
 
-function getHeight(event, imageDetails, canvasDetails, mousePosition){
+function getBackgroundHeigt(event, imageDetails, canvasDetails, mousePosition){
       
   var currentHeight = imageDetails.y +(event.clientY - mousePosition.y);
   mousePosition.y = event.clientY;
@@ -48,7 +55,7 @@ function getHeight(event, imageDetails, canvasDetails, mousePosition){
   return currentHeight;
 }
 
-function getWIdth(event, imageDetails, canvasDetails, mousePosition){
+function getBackgroundWidth(event, imageDetails, canvasDetails, mousePosition){
   var currentWidth = imageDetails.x +(event.clientX - mousePosition.x);
   mousePosition.x = event.clientX;
   if(currentWidth < canvasDetails.initialX) currentWidth = canvasDetails.initialX;
@@ -58,7 +65,8 @@ function getWIdth(event, imageDetails, canvasDetails, mousePosition){
   return currentWidth;
 }
 
-function isBackgroundImageClicked(ImageDetails , mousePosition){
+
+function isImageClicked(ImageDetails , mousePosition){
   return ImageDetails.x <= mousePosition.x && 
     mousePosition.x <= ( ImageDetails.maxX + ImageDetails.x ) &&
   ImageDetails.y <= mousePosition.y  &&
@@ -71,14 +79,46 @@ function changeBackgroundImage(event){
     mouseClickPosition.y= event.clientY;
     isClicked = true;
   }
-  backgroundImageDetails.y = getHeight(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
-  backgroundImageDetails.x = getWIdth(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
+  backgroundImageDetails.y = getBackgroundHeigt(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
+  backgroundImageDetails.x = getBackgroundWidth(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
   ctx.drawImage(coverImage, canvasDetails.initialX, canvasDetails.initialY, canvasDetails.x,canvasDetails.y);
   if(canvasText !== "") makeParagraph(ctx, canvasText, 250,100, 250, 300);
-  setCover(imageId);  
-  userImageDetails = canvasUserImageDetails(backgroundImageDetails)
+  setCover(backgroundImage);  
+  userImageDetails = canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates)
   if(userImage !== "") drawUserImage(userImage, userImageDetails )
 
+}
+function getUserImageHeight(event, userImageDetails, backgroundImageDetails, mousePosition){
+      
+  var currentHeight = userImageDetails.y +(event.clientY - mousePosition.y);
+  mousePosition.y = event.clientY;
+  if(currentHeight < backgroundImageDetails.y) currentHeight = backgroundImageDetails.y;
+  if(currentHeight > (backgroundImageDetails.y - userImageDetails.maxY)) 
+    currentHeight = backgroundImageDetails.y - userImageDetails.maxY;
+
+  return currentHeight;
+}
+
+function getUserImageWidth(event, userImageDetails, backgroundImageDetails, mousePosition){
+  var currentWidth = userImageDetails.x +(event.clientX - mousePosition.x);
+  mousePosition.x = event.clientX;
+  if(currentWidth < backgroundImageDetails.initialX) currentWidth = backgroundImageDetails.initialX;
+  if(currentWidth >= (backgroundImageDetails.x - userImageDetails.maxX)) 
+    currentWidth = backgroundImageDetails.x - userImageDetails.maxX;
+
+  return currentWidth;
+}
+
+function changeUserImage(event){
+   if(!isClicked){
+    mouseClickPosition.x = event.clientX;
+    mouseClickPosition.y= event.clientY;
+    isClicked = true;
+  }
+  // userImageDetails.y = getUserImageHeight(event , userImageDetails, backgroundImageDetails, mouseClickPosition );
+  // userImageDetails.x = getUserImageWidth(event , userImageDetails, backgroundImageDetails, mouseClickPosition );
+  // console.log(userImageDetails.y+"------------"+userImageDetails.x+"  this is user image ")
+  // console.log(backgroundImageDetails.x+"----------------------"+backgroundImageDetails.y+ "this is background image")
 }
 
 function setCover(id) {
@@ -119,42 +159,40 @@ function makeFacebookPhotoURL( id, accessToken ) {
   return 'https://graph.facebook.com/' + id + '/picture?access_token=' + accessToken;
 }
 
-
 function getAlbums( callback ) {
   FB.api(
-      '/me/albums',
-      {fields: 'id,cover_photo'},
-      function(albumResponse) {
-        if (callback) {
-          callback(albumResponse);
-        }
+    '/me/albums',
+    {fields: 'id,cover_photo'},
+    function(albumResponse) {
+      if (callback) {
+        callback(albumResponse);
       }
-    );
-
+    }
+  );
 }
 
 function getPhotosForAlbumId( albumId, callback ) {
   FB.api(
-      '/'+albumId+'/photos',
-      {fields: 'id'},
-      function(albumPhotosResponse) {
-        if (callback) {
-          callback( albumId, albumPhotosResponse );
-        }
+    '/'+albumId+'/photos',
+    {fields: 'id'},
+    function(albumPhotosResponse) {
+      if (callback) {
+        callback( albumId, albumPhotosResponse );
       }
-    );
+    }
+  );
 }
 
 function getLikesForPhotoId( photoId, callback ) {
   FB.api(
-      '/'+albumId+'/photos/'+photoId+'/likes',
-      {},
-      function(photoLikesResponse) {
-        if (callback) {
-          callback( photoId, photoLikesResponse );
-        }
+    '/'+albumId+'/photos/'+photoId+'/likes',
+    {},
+    function(photoLikesResponse) {
+      if (callback) {
+        callback( photoId, photoLikesResponse );
       }
-    );
+    }
+  );
 }
 
 function getPhotos(callback) {
@@ -212,19 +250,19 @@ $( document ).ready(function() {
     $( "#backgroundleft" ).click(function() {
       setCover('backgroundleft');
       if(userImage !== "") drawUserImage(userImage, userImageDetails)
-      imageId = 'backgroundleft';
+      backgroundImage = 'backgroundleft';
     });
 
     $( "#backgroundmiddle" ).click(function() {
       setCover('backgroundmiddle');
       if(userImage !== "") drawUserImage(userImage, userImageDetails)
-      imageId = 'backgroundmiddle';
+      backgroundImage = 'backgroundmiddle';
     });
 
     $( "#backgroundright" ).click(function() {
       setCover('backgroundright');
       if(userImage !== "") drawUserImage(userImage, userImageDetails)
-      imageId = 'backgroundright';
+      backgroundImage = 'backgroundright';
     });
 
     $("#textbox-button").click(function(){
@@ -234,11 +272,11 @@ $( document ).ready(function() {
       canvasText = textContent;
       var img = document.getElementById("hideimage");
       ctx.drawImage(img, 0, 0,500,400);
-      setCover(imageId);
       ctx.font='800 italic 24px Arial';
       ctx.fillStyle = 'black';
-      if(userImage !== "") drawUserImage(userImage, userImageDetails)
       makeParagraph(ctx, textContent, 250,100, 250, 300);
+      setCover(backgroundImage);
+      if(userImage !== "") drawUserImage(userImage, userImageDetails)
     });
 
     document.getElementById("file-input").addEventListener("change", readImage, false);
@@ -284,24 +322,28 @@ $( document ).ready(function() {
         var rect = canvas.getBoundingClientRect();  // get element's abs. position
         mousePosition.x = event.clientX - rect.left;              // get mouse x and adjust for el.
         mousePosition.y = event.clientY - rect.top;               // get mouse y and adjust for el.
-        if(isBackgroundImageClicked(backgroundImageDetails , mousePosition)) isBackgroundClicked = true;
+        if(isImageClicked(userImageDetails , mousePosition) && userImage !=="") isUserPhotoClicked = true;
+        if(isImageClicked(backgroundImageDetails , mousePosition) &&  !isUserPhotoClicked)
+          isBackgroundClicked = true;
     });
 
     $(window).mouseup(function(){
         isDragging = false;
         isClicked = false;
         isBackgroundClicked = false;
+        isUserPhotoClicked = false;
 
     });
 
     $(window).mousemove(function(event) {
-          
-          if( isDragging == true )
-          { 
-            if(isBackgroundClicked ){
-              changeBackgroundImage(event)
-            }
+        if( isDragging == true )
+        { 
+          if(isUserPhotoClicked ){
+            changeUserImage(event)
           }
-      });
-
+          else if(isBackgroundClicked && !isUserPhotoClicked ){
+            changeBackgroundImage(event)
+          }
+        }
+    });
 });
