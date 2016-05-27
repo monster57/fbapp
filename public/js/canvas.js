@@ -17,8 +17,8 @@ var userImageCoOrdinates = { x:0, y:0 };
 var userImageDetails = canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates);
 
 window.onload = function() {
-  ctx.drawImage(coverImage, canvasDetails.initialX, canvasDetails.initialY,
-    canvasDetails.x,canvasDetails.y);
+  ctx.drawImage(coverImage, canvasDetails.x, canvasDetails.y,
+    canvasDetails.width,canvasDetails.height);
   setCover('backgroundleft');
 }
 
@@ -27,7 +27,7 @@ function drawUserImage( userImage, userImageDetails ){
 }
 
 function canvasDetails( canvas ){
-  return { x: canvas.width , y:canvas.height, initialX:0, initialY:0 }
+  return { width: canvas.width , height:canvas.height, x:0, y:0 }
 }
 
 // function canvasTextDetails(){
@@ -52,9 +52,9 @@ function getBackgroundHeight(event, imageDetails, canvasDetails, mousePosition){
       
   var currentHeight = imageDetails.y +(event.clientY - mousePosition.y);
   mousePosition.y = event.clientY;
-  if(currentHeight < canvasDetails.initialY) currentHeight = canvasDetails.initialY;
-  if(currentHeight > (canvasDetails.y - imageDetails.maxY)) 
-    currentHeight = canvasDetails.y - imageDetails.maxY;
+  if(currentHeight < canvasDetails.y) currentHeight = canvasDetails.y;
+  if(currentHeight > (canvasDetails.height - imageDetails.maxY)) 
+    currentHeight = canvasDetails.height - imageDetails.maxY;
 
   return currentHeight;
 }
@@ -62,9 +62,9 @@ function getBackgroundHeight(event, imageDetails, canvasDetails, mousePosition){
 function getBackgroundWidth(event, imageDetails, canvasDetails, mousePosition){
   var currentWidth = imageDetails.x +(event.clientX - mousePosition.x);
   mousePosition.x = event.clientX;
-  if(currentWidth < canvasDetails.initialX) currentWidth = canvasDetails.initialX;
-  if(currentWidth >= (canvasDetails.x - imageDetails.maxX)) 
-    currentWidth = canvasDetails.x - imageDetails.maxX;
+  if(currentWidth < canvasDetails.x) currentWidth = canvasDetails.x;
+  if(currentWidth >= (canvasDetails.width - imageDetails.maxX)) 
+    currentWidth = canvasDetails.width - imageDetails.maxX;
 
   return currentWidth;
 }
@@ -85,7 +85,7 @@ function changeBackgroundImage(event){
   }
   backgroundImageDetails.y = getBackgroundHeight(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
   backgroundImageDetails.x = getBackgroundWidth(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
-  ctx.drawImage(coverImage, canvasDetails.initialX, canvasDetails.initialY, canvasDetails.x,canvasDetails.y);
+  ctx.drawImage(coverImage, canvasDetails.x, canvasDetails.y, canvasDetails.width,canvasDetails.height);
   if(canvasText !== "") makeParagraph(ctx, canvasText, 250,100, 250, 300);
   setCover(backgroundImage);  
   userImageDetails = canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates)
@@ -122,7 +122,7 @@ function changeUserImage(event){
   }
   userImageCoOrdinates.y = getUserImageHeight(event , userImageDetails, userImageCoOrdinates, backgroundImageDetails, mouseClickPosition );
   userImageCoOrdinates.x = getUserImageWidth(event , userImageDetails, userImageCoOrdinates, backgroundImageDetails, mouseClickPosition );
-  ctx.drawImage(coverImage, canvasDetails.initialX, canvasDetails.initialY, canvasDetails.x,canvasDetails.y);
+  ctx.drawImage(coverImage, canvasDetails.x, canvasDetails.y, canvasDetails.width,canvasDetails.height);
   if(canvasText !== "") makeParagraph(ctx, canvasText, 250,100, 250, 300);
   setCover(backgroundImage);  
   userImageDetails = canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates)
