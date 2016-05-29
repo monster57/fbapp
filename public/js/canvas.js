@@ -3,6 +3,7 @@ var isDragging = false;
 var isClicked = false;
 var isBackgroundClicked = false;
 var isUserPhotoClicked = false;
+var isTextClicked = false;
 var mousePosition = {};
 var backgroundImage = 'backgroundleft';
 var c = document.getElementById("myCanvas");
@@ -15,6 +16,7 @@ var backgroundImageDetails = canvasBackgroundImageDetails();
 var canvasDetails = canvasDetails(c);
 var userImageCoOrdinates = { x:0, y:0 };
 var userImageDetails = canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates);
+var canvasTextDetail = getCanvasTextDetails();
 
 window.onload = function() {
   ctx.drawImage(coverImage, canvasDetails.x, canvasDetails.y,
@@ -30,9 +32,9 @@ function canvasDetails( canvas ){
   return { width: canvas.width , height:canvas.height, x:0, y:0 }
 }
 
-// function canvasTextDetails(){
-//   return {x:0, y:0, width:200, height:150 };
-// }
+function getCanvasTextDetails(){
+  return {x:250, y:100, width:250, height:300 };
+}
 
 function canvasBackgroundImageDetails(){
   return {x:0, y:0, width:200, height:150 };
@@ -46,6 +48,10 @@ function canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates){
   userImage.height = 100;
 
   return  userImage;
+}
+
+function dragText(event){
+  
 }
 
 function getBackgroundHeight(event, imageDetails, canvasDetails, mousePosition){
@@ -86,7 +92,7 @@ function changeBackgroundImage(event){
   backgroundImageDetails.y = getBackgroundHeight(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
   backgroundImageDetails.x = getBackgroundWidth(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
   ctx.drawImage(coverImage, canvasDetails.x, canvasDetails.y, canvasDetails.width,canvasDetails.height);
-  if(canvasText !== "") makeParagraph(ctx, canvasText, 250,100, 250, 300);
+  if(canvasText !== "") makeParagraph(ctx, canvasText, canvasTextDetail);
   setCover(backgroundImage);  
   userImageDetails = canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates)
   if(userImage !== "") drawUserImage(userImage, userImageDetails )
@@ -114,7 +120,7 @@ function getUserImageWidth(event, userImageDetails, userImageCoOrdinates, backgr
   return currentWidth;
 }
 
-function changeUserImage(event){
+function dragUserImage(event){
    if(!isClicked){
     mouseClickPosition.x = event.clientX;
     mouseClickPosition.y= event.clientY;
@@ -123,7 +129,7 @@ function changeUserImage(event){
   userImageCoOrdinates.y = getUserImageHeight(event , userImageDetails, userImageCoOrdinates, backgroundImageDetails, mouseClickPosition );
   userImageCoOrdinates.x = getUserImageWidth(event , userImageDetails, userImageCoOrdinates, backgroundImageDetails, mouseClickPosition );
   ctx.drawImage(coverImage, canvasDetails.x, canvasDetails.y, canvasDetails.width,canvasDetails.height);
-  if(canvasText !== "") makeParagraph(ctx, canvasText, 250,100, 250, 300);
+  if(canvasText !== "") makeParagraph(ctx, canvasText, canvasTextDetail);
   setCover(backgroundImage);  
   userImageDetails = canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates)
   if(userImage !== "") drawUserImage(userImage, userImageDetails )
@@ -135,15 +141,16 @@ function setCover(id) {
     backgroundImageDetails.width, backgroundImageDetails.height);
 }
 
-function makeParagraph(ctx, text, x,y,maxWidth, lineHeight){
+function makeParagraph(ctx, text, canvasTextDetail){
+  canvasTextDetail = getCanvasTextDetails();
   var wordArray = text.split(" ");
   var formattedText = "";
   wordArray.forEach(function(word , index,array){
     formattedText += word+" " 
     if(formattedText.length > 20 || array[array.length - 1] == word){
-      ctx.fillText(formattedText, x, y, maxWidth, lineHeight);
+      ctx.fillText(formattedText, canvasTextDetail.x, canvasTextDetail.y, canvasTextDetail.width, canvasTextDetail.height);
       formattedText = "";
-      y += 30;
+      canvasTextDetail.y += 30;
     }
   })
 };
@@ -282,7 +289,7 @@ $( document ).ready(function() {
       ctx.drawImage(img, 0, 0,500,400);
       ctx.font='800 italic 24px Arial';
       ctx.fillStyle = 'black';
-      makeParagraph(ctx, textContent, 250,100, 250, 300);
+      makeParagraph(ctx, textContent, canvasTextDetail);
       setCover(backgroundImage);
       if(userImage !== "") drawUserImage(userImage, userImageDetails)
     });
@@ -333,6 +340,8 @@ $( document ).ready(function() {
         if(isImageClicked(userImageDetails , mousePosition) && userImage !=="") isUserPhotoClicked = true;
         if(isImageClicked(backgroundImageDetails , mousePosition) &&  !isUserPhotoClicked)
           isBackgroundClicked = true;
+        if(isImageClicked(canvasTextDetail , mousePosition && !isUserPhotoClicked && !isBackgroundClicked))
+          isTextClicked = true;
     });
 
     $(window).mouseup(function(){
@@ -340,17 +349,20 @@ $( document ).ready(function() {
         isClicked = false;
         isBackgroundClicked = false;
         isUserPhotoClicked = false;
-
+        isTextClicked = false;
     });
 
     $(window).mousemove(function(event) {
         if( isDragging == true )
         { 
           if(isUserPhotoClicked ){
-            changeUserImage(event)
+            dragUserImage(event);
           }
           else if(isBackgroundClicked && !isUserPhotoClicked ){
-            changeBackgroundImage(event)
+            changeBackgroundImage(event);
+          }
+          else if(!isBackgroundClicked && !isUserPhotoClicked && isTextClicked){
+            dragText(event);
           }
         }
     });
