@@ -15,8 +15,9 @@ var mouseClickPosition = {};
 var backgroundImageDetails = canvasBackgroundImageDetails();
 var canvasDetails = canvasDetails(c);
 var userImageCoOrdinates = { x:0, y:0 };
+var textCoOrdinates = {InitialX:250, InitialY: 100, x:250,y:100, maxX:0,maxY:0}
 var userImageDetails = canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates);
-var canvasTextDetail = getCanvasTextDetails();
+var canvasTextDetail = getCanvasTextDetails(textCoOrdinates);
 
 window.onload = function() {
   ctx.drawImage(coverImage, canvasDetails.x, canvasDetails.y,
@@ -32,8 +33,8 @@ function canvasDetails( canvas ){
   return { width: canvas.width , height:canvas.height, x:0, y:0 }
 }
 
-function getCanvasTextDetails(){
-  return {x:250, y:100, width:250, height:300 };
+function getCanvasTextDetails(textCoOrdinates){
+  return {x:textCoOrdinates.x, y:textCoOrdinates.y, width:250, height:300 };
 }
 
 function canvasBackgroundImageDetails(){
@@ -50,8 +51,43 @@ function canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates){
   return  userImage;
 }
 
+function getTextHeight(event, textCoOrdinates, textDetails, canvasDetails, mousePosition){
+      
+  var currentHeight = textCoOrdinates.y +(event.clientY - mousePosition.y);
+  mousePosition.y = event.clientY;
+  if(currentHeight < canvasDetails.y+30) currentHeight = canvasDetails.y+30;
+  if(currentHeight > (canvasDetails.height - textCoOrdinates.maxY)) 
+    currentHeight = canvasDetails.height - textCoOrdinates.maxY;
+
+  return currentHeight;
+}
+
+
+
+function getTextWidth(event, textCoOrdinates, textDetails, canvasDetails, mousePosition){
+  var currentWidth = textCoOrdinates.x +(event.clientX - mousePosition.x);
+  mousePosition.x = event.clientX;
+  if(currentWidth < canvasDetails.x) currentWidth = canvasDetails.x;
+  if(currentWidth >= (canvasDetails.width - textDetails.width)) 
+    currentWidth = canvasDetails.width - textDetails.width;
+
+  return currentWidth;
+}
+
 function dragText(event){
-  
+  if(!isClicked){
+    mouseClickPosition.x = event.clientX;
+    mouseClickPosition.y= event.clientY;
+    isClicked = true;
+  }
+  textCoOrdinates.y = getTextHeight(event, textCoOrdinates, canvasTextDetail, canvasDetails, mouseClickPosition)
+  textCoOrdinates.x = getTextWidth(event, textCoOrdinates, canvasTextDetail, canvasDetails, mouseClickPosition)
+  ctx.drawImage(coverImage, canvasDetails.x, canvasDetails.y, canvasDetails.width,canvasDetails.height);
+  if(canvasText !== "") makeParagraph(ctx, canvasText, canvasTextDetail);
+  setCover(backgroundImage);  
+  userImageDetails = canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates)
+  if(userImage !== "") drawUserImage(userImage, userImageDetails )
+
 }
 
 function getBackgroundHeight(event, imageDetails, canvasDetails, mousePosition){
@@ -75,6 +111,12 @@ function getBackgroundWidth(event, imageDetails, canvasDetails, mousePosition){
   return currentWidth;
 }
 
+function isTextDataClicked(textDetails , mousePosition){
+  return textDetails.x <= mousePosition.x && 
+    mousePosition.x <= ( textDetails.width + textDetails.x ) &&
+  textDetails.y <= mousePosition.y  &&
+  mousePosition.y <= ( textDetails.height + textDetails.y );
+}
 
 function isImageClicked(ImageDetails , mousePosition){
   return ImageDetails.x <= mousePosition.x && 
@@ -89,8 +131,8 @@ function changeBackgroundImage(event){
     mouseClickPosition.y= event.clientY;
     isClicked = true;
   }
-  backgroundImageDetails.y = getBackgroundHeight(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
-  backgroundImageDetails.x = getBackgroundWidth(event, backgroundImageDetails, canvasDetails, mouseClickPosition)
+  backgroundImageDetails.y = getBackgroundHeight(event, backgroundImageDetails, canvasDetails, mouseClickPosition);
+  backgroundImageDetails.x = getBackgroundWidth(event, backgroundImageDetails, canvasDetails, mouseClickPosition);
   ctx.drawImage(coverImage, canvasDetails.x, canvasDetails.y, canvasDetails.width,canvasDetails.height);
   if(canvasText !== "") makeParagraph(ctx, canvasText, canvasTextDetail);
   setCover(backgroundImage);  
@@ -141,16 +183,31 @@ function setCover(id) {
     backgroundImageDetails.width, backgroundImageDetails.height);
 }
 
-function makeParagraph(ctx, text, canvasTextDetail){
-  canvasTextDetail = getCanvasTextDetails();
+function makeParagraph(ctx, text, textDetail){
+  canvasTextDetail = getCanvasTextDetails(textCoOrdinates);
   var wordArray = text.split(" ");
   var formattedText = "";
   wordArray.forEach(function(word , index,array){
     formattedText += word+" " 
     if(formattedText.length > 20 || array[array.length - 1] == word){
-      ctx.fillText(formattedText, canvasTextDetail.x, canvasTextDetail.y, canvasTextDetail.width, canvasTextDetail.height);
+      ctx.fillText(formattedText, textDetail.x, textDetail.y, textDetail.width, textDetail.height);
       formattedText = "";
-      canvasTextDetail.y += 30;
+      textDetail.y += 30;
+    }
+  })
+};
+
+function printText(ctx, text, textDetail){
+  canvasTextDetail = getCanvasTextDetails(textCoOrdinates);
+  var wordArray = text.split(" ");
+  var formattedText = "";
+  wordArray.forEach(function(word , index,array){
+    formattedText += word+" " 
+    if(formattedText.length > 20 || array[array.length - 1] == word){
+      ctx.fillText(formattedText, textDetail.x, textDetail.y, textDetail.width, textDetail.height);
+      formattedText = "";
+      textDetail.y += 30;
+      textCoOrdinates.maxY =textDetail.y - textCoOrdinates.InitialY;
     }
   })
 };
@@ -253,14 +310,6 @@ function getPhotos(callback) {
 }
 
 
-
-
-
-
-
-
-
-
 $( document ).ready(function() {
     $( "#backgroundleft" ).click(function() {
       setCover('backgroundleft');
@@ -289,7 +338,7 @@ $( document ).ready(function() {
       ctx.drawImage(img, 0, 0,500,400);
       ctx.font='800 italic 24px Arial';
       ctx.fillStyle = 'black';
-      makeParagraph(ctx, textContent, canvasTextDetail);
+      printText(ctx, textContent, canvasTextDetail);
       setCover(backgroundImage);
       if(userImage !== "") drawUserImage(userImage, userImageDetails)
     });
@@ -340,7 +389,8 @@ $( document ).ready(function() {
         if(isImageClicked(userImageDetails , mousePosition) && userImage !=="") isUserPhotoClicked = true;
         if(isImageClicked(backgroundImageDetails , mousePosition) &&  !isUserPhotoClicked)
           isBackgroundClicked = true;
-        if(isImageClicked(canvasTextDetail , mousePosition && !isUserPhotoClicked && !isBackgroundClicked))
+        console.log(isTextDataClicked(canvasTextDetail , mousePosition))
+        if(isTextDataClicked(canvasTextDetail , mousePosition) && !isUserPhotoClicked && !isBackgroundClicked)
           isTextClicked = true;
     });
 
