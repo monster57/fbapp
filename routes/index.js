@@ -14,7 +14,10 @@ router.get('/about' , ensureAuthenticated , function(req,res){
   res.render('about');
 })
 router.post('/project/save', ensureAuthenticated, upload.any(), homeController.saveProject);
-router.get('/project/:id' ,AunthenticationCheck, homeController.showProject);
+router.get('/project/:id/' ,AunthenticationCheck, homeController.showProject);
+router.post('/project/:id/' ,AunthenticationCheck, function(req, res){
+  res.redirect('/project/'+req.params.id)
+});
 router.get('/project/:id/delete', ensureAuthenticated, homeController.deleteProject);
 
 // TODO: Change this to a more dynamic route name later
