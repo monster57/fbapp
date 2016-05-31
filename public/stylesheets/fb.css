@@ -649,20 +649,24 @@ li.dropdowncontent-L
 .facebookshare
 {
     width: 46%;margin: 0px 10px;float: left;background: #3B5998;border: 1px solid #3B5998;padding: 7px 7px;
-    text-align: center; color: #fff;border-radius: 3px;font-weight:500;
+    text-align: center; color: #fff;border-radius: 3px;
 }
 .share 
 {
-    padding-left: 5px;
+    padding-left: 5px;color: #fff;font-weight:500;
+}
+.fbifa
+{
+    color: #fff;
 }
 .downloadimage
 {
     width: 46%;margin: 0px 10px;float: left;background: #1BB2E9;border: 1px solid #1BB2E9;padding: 7px 7px;
-    text-align: center; color: #fff;border-radius: 3px;font-weight:500;
+    text-align: center; color: #fff;border-radius: 3px;
 }
 .download 
 {
-    padding-left: 5px;
+    padding-left: 5px;font-weight:500;
 }
 /* PROJECT/PREVIEW.JADE PAGE CSS END */
 
