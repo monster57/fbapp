@@ -30,7 +30,7 @@ router.post('/members/privilages', ensureAdminAuthentication, homeController.cha
 
 
 function ensureAdminAuthentication(req, res, next){
-	if(req.isAuthenticated() && (req.user.role === 'admin' || req.user.role === 'superAdmin'){
+	if(req.isAuthenticated() && (req.user.role === 'admin' || req.user.role === 'superAdmin')){
 		return next();
 	}
 	res.redirect('/users/login');
