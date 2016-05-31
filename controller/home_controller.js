@@ -31,8 +31,6 @@ home.getAllProjects = function(req, res){
 	})
 };
 
-
-
 home.saveProject = function(req, res){
 	var projectData = {};
 	projectData.title = req.body.title;
@@ -74,6 +72,10 @@ home.showProject = function(req, res){
 	})
 };
 
+home.getProject = function(req, res){
+	res.redirect('/project/'+req.params.id);
+}
+
 home.deleteProject = function(req, res){
 	var projectId = req.params.id;
 	var defaultImages = ['cover_image.png', 
@@ -104,4 +106,7 @@ home.deleteProject = function(req, res){
 	});
 };
 
+home.getAddProjectPage = function(req, res){
+	res.render('admin/index', {coverPictureUrl: cover});
+}
 module.exports = home;
