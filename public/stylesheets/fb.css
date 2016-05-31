@@ -669,4 +669,25 @@ li.dropdowncontent-L
     padding-left: 5px;font-weight:500;
 }
 /* PROJECT/PREVIEW.JADE PAGE CSS END */
-
+/* PROJECT/FACEBOOK-SHARE.JADE PAGE CSS BEIGN */
+.facebook-share
+{
+    float: left;width: 100%;height: auto;
+}
+.facebookshare-bcakground
+{
+    float: left;width: 100%;height: auto;
+}
+.facebookshare-wrapper
+{
+    margin: 0px auto;display: block; width: 500px;
+}
+.facebooksharepart
+{
+    float: left;width: 100%;height: auto;
+}
+.facebookshareimages
+{
+    float: left;width: 100%;height: auto;
+}
+/* PROJECT/FACEBOOK-SHARE.JADE PAGE CSS END */
