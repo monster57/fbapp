@@ -41,6 +41,9 @@ router.get('/about' , ensureAdminAuthentication , function(req,res){
 router.get('/project/preview' , function(req,res){
   res.render('user/preview');
 })
+router.get('/project/facebook-share' , function(req, res){
+  res.render('user/facebook-share')
+})
 
 router.post('/project/save', ensureAdminAuthentication, upload.any(), homeController.saveProject);
 router.get('/project/:id/' ,AunthenticationCheck, homeController.showProject);
