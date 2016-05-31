@@ -617,3 +617,52 @@ li.dropdowncontent-L
 /* PROJECT/ID.JADE PAGE POPUP CSS END */
 /* PROJECT/ID.JADE PAGE CSS END */
 
+/* PROJECT/PREVIEW.JADE PAGE CSS BEGIN */
+.preview-image 
+{
+    float: left;width: 100%;height: auto;
+}
+.preview-bcakground
+{
+    float: left;width: 100%;height: auto;
+}
+.preview-wrapper 
+{
+    margin: 0px auto;display: block; width: 500px;
+}
+.previewpart 
+{
+    float: left;width: 100%;height: auto;
+}
+.previewimages
+{
+    float: left;width: 100%;height: auto; margin: 30px 0px;
+}
+.preview 
+{
+    width: 500px;height: 400px;border: 1px solid #d3d3d3;
+}
+.previewbuttons
+{
+    float: left;width: 100%;height: auto;
+}
+.facebookshare
+{
+    width: 46%;margin: 0px 10px;float: left;background: #3B5998;border: 1px solid #3B5998;padding: 7px 7px;
+    text-align: center; color: #fff;border-radius: 3px;font-weight:500;
+}
+.share 
+{
+    padding-left: 5px;
+}
+.downloadimage
+{
+    width: 46%;margin: 0px 10px;float: left;background: #1BB2E9;border: 1px solid #1BB2E9;padding: 7px 7px;
+    text-align: center; color: #fff;border-radius: 3px;font-weight:500;
+}
+.download 
+{
+    padding-left: 5px;
+}
+/* PROJECT/PREVIEW.JADE PAGE CSS END */
+

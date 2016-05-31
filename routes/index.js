@@ -39,7 +39,7 @@ router.get('/about' , ensureAdminAuthentication , function(req,res){
 });
 
 router.get('/project/preview' , function(req,res){
-  res.render('preview');
+  res.render('user/preview');
 })
 
 router.post('/project/save', ensureAdminAuthentication, upload.any(), homeController.saveProject);
@@ -49,7 +49,7 @@ router.get('/project/:id/delete', ensureAdminAuthentication, homeController.dele
 
 
 // TODO: Change this to a more dynamic route name later
-router.get('/add-project', home.getAddProjectPage;
+router.get('/add-project', homeController.getAddProjectPage);
 router.get('/members', ensureAdminAuthentication, homeController.getAllUsers);
 router.post('/members/privilages', ensureAdminAuthentication, homeController.changeAccess);
 
