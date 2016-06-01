@@ -376,8 +376,16 @@ $( document ).ready(function() {
     $("#save-button").click(function(){
      var c = document.getElementById("myCanvas");
      var src = c.toDataURL("image/png");
-     var w=window.open('about:blank','image from canvas');
-     w.document.write("<img src='"+src+"' alt='from canvas'/>");
+     var canvasImage  = new Image(500, 500);
+     var canvasImage.src = src;
+     // $.cookie("image", imageSource, { expires: 7 });
+     // $.removeCookie("image");
+     // console.log($.cookie("image"));
+     // setCookie("image" , src , 1)
+      // var myImage = new Image(100, 200);
+      // myImage.src = 'picture.jpg';
+      console.log(canvasImage);
+      // console.log(getCookie(image));
     });
 
     $("#myCanvas").mousedown(function(event){
