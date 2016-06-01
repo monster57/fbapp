@@ -8,7 +8,7 @@ var ProjectSchema = mongoose.Schema({
     type: Schema.ObjectId,
     ref:'User'
   },
-  projectId: {
+  project_id: {
     type: String
   },
   result_image:{

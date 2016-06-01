@@ -227,6 +227,73 @@ function readImage() {
     }
 };
 
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length,c.length);
+        }
+    }
+    return "";
+}
+
+function ImgApi(){
+    this.apiUrl = 'https://localhost:3000';
+}
+
+ImgApi.prototype = {
+  _requst : function( method, path, body ){
+      body = body || {};
+
+      var args = {
+        url:  path,
+        method: method,
+      };
+
+      if( method == 'post' ){
+        args.contentType = false;
+        args.processData = false;
+        args.data = new FormData(  );
+        Object.keys( body ).forEach( function( v ){
+          args.data.append( v, body[v] );
+        });
+      }
+
+      return $.ajax( args );
+  },
+
+  dataURItoBlob: function (dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+      byteString = atob(dataURI.split(',')[1]);
+    else
+      byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], {type:mimeString});
+  },
+
+  saveImage: function( dataUrl ){
+    var blob = this.dataURItoBlob( dataUrl );
+    console.log(blob ,"---------------------")
+    return this._requst( 'post', '/project/'+getCookie("projectId")+"/save", { imgData: blob } );
+  }
+}
+
 
 
 $( document ).ready(function() {
@@ -295,16 +362,11 @@ $( document ).ready(function() {
     $("#save-button").click(function(){
      var c = document.getElementById("myCanvas");
      var src = c.toDataURL("image/png");
-     // var canvasImage  = new Image(500, 500);
-     // var canvasImage.src = src;
-     // $.cookie("image", imageSource, { expires: 7 });
-     // $.removeCookie("image");
-     // console.log($.cookie("image"));
-     // setCookie("image" , src , 1)
-      // var myImage = new Image(100, 200);
-      // myImage.src = 'picture.jpg';
-      console.log(canvasImage);
-      // console.log(getCookie(image));
+     
+     ImgApi.prototype.saveImage(src).then(function(data){
+        console.log(data , "------------------")
+        $.get( "/project/"+data.project_id+"/"+data.result_image+"/preview" );
+     });
     });
 
     $("#myCanvas").mousedown(function(event){
