@@ -365,7 +365,7 @@ $( document ).ready(function() {
      
      ImgApi.prototype.saveImage(src).then(function(data){
         console.log(data , "------------------")
-        $.get( "/project/"+data.project_id+"/"+data.result_image+"/preview" );
+        window.location.replace( "/project/"+data.project_id+"/"+data.result_image+"/preview" );
      });
     });
 
