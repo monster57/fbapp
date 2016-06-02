@@ -9,15 +9,15 @@ block content
             .Imageuse
               p.imagetouse Image to use:
               .hideImage
-                img#hideimage.center.responsive-img(src="/uploads/#{project.cover_image}")
+                img#hideimage.center.responsive-img(src="/uploads/#{project.data.cover_image}")
               .screamImageLMR
                 .ImageBackgroundcanvas
                   .screamImage
                     .screamL
-                      img#backgroundleft.screamresponsive(src= "../uploads/#{project.background_image.background_image_one}" , alt='The Scream')
+                      img#backgroundleft.screamresponsive(src= "../uploads/#{project.data.background_image.background_image_one}" , alt='The Scream')
                   .screamImage
                     .screamM
-                      img#backgroundmiddle.screamresponsive(src="../uploads/#{project.background_image.background_image_two}", alt='The Scream')
+                      img#backgroundmiddle.screamresponsive(src="../uploads/#{project.data.background_image.background_image_two}", alt='The Scream')
                   .screamImage
                     .screamR
                       img#backgroundright.screamresponsive(src='../uploads/#{project.background_image.background_image_three}', alt='The Scream')

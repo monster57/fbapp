@@ -68,7 +68,7 @@ home.showProject = function(req, res){
 	var projectId = req.params.id;
 	Project.findOne({_id:projectId}).exec()
 	.then(function(project){
-		res.render('project/project',{project:project});
+		res.render('project/project',{project:{	data:project , image:req.params.image }});
 	})
 };
 
