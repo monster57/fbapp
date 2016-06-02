@@ -1,7 +1,14 @@
-// extends ../layout
-link(href='/stylesheets/fb.css', rel='stylesheet')
-link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
-block content
+doctype html
+html
+  head
+    meta(property='og:url', content='http://www.your-domain.com/your-page.html')
+    meta(property='og:type', content='website')
+    meta(property='og:title', content='Your Website Title')
+    meta(property='og:description', content='Your description')
+    meta(property='og:image', content='http://www.your-domain.com/path/image.jpg')
+    link(href='/stylesheets/fb.css', rel='stylesheet')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+  body
     .canvaswrapper
       .canvaswrapperbody
         .container-wrapper
