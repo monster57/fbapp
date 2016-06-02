@@ -227,87 +227,73 @@ function readImage() {
     }
 };
 
-function makeFacebookPhotoURL( id, accessToken ) {
-  return 'https://graph.facebook.com/' + id + '/picture?access_token=' + accessToken;
-}
-
-function getAlbums( callback ) {
-  FB.api(
-    '/me/albums',
-    {fields: 'id,cover_photo'},
-    function(albumResponse) {
-      if (callback) {
-        callback(albumResponse);
-      }
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length,c.length);
+        }
     }
-  );
+    return "";
 }
 
-function getPhotosForAlbumId( albumId, callback ) {
-  FB.api(
-    '/'+albumId+'/photos',
-    {fields: 'id'},
-    function(albumPhotosResponse) {
-      if (callback) {
-        callback( albumId, albumPhotosResponse );
-      }
-    }
-  );
+function ImgApi(){
+    this.apiUrl = 'https://localhost:3000';
 }
 
-function getLikesForPhotoId( photoId, callback ) {
-  FB.api(
-    '/'+albumId+'/photos/'+photoId+'/likes',
-    {},
-    function(photoLikesResponse) {
-      if (callback) {
-        callback( photoId, photoLikesResponse );
-      }
-    }
-  );
-}
+ImgApi.prototype = {
+  _requst : function( method, path, body ){
+      body = body || {};
 
-function getPhotos(callback) {
+      var args = {
+        url:  path,
+        method: method,
+      };
 
-  var allPhotos = [];
-
-  var accessToken = '';
-
-  FB.getLoginStatus(function(loginResponse) {
-      accessToken = loginResponse.authResponse.accessToken || '';
-      getAlbums(function(albumResponse) {
-          var i, album, deferreds = {}, listOfDeferreds = [];
-
-          for (i = 0; i < albumResponse.data.length; i++) {
-            album = albumResponse.data[i];
-            deferreds[album.id] = $.Deferred();
-            listOfDeferreds.push( deferreds[album.id] );
-            getPhotosForAlbumId( album.id, function( albumId, albumPhotosResponse ) {
-                var i, facebookPhoto;
-                for (i = 0; i < albumPhotosResponse.data.length; i++) {
-                  facebookPhoto = albumPhotosResponse.data[i];
-                  allPhotos.push({
-                    'id'  : facebookPhoto.id,
-                    'added' : facebookPhoto.created_time,
-                    'url' : makeFacebookPhotoURL( facebookPhoto.id, accessToken )
-                  });
-                }
-                deferreds[albumId].resolve();
-              });
-          }
-
-          $.when.apply($, listOfDeferreds ).then( function() {
-            if (callback) {
-              callback( allPhotos );
-            }
-          }, function( error ) {
-            if (callback) {
-              callback( allPhotos, error );
-            }
-          });
+      if( method == 'post' ){
+        args.contentType = false;
+        args.processData = false;
+        args.data = new FormData(  );
+        Object.keys( body ).forEach( function( v ){
+          args.data.append( v, body[v] );
         });
-    });
+      }
+
+      return $.ajax( args );
+  },
+
+  dataURItoBlob: function (dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+      byteString = atob(dataURI.split(',')[1]);
+    else
+      byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], {type:mimeString});
+  },
+
+  saveImage: function( dataUrl ){
+    var blob = this.dataURItoBlob( dataUrl );
+    console.log(blob ,"---------------------")
+    return this._requst( 'post', '/project/'+getCookie("projectId")+"/save", { imgData: blob } );
+  }
 }
+
 
 
 $( document ).ready(function() {
@@ -376,8 +362,11 @@ $( document ).ready(function() {
     $("#save-button").click(function(){
      var c = document.getElementById("myCanvas");
      var src = c.toDataURL("image/png");
-     var w=window.open('about:blank','image from canvas');
-     w.document.write("<img src='"+src+"' alt='from canvas'/>");
+     
+     ImgApi.prototype.saveImage(src).then(function(data){
+        console.log(data , "------------------")
+        $.get( "/project/"+data.project_id+"/"+data.result_image+"/preview" );
+     });
     });
 
     $("#myCanvas").mousedown(function(event){

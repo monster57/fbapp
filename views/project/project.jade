@@ -16,15 +16,15 @@ html
             .Imageuse
               p.imagetouse Image to use:
               .hideImage
-                img#hideimage.center.responsive-img(src="/uploads/#{project.cover_image}")
+                img#hideimage.center.responsive-img(src="/uploads/#{project.data.cover_image}")
               .screamImageLMR
                 .ImageBackgroundcanvas
                   .screamImage
                     .screamL
-                      img#backgroundleft.screamresponsive(src= "../uploads/#{project.background_image.background_image_one}" , alt='The Scream')
+                      img#backgroundleft.screamresponsive(src= "../uploads/#{project.data.background_image.background_image_one}" , alt='The Scream')
                   .screamImage
                     .screamM
-                      img#backgroundmiddle.screamresponsive(src="../uploads/#{project.background_image.background_image_two}", alt='The Scream')
+                      img#backgroundmiddle.screamresponsive(src="../uploads/#{project.data.background_image.background_image_two}", alt='The Scream')
                   .screamImage
                     .screamR
                       img#backgroundright.screamresponsive(src='../uploads/#{project.background_image.background_image_three}', alt='The Scream')
@@ -60,6 +60,7 @@ html
       button.btn.btn-default(type='button', data-dismiss='modal') Close
 script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
 script(src="/lib/facebook_SDK.js")
+script(src="/js/facebook_image.js")
 script(src="/js/canvas.js")
 script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js')
 script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
