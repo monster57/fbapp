@@ -107,6 +107,6 @@ home.deleteProject = function(req, res){
 };
 
 home.getAddProjectPage = function(req, res){
-	res.render('admin/index', {coverPictureUrl: cover});
+	res.render('admin/index');
 }
 module.exports = home;
