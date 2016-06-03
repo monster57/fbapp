@@ -3,9 +3,9 @@ function makeFacebookPhotoURL( id, accessToken ) {
   return 'https://graph.facebook.com/' + id + '/picture?access_token=' + accessToken;
 }
 
-function getAlbums( callback ) {
+function getAlbums( accessToken , callback ) {
   FB.api(
-    '/me/albums',
+    '/me/albums?accessToken='+accessToken,
     {fields: 'id,cover_photo'},
     function(albumResponse) {
       if (callback) {
@@ -47,7 +47,7 @@ function getPhotos(callback) {
 
   FB.getLoginStatus(function(loginResponse) {
       accessToken = loginResponse.authResponse.accessToken || '';
-      getAlbums(function(albumResponse) {
+      getAlbums(accessToken , function(albumResponse ) {
           var i, album, deferreds = {}, listOfDeferreds = [];
 
           for (i = 0; i < albumResponse.data.length; i++) {
