@@ -3,6 +3,7 @@ var User = require('../models/user');
 var user = {};
 
 user.getLoginPage = function(req, res, next) {
+	console.log(req.url , "----------------------");
   res.render('login', {title:'Login'});
 };
 
@@ -28,12 +29,14 @@ user.goToHomePage = function(req, res) {
 };
 
 user.checkPrivilages = function(req, res){
+	console.log(req.session , "this is cookies ")
 	if(req.user.role == 'admin'){
-		res.redirect('/project');
+		if(req.session.redirectTo ){
+			return res.redirect(req.session.redirectTo);	
+		}
+		return res.redirect('/project');
 	}
-	else{
-		res.redirect('/project/'+req.cookies.projectId);
-	}
+	return	res.redirect(req.session.redirectTo);
 }
 
 module.exports = user;

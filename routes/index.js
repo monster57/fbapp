@@ -15,12 +15,13 @@ function ensureAdminAuthentication(req, res, next){
 }
 
 function AunthenticationCheck(req, res, next){
+  console.log(req.url , "---req url---------------")
   var minute = 60*1000*60;
   if(req.params.id) res.cookie('projectId' , req.params.id, {maxAge:minute} );
   if(req.isAuthenticated()){
     return next();
   }
-  res.redirect('/users/auth/facebook');
+  res.redirect('/users/auth/facebook?url='+req.url);
 }
 
 function ensureSuperAdminAuthentication(req, res, next){
@@ -32,8 +33,8 @@ function ensureSuperAdminAuthentication(req, res, next){
 
 /* GET home page. */
 router.get('/', ensureAdminAuthentication, homeController.getAllProjects);
-
 router.get('/project', ensureAdminAuthentication, homeController.getAllProjects);
+
 
 router.get('/about' , ensureAdminAuthentication , function(req,res){
   res.render('about');
