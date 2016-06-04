@@ -1,12 +1,12 @@
 doctype html
 html
   head
-    meta(property='fb:app_id', content='1700845086856798')
-    meta(property='og:url', content='http://pumplify.com/project/#{project.data._id}')
-    meta(property='og:type', content='app')
-    meta(property='og:title', content='campaignFire')
-    meta(property='og:description', content='this is an app that can make a huge difference')
-    meta(property='og:image', content='http://pumplify.com/uploads/#{project.image}')
+    meta(content='1700845086856798', property='fb:app_id')
+    meta( content='http://pumplify.com/project/#{project.data._id}', property='og:url')
+    meta(content='app', property='og:type' )
+    meta(content='campaignFire' , property='og:title' )
+    meta(content='this is an app that can make a huge difference' , property='og:description' )
+    meta(content='http://pumplify.com/uploads/#{project.image}', property='og:image')
 
     link(href='/stylesheets/fb.css', rel='stylesheet')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
