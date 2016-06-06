@@ -83,7 +83,7 @@ var passport_setup_strategy = function(){
   }
 }
 
-router.get('/auth/facebook',passport_setup_strategy(), passport.authenticate('facebook'));
+router.get('/auth/facebook',passport_setup_strategy(), passport.authenticate('facebook', { scope : ['email' , 'user_friends', 'user_photos'] }));
 router.get('/auth/facebook/callback',
   [passport.authenticate('facebook', { failureRedirect: '/users/auth/facebook' }), UserController.checkPrivilages]);
 
