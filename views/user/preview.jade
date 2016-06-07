@@ -10,10 +10,8 @@ script(src="/lib/facebook_SDK.js")
              img.preview(src='../../../uploads/#{result.image}')
            .previewbuttons
              div.facebookshare
-               a(href='http://www.facebook.com/share.php?u=https://pumplify.com/project/#{result.projectId}?image=#{result.image}', onclick="window.open(this.href, 'mywin',\'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" )
-                 i.fa.fa-facebook.fbifa
-                 b.share SHARE
+               .fb-share-button(data-href='https://www.facebook.com/testapploca/app/190322544333196/')
              button.downloadimage
               i.fa.fa-download
-              b.download DOWNLOAD
-            .fb-share-button(data-href='https://www.facebook.com/testapploca/app/190322544333196/')
+              b.download Download
+            
