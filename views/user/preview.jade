@@ -9,8 +9,8 @@ script(src="/lib/facebook_SDK.js")
            .previewimages
              img.preview(src='../../../uploads/#{result.image}')
            .previewbuttons
-             div.facebookshare
-               .fb-share-button(data-href='https://www.facebook.com/testapploca/app/190322544333196/')
+             #fbshare.facebookshare
+               #fbshareicon.fb-share-button(data-href='https://www.facebook.com/testapploca/app/190322544333196/')
              button.downloadimage
               i.fa.fa-download
               b.download Download

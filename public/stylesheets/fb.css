@@ -648,7 +648,7 @@ li.dropdowncontent-L
 }
 .facebookshare
 {
-    width: 46%;margin: 0px 10px;float: left;background: #fff;border: 2px solid #3B5998;padding: 10px 7px;
+    width: 44%;margin: 0px 10px;float: left;background: #fff;border: 2px solid #3B5998;padding: 10px 7px;
     text-align: center; color: #fff;border-radius: 3px;
 }
 .share 
@@ -661,7 +661,7 @@ li.dropdowncontent-L
 }
 .downloadimage
 {
-    width: 46%;margin: 0px 10px;float: left;background: #fff;border: 2px solid #1BB2E9;padding: 10px 7px;
+    width: 44%;margin: 0px 10px;float: left;background: #fff;border: 2px solid #1BB2E9;padding: 10px 7px;
     text-align: center; color: #1BB2E9;border-radius: 3px; font-size: 12px;
 }
 .download 
