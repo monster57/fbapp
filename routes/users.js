@@ -13,9 +13,9 @@ var User = require('../models/user');
 
 /* GET users listing. */
 
-router.get('/', AunthenticationCheck, function(req, res, next) {
-  res.send('respond with a resource');
-});
+// router.get('/', AunthenticationCheck, function(req, res, next) {
+//   res.send('respond with a resource');
+// });
 
 router.get('/login' , UserController.getLoginPage);
 
@@ -83,7 +83,7 @@ var passport_setup_strategy = function(){
   }
 }
 
-router.get('/auth/facebook',passport_setup_strategy(), passport.authenticate('facebook', { scope : ['email' , 'user_friends', 'user_photos'] }));
+router.get('/auth/facebook',passport_setup_strategy(), passport.authenticate('facebook', { scope : ['user_friends', 'user_photos'] }));
 router.get('/auth/facebook/callback',
   [passport.authenticate('facebook', { failureRedirect: '/users/auth/facebook' }), UserController.checkPrivilages]);
 

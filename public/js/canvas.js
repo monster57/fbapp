@@ -153,6 +153,7 @@ function getUserImageHeight(event, userImageDetails, userImageCoOrdinates, backg
 }
 
 function getUserImageWidth(event, userImageDetails, userImageCoOrdinates, backgroundImageDetails, mousePosition){
+  ctx.clearRect(canvasDetails.x, canvasDetails.y, canvasDetails.width, canvasDetails.height);
   var currentWidth = userImageCoOrdinates.x +(event.clientX - mousePosition.x);
   mousePosition.x = event.clientX;
   if(currentWidth < 0) currentWidth = 0;
@@ -337,6 +338,7 @@ $( document ).ready(function() {
         photos.forEach(function(photo){
           var element = document.createElement('img');
           element.src = photo.url;
+          element.crossOrigin = "anonymous";
           element.height = 100;
           element.width = 100;
           $(element).click( function(){

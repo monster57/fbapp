@@ -15,7 +15,6 @@ function ensureAdminAuthentication(req, res, next){
 }
 
 function AunthenticationCheck(req, res, next){
-  console.log(req.url , "---req url---------------")
   var minute = 60*1000*60;
   if(req.params.id) res.cookie('projectId' , req.params.id, {maxAge:minute} );
   if(req.isAuthenticated()){
