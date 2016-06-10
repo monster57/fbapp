@@ -74,7 +74,10 @@ var passport_setup_strategy = function(){
                     });
                 } else {
                     //found user. Return
-                    return done(err, user, userUrl);
+                    if(userUrl){
+                      return done(err, user, userUrl);
+                    }
+                    return done(err, user);
                 }
             });
         }
@@ -82,10 +85,10 @@ var passport_setup_strategy = function(){
     next();
   }
 }
-
-router.get('/auth/facebook',passport_setup_strategy(), passport.authenticate('facebook', { scope : ['user_friends', 'user_photos'] }));
+var facebookUrl = "https://www.facebook.com/totalstyletp/app/1700845086856798/"
+router.get('/auth/facebook',passport_setup_strategy(), passport.authenticate('facebook', { authType: 'rerequest', scope : ['user_friends', 'user_photos'], display: 'popup' }));
 router.get('/auth/facebook/callback',
-  [passport.authenticate('facebook', { failureRedirect: '/users/auth/facebook' }), UserController.checkPrivilages]);
+  [passport.authenticate('facebook', { failureRedirect: facebookUrl }), UserController.checkPrivilages]);
 
 router.get('/logout', function(req, res){
   req.logout();

@@ -180,6 +180,7 @@ function dragUserImage(event){
 
 function setCover(id) {
   var img = document.getElementById(id);
+  ctx.drawImage(coverImage, canvasDetails.x, canvasDetails.y, canvasDetails.width,canvasDetails.height);
   ctx.drawImage(img, backgroundImageDetails.x, backgroundImageDetails.y,
     backgroundImageDetails.width, backgroundImageDetails.height);
 }

@@ -20,7 +20,8 @@ function AunthenticationCheck(req, res, next){
   if(req.isAuthenticated()){
     return next();
   }
-  res.redirect('/users/auth/facebook?url='+req.url);
+  // res.redirect('/users/auth/facebook?url='+req.url);
+  res.render("facebook-login.jade")
 }
 
 function ensureSuperAdminAuthentication(req, res, next){
