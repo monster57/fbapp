@@ -168,3 +168,15 @@ input#file-input
 {
     width: 100%;height: auto;border-color: #ccc;margin-bottom: 10px;padding: 5px 5px;
 }
+.modal-title
+{
+    font-family: 'Rockwell';
+}
+.modal-body p
+{
+    font-family: 'Rockwell';
+}
+.btn-default
+{
+    font-family: 'Rockwell';
+}
