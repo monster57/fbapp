@@ -1,17 +1,80 @@
 doctype html
 html
   head
-    meta(property='og:url', content='http://www.your-domain.com/your-page.html')
-    meta(property='og:type', content='website')
-    meta(property='og:title', content='Your Website Title')
-    meta(property='og:description', content='Your description')
-    meta(property='og:image', content='http://www.your-domain.com/path/image.jpg')
-    link(href='/stylesheets/fb.css', rel='stylesheet')
-    script(src="/lib/facebook_SDK.js")
+    link(href='/stylesheets/mockup.css', rel='stylesheet')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
   body
-   .facebook-share
-    .facebookshare-bcakground
-      .facebookshare-wrapper
-         .facebooksharepart
-           .facebookshareimages
-             img.facebookshare(src='')
+     #backgroundpart.background
+      #mockup-bg.mockupbg
+        .containerwrapper
+          #title-mockup.titlemockup
+            #title-head.titlehead
+              #header-title.headertitle
+                h2#text-title.texttitle Happy Father's Day
+          #background-frame.backgroundframe
+            #small-frame.smallframe
+              p#frame-title.frametitle Select Frame and Drag on to Canvas
+              #frame-drag.framedrag
+                #left-frame.leftframe
+                  img#backgroundleft.imageframe(src='../images/bannerleft.png')
+                #center-frame.centerframe
+                  img#backgroundmiddle.imageframe(src='../images/bannercenter.png')
+                #right-frame.rightframe
+                  img#backgroundright.imageframe(src='../images/bannerright.png')
+          #frame-background.framebackground(style='background:url(../images/backgroundbanner.jpg);')
+            #frame-wrapper.framewrapper
+              #text-frame.textframe
+                span.description
+                  | "Dad, you are my hero and my role model, thanks for always being there & showering your love on me"
+              #main-frame.mainframe(style='background:url(../images/bannerleft.png);')
+                #image-position.imageposition
+                   img.frameimage(src='../images/yourdad.png')
+              #logo-img.logoimg
+                img.logoimage(src='../images/logo.png')
+          #footer-function.footerfunction
+            #uplaod-text.uplaodtext
+              #left-uplaod.leftuplaod
+                #file.imageuploadbutton
+                  label(for='file-input')
+                    img.imageupload(src='../images/upload.png')
+                  input#file-input(type='file')
+                span#imagetitle.imagetitle Upload Photo
+              #center-uplaod.centeruplaod
+                button#facebook-input.image-button(data-toggle='modal', data-target='#myModal')
+                  img.imageupload(src='../images/fbupload.png')
+                span#imagetitle.imagetitle Upload From Facebook
+              #right-uplaod.rightuplaod
+                button#addtext.image-button(data-toggle='modal', data-target='#myEdit')
+                 img.imageupload(src='../images/text.png')
+                span#imagetitle.imagetitle Add Text
+            #submite.submite
+              button#save-button.submitbtn Submit 
+ #myModal.modal.fade(role='dialog')
+  .modal-dialog
+   .modal-content
+    .modal-header
+      button.close(type='button', data-dismiss='modal') ×
+      h4.modal-title FaceBook Photos
+    #facebook-image-holder.modal-body
+     p Select any once of it
+    .modal-footer
+      button#oksubmit.btn.btn-default(type='button', data-dismiss='modal') Select
+      button.btn.btn-default(type='button', data-dismiss='modal') Close
+ #myEdit.modal.fade(role='dialog')
+  .modal-dialog
+   .modal-content
+    .modal-header
+      button.close(type='button', data-dismiss='modal') ×
+      h4.modal-title Add Text
+    #facebook-image-holder.modal-body
+      .file-text-Buttons
+       textarea#the-textbox.textareapart(rows='5', cols='50',type='text', placeholder='Add your text...')
+    .modal-footer
+      input#textbox-butto.btn.btn-default(type='button', value='Submit Text')
+      button.btn.btn-default(type='button', data-dismiss='modal') Close                                                    
+script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
+script(src="/lib/facebook_SDK.js")
+script(src="/js/facebook_image.js")
+script(src="/js/canvas.js")
+script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js')
+script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')

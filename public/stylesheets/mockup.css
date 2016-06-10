@@ -1,0 +1,170 @@
+@font-face {
+  font-family: 'Rockwell';
+  src: url('../fonts/Rockwell/Rockwell.eot') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+body 
+{
+    background: #fff;margin: 0px;
+}
+.background 
+{
+    float: left;width: 100%;height: auto;
+}
+.mockupbg
+{
+    float: left;width: 100%;height: auto;
+}
+.containerwrapper 
+{
+    width: 810px;display: block;margin: 0px auto;padding: 0px 60px;
+}
+.titlemockup 
+{
+    float: left;width: 100%;background: #f7941d;height: 45px;
+}
+.titlehead 
+{
+    float: left;width: 100%;position: relative;z-index: 0;
+}
+.headertitle 
+{
+    float: left;width: 530px;position: absolute;z-index: 0;top: 20px;background: #f7941d;left: 84px;text-align: center;-webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);-moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+}
+.texttitle 
+{
+    margin: 0px;float: left;width: 100%;text-align: center;padding: 5px 0px 5px 0px;font-size: 34px; color: #fff;font-family: 'Rockwell';
+}
+.backgroundframe 
+{
+    float: left;width: 100%;height: auto;background: #94c9ea;
+}
+.smallframe 
+{
+    float: left;width: 100%;padding: 30px 0px 24px 0px;position: relative;z-index: 0;
+}
+.frametitle 
+{
+    float: left;width: 100%;text-align: center;font-size: 18px;color: #000;font-family: 'Rockwell'; margin-top: 5px;
+}
+.framedrag 
+{
+    float: left;width: 100%;padding: 0px 0px;
+}
+.leftframe 
+{
+    width: 193px;height: 100px;float: left;border: 1px solid #fff;border-radius: 2px;    margin: 0px 10px 0px 33px;
+}
+.centerframe 
+{
+    width: 193px;height: 100px;float: left;border: 1px solid #fff;border-radius: 2px;    margin: 0px 10px;
+}
+.rightframe 
+{
+    width: 193px;height: 100px;float: left;border: 1px solid #fff;border-radius: 2px;    margin: 0px 32px 0px 10px;
+}
+.imageframe 
+{
+    width: 100%;height:98px;cursor: pointer;
+}
+.framebackground 
+{
+    float: left;width: 100%;height: 564px;
+}
+.framewrapper 
+{
+    float: left;width: 100%;height: 100%;position: relative;z-index: 0;
+}
+.textframe 
+{
+    float: right;width: 43%;height: auto;position: relative;top: 58px;z-index: 0; right:37px;
+}
+.description 
+{
+    font-size: 18px;font-weight: 500;color: #000;line-height: 24px;font-family: 'Rockwell';
+}
+.mainframe 
+{
+    background-repeat: no-repeat;width: 450px;height: 300px;position: relative;z-index: 0;top: 179px;left: 33px;-ms-transform: rotate(-2deg);-webkit-transform: rotate(-2deg);transform: rotate(-2deg);
+}
+.imageposition 
+{
+    float: right;width: auto;position: relative;z-index: 0;top: 135px;left: 26px;
+}
+.frameimage 
+{
+    width: 100%;height: 100%;
+}
+.logoimg 
+{
+    float: left;width: 100%;position: absolute;z-index: 0;bottom: 0;border-bottom: 10px solid #fff;
+}
+.logoimage 
+{
+    position: relative;z-index: 0;width: auto;height: auto;top: 14px;
+}
+.footerfunction 
+{
+    float: left;width: 100%;height: auto;background: #f7941d;position: relative;z-index: 0;padding: 0px 0px;
+}
+.uplaodtext 
+{
+    float: left;width: 100%;height: 100%;margin: 15px 0px;
+}
+.leftuplaod 
+{
+    width: 220px;float: left;height: auto;padding-left: 60px;padding-right: 50px;position: relative;z-index: 0;
+}
+.imageupload 
+{
+    display: block;margin: 0px auto; width: 54px;
+}
+.imagetitle 
+{
+    width: 100%;float: left;text-align: center;padding-top: 10px;line-height: 20px;  font-size: 15px; color: #fff;font-weight: 500;font-family: 'Rockwell';
+}
+.centeruplaod 
+{
+    width: 220px;float: left;height: auto;padding: 0px 50px;position: relative;z-index: 0;
+}
+.rightuplaod 
+{
+    width: 220px;float: left;height: auto;padding-right: 60px;padding-left: 50px;position: relative;z-index: 0;
+}
+.submite 
+{
+    float: left;text-align: center;position: relative;margin-bottom: 15px;z-index: 0;width: 100%;
+}
+.submitbtn 
+{
+    padding: 7px 40px;border: none;font-size: 17px;background: #fff;text-align: center;font-family: 'Rockwell';font-weight: 500;
+}
+.headertitle::before
+{
+    content: "";width: 0;height: 0;border-top: 22px solid #280f00;border-left: 22px solid transparent;position: absolute;top: 25px;left: -22px;
+}
+.headertitle::after
+{
+    content: "";width: 0;height: 0;border-top: 22px solid #280f00;border-right: 22px solid transparent;position: absolute;top: 25px;right: -22px;
+}
+label 
+{
+    display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 700; cursor: pointer;
+}
+input#file-input 
+{
+    display: none !important;
+}
+.imageuploadbutton
+{
+   text-align: center;
+}
+.image-button 
+{
+    background: transparent;border: none;text-align: center;display: block;margin: 0px auto;cursor: pointer;
+}
+.textareapart 
+{
+    width: 100%;height: auto;border-color: #ccc;margin-bottom: 10px;padding: 5px 5px;
+}
