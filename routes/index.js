@@ -51,7 +51,6 @@ router.post('/project/:id/save', AunthenticationCheck, upload.single('imgData'),
   var postcardResult = new PostcardResult(data);
   postcardResult.save(function(err,data){
     if (err) console.log(err);
-    console.log(data , "-----------")
     return res.send(data);
     // return res.redirect("/project/"+req.user._id+"/"+req.file.filename+"/preview")
   });
