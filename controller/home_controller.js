@@ -66,9 +66,11 @@ home.saveProject = function(req, res){
 
 home.showProject = function(req, res){
 	var projectId = req.params.id;
+	console.log(projectId ,"--------------------")
 	Project.findOne({_id:projectId}).exec()
 	.then(function(project){
-		res.render('project/project',{project:{	data:project , image:req.params.image }});
+		console.log(project , "---------------------")
+		res.render('project/project', {project:{	data:project , image:req.params.image }});
 	})
 };
 
