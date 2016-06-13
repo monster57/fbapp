@@ -32,11 +32,12 @@ user.checkPrivilages = function(req, res){
 	console.log(req.session , "this is cookies ")
 	if(req.user.role == 'admin'){
 		if(req.session.redirectTo ){
-			return res.redirect(facebookUrl);	
+
+			return res.redirect("/project/5742dced540e2dd24e53e290");	
 		}
 		return res.redirect('/project');
 	}
-	return	res.redirect(facebookUrl);
+	return	res.redirect("/project/5742dced540e2dd24e53e290");
 }
 
 module.exports = user;

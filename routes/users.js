@@ -86,7 +86,7 @@ var passport_setup_strategy = function(){
   }
 }
 var facebookUrl = "https://www.facebook.com/totalstyletp/app/1700845086856798/"
-router.get('/auth/facebook',passport_setup_strategy(), passport.authenticate('facebook', { authType: 'rerequest', scope : ['user_friends', 'user_photos'], display: 'popup' }));
+router.get('/auth/facebook',passport_setup_strategy(), passport.authenticate('facebook', { scope : ['user_friends', 'user_photos'], display: 'popup' }));
 router.get('/auth/facebook/callback',
   [passport.authenticate('facebook', { failureRedirect: facebookUrl }), UserController.checkPrivilages]);
 
