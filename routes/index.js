@@ -20,6 +20,7 @@ function AunthenticationCheck(req, res, next){
   if(req.isAuthenticated()){
     return next();
   }
+  console.log(req.url , "............... hello I am getting url")
   // res.redirect('/users/auth/facebook?url='+req.url);
   res.render("facebook-login.jade")
 }
