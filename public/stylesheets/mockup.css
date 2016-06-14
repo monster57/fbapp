@@ -216,3 +216,7 @@ input#file-input
 {
     margin: 10px 10px 0px 10px;float: left; width: 100%;font-size: 18px;color: #000;font-family: 'Rockwell';
 }
+.selectone
+{
+    display: none;
+}
