@@ -66,6 +66,9 @@ home.saveProject = function(req, res){
 
 home.showProject = function(req, res){
 	var projectId = req.params.id;
+	if(req.params.value == 1){
+		return res.redirect("https://www.facebook.com/totalstyletp/app/1700845086856798/")	
+	}
 	Project.findOne({_id:projectId}).exec()
 	.then(function(project){
 		res.render('project/project', {project:{	data:project , image:req.query.image }});
@@ -73,7 +76,8 @@ home.showProject = function(req, res){
 };
 
 home.getProject = function(req, res){
-	res.redirect('/project/'+req.params.id);
+	
+	return res.redirect('/project/'+req.params.id);
 }
 
 home.deleteProject = function(req, res){

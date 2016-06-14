@@ -8,7 +8,7 @@ $(document).ready(function(){
           {
             method: 'feed',
             name: "Celebrate the Father's Day",
-            link: url,
+            link: url+"?value=1",
             picture: document.getElementById("image-preview").src,
             caption: "father's day is near",
             description: 'Share a message to show the love towards your father',

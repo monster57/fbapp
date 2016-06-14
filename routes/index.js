@@ -20,6 +20,9 @@ function AunthenticationCheck(req, res, next){
   if(req.isAuthenticated()){
     return next();
   }
+  if(req.params.value == 1){
+    req.redirect("https://www.facebook.com/totalstyletp/app/1700845086856798/")
+  }
   console.log(req.url , "............... hello I am getting url")
   // res.redirect('/users/auth/facebook?url='+req.url);
   res.render("facebook-login.jade")
@@ -66,11 +69,11 @@ router.get('/project/:id/:image_name/preview' , function(req,res){
   res.render('user/preview',{result:result} );
 });
 
-router.get('/project/:id/:image_name/facebook-share' , function(req, res){
+router.get('/project/facebook-share' , function(req, res){
   var result =  { image:req.params.image_name, 
                   projectId:req.params.id
                 }
-  res.render('user/facebook-share' , {result:result})
+  res.render('user/facebook-share')
 });
 
 router.post('/project/save', ensureAdminAuthentication, upload.any(), homeController.saveProject);
