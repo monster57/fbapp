@@ -34,7 +34,7 @@ function canvasDetails( canvas ){
 }
 
 function getCanvasTextDetails(textCoOrdinates){
-  return {x:textCoOrdinates.x, y:textCoOrdinates.y, width:250, height:300 };
+  return {x:textCoOrdinates.x+200, y:textCoOrdinates.y, width:250, height:300 };
 }
 
 function canvasBackgroundImageDetails(){
@@ -326,7 +326,7 @@ $( document ).ready(function() {
       var ctx = c.getContext("2d");
       var textContent = document.getElementById("the-textbox").value;
       console.log( textContent ,"-------- this is text content")
-      canvasText = textContent;
+      canvasText = ('"'+textContent+'"');
       var img = document.getElementById("hideimage");
       ctx.drawImage(img, canvasDetails.x, canvasDetails.y,
     canvasDetails.width,canvasDetails.height);
