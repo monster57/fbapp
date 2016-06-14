@@ -20,7 +20,7 @@ function AunthenticationCheck(req, res, next){
   if(req.isAuthenticated()){
     return next();
   }
-  if(req.params.value == 1){
+  if(req.query.value == 1){
     req.redirect("https://www.facebook.com/totalstyletp/app/1700845086856798/")
   }
   console.log(req.url , "............... hello I am getting url")

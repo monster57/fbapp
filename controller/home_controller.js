@@ -66,17 +66,17 @@ home.saveProject = function(req, res){
 
 home.showProject = function(req, res){
 	var projectId = req.params.id;
-	if(req.params.value == 1){
-		return res.redirect("https://www.facebook.com/totalstyletp/app/1700845086856798/")	
+	if(req.query.value == 1){
+		return res.redirect("https://www.facebook.com/totalstyletp/app/1700845086856798/");	
 	}
+
 	Project.findOne({_id:projectId}).exec()
 	.then(function(project){
-		res.render('project/project', {project:{	data:project , image:req.query.image }});
+		return res.render('project/project', {project:{	data:project , image:req.query.image }});
 	})
 };
 
 home.getProject = function(req, res){
-	
 	return res.redirect('/project/'+req.params.id);
 }
 
