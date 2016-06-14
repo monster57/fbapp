@@ -69,9 +69,10 @@ html
       h4.modal-title Summarize your feelings for your father
     .modal-body
       .file-text-Buttons
-       textarea#the-textbox.textareapart(rows='5', cols='50',type='text', placeholder='Add your text...')
+       textarea#the-textbox.textareapart(rows='5', cols='50', maxlength='120', type='text', placeholder='Add your text...')
+       #charNum 
     .modal-footer
-      input#textbox-button.btn.btn-default(type='button', value='Submit Text')
+      input#textbox-button.btn.btn-default(type='button', value='Submit Text', data-dismiss='modal')
       button.btn.btn-default(type='button', data-dismiss='modal') Close                                                    
 script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
 script(src="/lib/facebook_SDK.js")

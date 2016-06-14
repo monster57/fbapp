@@ -301,6 +301,7 @@ ImgApi.prototype = {
 
 $( document ).ready(function() {
    
+   
 
     $( "#backgroundleft" ).click(function() {
       setCover('backgroundleft');
@@ -412,5 +413,12 @@ $( document ).ready(function() {
             dragText(event);
           }
         }
+    });
+   $('#the-textbox').keyup(function () {
+    var max = 120;
+    var len = $(this).val().length;
+//  var char = max - len;
+    var messages = Math.ceil(len / 120);
+      $('#charNum').text((max-len )+" character ");
     });
 });
