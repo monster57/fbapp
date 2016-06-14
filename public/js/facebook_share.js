@@ -7,12 +7,12 @@ $(document).ready(function(){
           FB.ui(
           {
             method: 'feed',
-            name: 'This is the content of the "name" field.',
+            name: "Celebrate the Father's Day",
             link: url,
             picture: document.getElementById("image-preview").src,
-            caption: 'This is the content of the "caption" field.',
-            description: 'This is the content of the "description" field, below the caption.',
-            message: 'this is an awsome message'
+            caption: "father's day is near",
+            description: 'Share a message to show the love towards your father',
+            message: ''
           });
       });
     });
