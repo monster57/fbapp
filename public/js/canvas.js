@@ -219,7 +219,7 @@ function readImage() {
     if ( this.files && this.files[0] ) {
         var FR= new FileReader();
         FR.onload = function(e) {
-           var img = new Image();
+           var img = new Image(500,800);
            userImage = img;
            img.onload = function() {
              if(userImage !== "")  drawUserImage(img, userImageDetails);
