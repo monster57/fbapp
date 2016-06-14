@@ -22,10 +22,11 @@ html
                .previewimages
                  img#image-preview.preview(src='../../../uploads/#{result.image}')
                .previewbuttons
-                 #fbshare.facebookshare
-                   #fbshareicon.fb-share-button(data-href='https://192.168.1.106:3000/project/57567cc92fa4e43c0e38a7f7?ref=page_internal&image=#{result.image}')
+                 span#share-on-facebook-inner.facebookshare
+                  i.fa.fa-facebook
+                  b.download Share
                  a.downloadimage(href='../../../uploads/#{result.image}', download='user.png')
                   i.fa.fa-download
                   b.download Download
-                 span#share-on-facebook-inner Share on Facebook
+                 
             

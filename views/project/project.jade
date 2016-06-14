@@ -29,6 +29,7 @@ html
                   img#backgroundmiddle.imageframe(src="../uploads/#{project.data.background_image.background_image_two}")
                 #right-frame.rightframe
                   img#backgroundright.imageframe(src='../uploads/#{project.data.background_image.background_image_three}')
+              p#frame-title.notetitle Note :  
           .mycanvasdesgin
             canvas#myCanvas(width=810, height='500', style='border:1px solid #d3d3d3;')
           #footer-function.footerfunction
@@ -47,8 +48,8 @@ html
                 button#addtext.image-button(data-toggle='modal', data-target='#myEdit')
                  img.imageupload(src='../images/text.png')
                 span#imagetitle.imagetitle Add Text
-            #submite.submite
-              button#save-button.submitbtn Submit 
+              #submite.submite
+                button#save-button.submitbtn Submit 
  #myModal.modal.fade(role='dialog')
   .modal-dialog
    .modal-content
