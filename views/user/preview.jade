@@ -1,17 +1,31 @@
-link(href='/stylesheets/fb.css', rel='stylesheet')
-link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
-link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css", rel="stylesheet")
-script(src="/lib/facebook_SDK.js")
-.preview-image
-   .preview-bcakground
-      .preview-wrapper
-         .previewpart
-           .previewimages
-             img.preview(src='../../../uploads/#{result.image}')
-           .previewbuttons
-             #fbshare.facebookshare
-               #fbshareicon.fb-share-button(data-href='https://pumplify.com/project/5756b9bfd05fd1e86a27dae9?ref=page_internal&image=#{result.image}')
-             a.downloadimage(href='../../../uploads/#{result.image}', download='user.png')
-              i.fa.fa-download
-              b.download Download
+doctype html
+html
+  head
+    meta(property='fb:app_id', content='1700845086856798' )
+    meta(property='og:type', content='website'  )
+    meta(content='campaignFire' , property='og:title' )
+    meta(property='og:site_name', content='https://pumplify.com' )
+    meta( content='https://192.168.1.106:3000/project/57567cc92fa4e43c0e38a7f7?ref=page_internal&image=#{result.image}', property='og:url')
+    meta(content='this is an app that can make a huge difference.So use this app once' , property='og:description' )
+    meta(content='http://192.168.1.106:3000/uploads/#{result.image}', property='og:image')
+    link(href='/stylesheets/fb.css', rel='stylesheet')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css", rel="stylesheet")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
+    script(src="/lib/facebook_SDK.js")
+    script(src="/js/facebook_share.js")
+  body
+    .preview-image
+       .preview-bcakground
+          .preview-wrapper
+             .previewpart
+               .previewimages
+                 img#image-preview.preview(src='../../../uploads/#{result.image}')
+               .previewbuttons
+                 #fbshare.facebookshare
+                   #fbshareicon.fb-share-button(data-href='https://192.168.1.106:3000/project/57567cc92fa4e43c0e38a7f7?ref=page_internal&image=#{result.image}')
+                 a.downloadimage(href='../../../uploads/#{result.image}', download='user.png')
+                  i.fa.fa-download
+                  b.download Download
+                 span#share-on-facebook-inner Share on Facebook
             
