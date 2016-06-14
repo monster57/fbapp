@@ -87,7 +87,6 @@
   }
 
   $( document ).ready(function() {
-      alert(JSON.stringify(window.location.href) )
       // $("#fb-login").trigger('click');  
       document.getElementById("fb-login").click();
   });
