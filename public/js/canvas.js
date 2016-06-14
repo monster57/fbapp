@@ -20,7 +20,6 @@ var userImageDetails = canvasUserImageDetails(backgroundImageDetails , userImage
 var canvasTextDetail = getCanvasTextDetails(textCoOrdinates);
 
 window.onload = function() {
-  console.log(canvasDetails , "--------------")
   ctx.drawImage(coverImage, canvasDetails.x, canvasDetails.y,
     canvasDetails.width,canvasDetails.height);
   setCover('backgroundleft');
@@ -39,15 +38,15 @@ function getCanvasTextDetails(textCoOrdinates){
 }
 
 function canvasBackgroundImageDetails(){
-  return {x:0, y:0, width:400, height:270 };
+  return {x:45, y:162, width:400, height:270 };
 }
 
 function canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates){
   var userImage = {};
-  userImage.x = backgroundImageDetails.x+userImageCoOrdinates.x;
-  userImage.y = backgroundImageDetails.y+userImageCoOrdinates.y;
-  userImage.width = 150;
-  userImage.height = 100;
+  userImage.x = backgroundImageDetails.x+userImageCoOrdinates.x+182;
+  userImage.y = backgroundImageDetails.y+userImageCoOrdinates.y+139;
+  userImage.width = 152;
+  userImage.height = 114;
 
   return  userImage;
 }
@@ -384,7 +383,7 @@ $( document ).ready(function() {
         var rect = canvas.getBoundingClientRect();  // get element's abs. position
         mousePosition.x = event.clientX - rect.left;              // get mouse x and adjust for el.
         mousePosition.y = event.clientY - rect.top;               // get mouse y and adjust for el.
-        if(isImageClicked(userImageDetails , mousePosition) && userImage !=="") isUserPhotoClicked = true;
+        // if(isImageClicked(userImageDetails , mousePosition) && userImage !=="") isUserPhotoClicked = true;
         if(isImageClicked(backgroundImageDetails , mousePosition) &&  !isUserPhotoClicked)
           isBackgroundClicked = true;
         console.log(isTextDataClicked(canvasTextDetail , mousePosition))
