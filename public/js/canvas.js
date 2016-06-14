@@ -20,6 +20,7 @@ var userImageDetails = canvasUserImageDetails(backgroundImageDetails , userImage
 var canvasTextDetail = getCanvasTextDetails(textCoOrdinates);
 
 window.onload = function() {
+  console.log(canvasDetails , "--------------")
   ctx.drawImage(coverImage, canvasDetails.x, canvasDetails.y,
     canvasDetails.width,canvasDetails.height);
   setCover('backgroundleft');
@@ -38,7 +39,7 @@ function getCanvasTextDetails(textCoOrdinates){
 }
 
 function canvasBackgroundImageDetails(){
-  return {x:0, y:0, width:200, height:150 };
+  return {x:0, y:0, width:400, height:270 };
 }
 
 function canvasUserImageDetails(backgroundImageDetails , userImageCoOrdinates){
@@ -153,7 +154,6 @@ function getUserImageHeight(event, userImageDetails, userImageCoOrdinates, backg
 }
 
 function getUserImageWidth(event, userImageDetails, userImageCoOrdinates, backgroundImageDetails, mousePosition){
-  ctx.clearRect(canvasDetails.x, canvasDetails.y, canvasDetails.width, canvasDetails.height);
   var currentWidth = userImageCoOrdinates.x +(event.clientX - mousePosition.x);
   mousePosition.x = event.clientX;
   if(currentWidth < 0) currentWidth = 0;
@@ -180,7 +180,7 @@ function dragUserImage(event){
 
 function setCover(id) {
   var img = document.getElementById(id);
-  ctx.drawImage(coverImage, canvasDetails.x, canvasDetails.y, canvasDetails.width,canvasDetails.height);
+  // ctx.drawImage(coverImage, canvasDetails.x, canvasDetails.y, canvasDetails.width,canvasDetails.height);
   ctx.drawImage(img, backgroundImageDetails.x, backgroundImageDetails.y,
     backgroundImageDetails.width, backgroundImageDetails.height);
 }
@@ -201,6 +201,7 @@ function makeParagraph(ctx, text, textDetail){
 
 function printText(ctx, text, textDetail){
   canvasTextDetail = getCanvasTextDetails(textCoOrdinates);
+  console.log(canvasTextDetail , "------ canvasTextdetails")
   var wordArray = text.split(" ");
   var formattedText = "";
   wordArray.forEach(function(word , index,array){
@@ -212,6 +213,7 @@ function printText(ctx, text, textDetail){
       textCoOrdinates.maxY =textDetail.y - textCoOrdinates.InitialY;
     }
   })
+  console.log(textCoOrdinates , "     --- this is textCoOrdinates")
 };
 
 function readImage() {
@@ -299,6 +301,8 @@ ImgApi.prototype = {
 
 
 $( document ).ready(function() {
+   
+
     $( "#backgroundleft" ).click(function() {
       setCover('backgroundleft');
       if(userImage !== "") drawUserImage(userImage, userImageDetails)
@@ -321,9 +325,11 @@ $( document ).ready(function() {
       var c = document.getElementById("myCanvas");
       var ctx = c.getContext("2d");
       var textContent = document.getElementById("the-textbox").value;
+      console.log( textContent ,"-------- this is text content")
       canvasText = textContent;
       var img = document.getElementById("hideimage");
-      ctx.drawImage(img, 0, 0,500,400);
+      ctx.drawImage(img, canvasDetails.x, canvasDetails.y,
+    canvasDetails.width,canvasDetails.height);
       ctx.font='800 italic 24px Arial';
       ctx.fillStyle = 'black';
       printText(ctx, textContent, canvasTextDetail);

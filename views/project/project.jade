@@ -8,48 +8,47 @@ html
     meta( content='https://pumplify.com/project/5756b9bfd05fd1e86a27dae9', property='og:url')
     meta(content='this is an app that can make a huge difference.So use this app once' , property='og:description' )
     meta(content='http://pumplify.com/uploads/#{project.image}', property='og:image')
-
-    link(href='/stylesheets/fb.css', rel='stylesheet')
+    link(href='/stylesheets/mockup.css', rel='stylesheet')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
   body
-    .canvaswrapper
-      .canvaswrapperbody
-        .container-wrapper
-          .ImageCanvas
-            .Imageuse
-              p.imagetouse Image to use:
-              .hideImage
-                img#hideimage.center.responsive-img(src="/uploads/#{project.data.cover_image}")
-              .screamImageLMR
-                .ImageBackgroundcanvas
-                  .screamImage
-                    .screamL
-                      img#backgroundleft.screamresponsive(src= "../uploads/#{project.data.background_image.background_image_one}" , alt='The Scream')
-                  .screamImage
-                    .screamM
-                      img#backgroundmiddle.screamresponsive(src="../uploads/#{project.data.background_image.background_image_two}", alt='The Scream')
-                  .screamImage
-                    .screamR
-                      img#backgroundright.screamresponsive(src='../uploads/#{project.data.background_image.background_image_three}', alt='The Scream')
-            .canvasdesgin
-              p.canvas-text Canvas:
-              .mycanvasdesgin
-                canvas#myCanvas(width='500', height='400', style='border:1px solid #d3d3d3;') Your browser does not support the HTML5 canvas tag.
-                .file-text-Buttons
-                  textarea#the-textbox.textareapart(rows='5', cols='50',type='text', placeholder='Add your text...')
-                  input#textbox-button(type='button', value='Submit Text')
-                .uploadbutton-Fbbutton
-                  p.upload-text Upload a Pic
-                  button#facebook-input.image-button(data-toggle='modal', data-target='#myModal')
-                   img(src='../images/profile.png')
-                  .image-upload
-                   label(for='file-input')
-                    img(src='../images/foldericon.png')
-                   input#file-input(type='file')
-            p.note-text
-              strong Note:
-              |  The canvas tag is not supported in Internet Explorer 8 and earlier versions.
-           input#save-button(type='button', value="Ok I'M Done!")
+     #backgroundpart.background
+      #mockup-bg.mockupbg
+        .containerwrapper
+          #title-mockup.titlemockup
+            #title-head.titlehead
+              #header-title.headertitle
+                h2#text-title.texttitle Happy Father's Day
+          img#hideimage.center.responsive-img(src="../uploads/#{project.data.cover_image}")
+          #background-frame.backgroundframe
+            #small-frame.smallframe
+              p#frame-title.frametitle Select Frame and Drag on to Canvas
+              #frame-drag.framedrag
+                #left-frame.leftframe
+                  img#backgroundleft.imageframe(src="../uploads/#{project.data.background_image.background_image_one}")
+                #center-frame.centerframe
+                  img#backgroundmiddle.imageframe(src="../uploads/#{project.data.background_image.background_image_two}")
+                #right-frame.rightframe
+                  img#backgroundright.imageframe(src='../uploads/#{project.data.background_image.background_image_three}')
+          .mycanvasdesgin
+            canvas#myCanvas(width=810, height='500', style='border:1px solid #d3d3d3;')
+          #footer-function.footerfunction
+            #uplaod-text.uplaodtext
+              #left-uplaod.leftuplaod
+                #file.imageuploadbutton
+                  label(for='file-input')
+                    img.imageupload(src='../images/upload.png')
+                  input#file-input(type='file')
+                span#imagetitle.imagetitle Upload Photo
+              #center-uplaod.centeruplaod
+                button#facebook-input.image-button(data-toggle='modal', data-target='#myModal')
+                  img.imageupload(src='../images/fbupload.png')
+                span#imagetitle.imagetitle Upload From Facebook
+              #right-uplaod.rightuplaod
+                button#addtext.image-button(data-toggle='modal', data-target='#myEdit')
+                 img.imageupload(src='../images/text.png')
+                span#imagetitle.imagetitle Add Text
+            #submite.submite
+              button#save-button.submitbtn Submit 
  #myModal.modal.fade(role='dialog')
   .modal-dialog
    .modal-content
@@ -60,7 +59,19 @@ html
      p Select any once of it
     .modal-footer
       button#oksubmit.btn.btn-default(type='button', data-dismiss='modal') Select
-      button.btn.btn-default(type='button', data-dismiss='modal') Close
+      button.btn.btn-default.closefb(type='button', data-dismiss='modal') Close
+ #myEdit.modal.fade(role='dialog')
+  .modal-dialog
+   .modal-content
+    .modal-header
+      button.close(type='button', data-dismiss='modal') ×
+      h4.modal-title Add Text
+    .modal-body
+      .file-text-Buttons
+       textarea#the-textbox.textareapart(rows='5', cols='50',type='text', placeholder='Add your text...')
+    .modal-footer
+      input#textbox-button.btn.btn-default(type='button', value='Submit Text')
+      button.btn.btn-default(type='button', data-dismiss='modal') Close                                                    
 script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
 script(src="/lib/facebook_SDK.js")
 script(src="/js/facebook_image.js")
