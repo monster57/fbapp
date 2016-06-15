@@ -227,5 +227,9 @@ input#file-input
 .modal-dialog 
 {
     width: 600px;
-    margin: 200px auto !important;
+    margin: 270px auto !important;
+}
+.modal-dialog.facebook-fb
+{
+    margin: 180px auto !important;
 }
