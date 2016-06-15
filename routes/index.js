@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var cover = null;
 var multer = require('multer');
+var auth = require("../config/auth")
 var upload = multer({dest: './uploads'});
 var PostcardResult = require('../models/postcard-result');
 
@@ -21,9 +22,8 @@ function AunthenticationCheck(req, res, next){
     return next();
   }
   if(req.query.value == 1){
-    req.redirect("https://www.facebook.com/totalstyletp/app/1700845086856798/")
+    res.redirect(auth.facebook_page)
   }
-  console.log(req.url , "............... hello I am getting url")
   // res.redirect('/users/auth/facebook?url='+req.url);
   res.render("facebook-login.jade")
 }

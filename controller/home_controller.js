@@ -2,6 +2,7 @@ var User = require('../models/user');
 var Project = require('../models/project');
 var fs = require('fs');
 var home = {};
+var auth = require("../config/auth");
 
 // get list of all users
 home.getAllUsers = function(req,res){
@@ -67,7 +68,7 @@ home.saveProject = function(req, res){
 home.showProject = function(req, res){
 	var projectId = req.params.id;
 	if(req.query.value == 1){
-		return res.redirect("https://www.facebook.com/totalstyletp/app/1700845086856798/");	
+		return res.redirect(auth.facebook_page);	
 	}
 
 	Project.findOne({_id:projectId}).exec()
